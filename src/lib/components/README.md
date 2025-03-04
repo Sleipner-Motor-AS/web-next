@@ -1,0 +1,1 @@
+Higher level components reused across the site. Can include business logic.
