@@ -9,7 +9,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <main className="mx-auto max-w-7xl"> {children}</main>
       </body>
     </html>
   );
