@@ -14,8 +14,8 @@ export default async function RootLayout(props: { children: ReactNode }) {
   const { children } = props;
 
   return (
-    <html lang="en">
-      <body className={`${ibmPlexSans.variable} font-ibm-plex-sans antialiased`}>
+    <html lang="en" className={`${ibmPlexSans.variable} antialiased`}>
+      <body>
         <main>{children}</main>
       </body>
     </html>

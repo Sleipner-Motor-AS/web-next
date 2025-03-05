@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@theme inline {
+  --font-sans: var(--font-ibm-plex-sans), sans-serif;
+}
+
 @theme {
   --color-black: rgba(0, 0, 0, 1);
   --color-white: rgba(255, 255, 255, 1);
@@ -91,10 +95,6 @@
   --color-burnt-orange-100: rgba(247, 182, 158, 1);
   --color-burnt-orange-50: rgba(252, 213, 198, 1);
   --color-burnt-orange-25: rgba(255, 245, 241, 1);
-}
-
-@theme inline {
-  --font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
 }
 
 @layer base {
