@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web_next_postgres_db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: web-next
+      POSTGRES_USER: web-next
+      POSTGRES_PASSWORD: web-next
+    ports:
+      - '5433:5432'
+    volumes:
+      - web_next_pgdata:/var/lib/postgresql/data
+
+  web_next_postgres_db_payload:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: web-next-payload
+      POSTGRES_USER: web-next-payload
+      POSTGRES_PASSWORD: web-next-payload
+    ports:
+      - '5434:5432'
+    volumes:
+      - web_next_pgdata_payload:/var/lib/postgresql/data
+
+volumes:
+  web_next_pgdata:
+  web_next_pgdata_payload:
