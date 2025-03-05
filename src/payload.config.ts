@@ -7,6 +7,8 @@ import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 
+import { env } from '@/env';
+
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
 
@@ -22,13 +24,13 @@ export default buildConfig({
   },
   collections: [Users, Media],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: env.secret.payload.secret,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: env.secret.payload.databaseUrl,
     },
   }),
   sharp,

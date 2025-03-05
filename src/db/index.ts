@@ -1,5 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 
-const db = drizzle(process.env.ECOMMERCE_DATABASE_URL!);
+import { env } from '@/env';
+
+const db = drizzle(env.secret.databaseUrl);
 
 export default db;
