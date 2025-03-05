@@ -16,7 +16,9 @@
     "shadcn:add": "pnpm dlx shadcn@latest add",
     "db:push": "npx drizzle-kit push",
     "db:generate": "npx drizzle-kit generate",
-    "db:migrate": "npx drizzle-kit migrate"
+    "db:migrate": "npx drizzle-kit migrate",
+    "db:local:start": "docker-compose -f docker-compose-local-dbs.yml up -d",
+    "db:local:stop": "docker-compose -f docker-compose-local-dbs.yml down"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "latest",
@@ -61,11 +63,12 @@
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0",
-    "pnpm": "^9"
+    "pnpm": "^10"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
 }
