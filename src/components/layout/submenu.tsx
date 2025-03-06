@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 export function Submenu({ className }: { className?: string }) {
   return (
     <div className={cn('border-petroleum-100 w-full border-b', className)}>
-      <div className="mx-auto grid max-w-screen-xl grid-cols-5 gap-10 px-10 pt-14 pb-16">
+      <div className="mx-auto grid max-w-screen-xl grid-cols-5 gap-10 px-5 pt-14 pb-16 md:px-10">
         <div className="col-span-1">
           <Link href="/thruster/tunnel" className="font-medium">
             Tunnel thrusters

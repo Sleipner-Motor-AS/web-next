@@ -13,7 +13,7 @@ const Intro: React.FC<IntroProps> = ({
 }) => {
   return (
     <div className={cn('w-full', className)}>
-      <div className="mx-auto max-w-screen-xl px-10 py-12">
+      <div className="mx-auto max-w-screen-xl px-5 py-12 md:px-10">
         <h1 className="text-4xl font-medium">{title}</h1>
         <p className="mt-4 text-xl">{description}</p>
       </div>

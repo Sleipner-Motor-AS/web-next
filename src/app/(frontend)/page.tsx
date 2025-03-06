@@ -4,7 +4,7 @@ import { Breadcrumb } from '@/components/layout/breadcrumb';
 import { Submenu } from '@/components/layout/submenu';
 import Intro from '@/components/layout/intro';
 import { Button } from '@/components/ui/button';
-
+import { Footer } from '@/components/layout/footer';
 export default async function HomePage() {
   return (
     <div>
@@ -19,6 +19,7 @@ export default async function HomePage() {
       <main className="mx-auto max-w-screen-xl p-10">
         <Button>Click me</Button>
       </main>
+      <Footer />
     </div>
   );
 }
