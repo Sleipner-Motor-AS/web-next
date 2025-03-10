@@ -7,17 +7,17 @@ export const markets = [
   {
     label: 'Norway',
     code: 'no',
-    language: 'no-NB',
+    language: 'no',
   },
   {
     label: 'Sweden',
     code: 'sv',
-    language: 'sv-SE',
+    language: 'sv',
   },
   {
     label: 'Denmark',
     code: 'da',
-    language: 'da-DK',
+    language: 'da',
   },
   {
     label: 'UK',
@@ -27,17 +27,17 @@ export const markets = [
   {
     label: 'Germany',
     code: 'de',
-    language: 'de-DE',
+    language: 'de',
   },
   {
     label: 'Finland',
     code: 'fi',
-    language: 'fi-FI',
+    language: 'fi',
   },
   {
     label: 'Italy',
     code: 'it',
-    language: 'it-IT',
+    language: 'it',
   },
 ] as const;
 

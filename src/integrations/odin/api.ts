@@ -33,19 +33,23 @@ export const api = {
 function createResponseError(response: Response) {
   return new Error('<ODIN_RESPONSE_ERROR> ', {
     cause: {
-      response: response,
+      response,
     },
   });
 }
 
 function createJsonError(response: Response) {
-  return new Error('<ODIN_JSON_ERROR> ', { cause: response });
+  return new Error('<ODIN_JSON_ERROR> ', {
+    cause: {
+      response,
+    },
+  });
 }
 
 function createSchemaError(response: Response, error: ZodError) {
   return new Error('<ODIN_SCHEMA_ERROR> ', {
     cause: {
-      response: response,
+      response,
       schemaError: error,
     },
   });
