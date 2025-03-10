@@ -9,7 +9,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 
 import { env } from '@/env';
 
-import dbTables from './db';
+import { dbTables } from './db';
 
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
