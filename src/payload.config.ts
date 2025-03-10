@@ -9,6 +9,8 @@ import sharp from 'sharp';
 
 import { env } from '@/env';
 
+import { allTables as allDbTables } from './db/schema';
+
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
 
@@ -29,9 +31,19 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    pool: {
-      connectionString: env.secret.payload.databaseUrl,
-    },
+    pool: { connectionString: env.secret.databaseUrl },
+    disableCreateDatabase: true,
+    beforeSchemaInit: [
+      ({ schema }) => {
+        return {
+          ...schema,
+          tables: {
+            ...schema.tables,
+            ...allDbTables,
+          },
+        };
+      },
+    ],
   }),
   sharp,
   plugins: [

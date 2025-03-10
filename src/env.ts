@@ -11,7 +11,6 @@ const envSchema = z.object({
   secret: z.object({
     databaseUrl: z.string().min(1),
     payload: z.object({
-      databaseUrl: z.string().min(1),
       secret: z.string().min(1),
     }),
     odin: z.object({
@@ -29,7 +28,6 @@ const envObj = {
   secret: {
     databaseUrl: process.env.DATABASE_URL!,
     payload: {
-      databaseUrl: process.env.PAYLOAD_DATABASE_URL!,
       secret: process.env.PAYLOAD_SECRET!,
     },
     odin: {

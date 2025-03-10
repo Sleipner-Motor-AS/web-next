@@ -62,20 +62,20 @@ export type SupportedTimezones =
 
 export interface Config {
   auth: {
-    users: UserAuthOperations;
+    cms_users: CmsUserAuthOperations;
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
+    cms_users: CmsUser;
+    cms_media: CmsMedia;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
+    cms_users: CmsUsersSelect<false> | CmsUsersSelect<true>;
+    cms_media: CmsMediaSelect<false> | CmsMediaSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -86,15 +86,15 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: null;
-  user: User & {
-    collection: 'users';
+  user: CmsUser & {
+    collection: 'cms_users';
   };
   jobs: {
     tasks: unknown;
     workflows: unknown;
   };
 }
-export interface UserAuthOperations {
+export interface CmsUserAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -114,9 +114,9 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "cms_users".
  */
-export interface User {
+export interface CmsUser {
   id: number;
   updatedAt: string;
   createdAt: string;
@@ -131,9 +131,9 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "cms_media".
  */
-export interface Media {
+export interface CmsMedia {
   id: number;
   alt: string;
   updatedAt: string;
@@ -156,17 +156,17 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'users';
-        value: number | User;
+        relationTo: 'cms_users';
+        value: number | CmsUser;
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
+        relationTo: 'cms_media';
+        value: number | CmsMedia;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
-    value: number | User;
+    relationTo: 'cms_users';
+    value: number | CmsUser;
   };
   updatedAt: string;
   createdAt: string;
@@ -178,8 +178,8 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: number;
   user: {
-    relationTo: 'users';
-    value: number | User;
+    relationTo: 'cms_users';
+    value: number | CmsUser;
   };
   key?: string | null;
   value?:
@@ -207,9 +207,9 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "cms_users_select".
  */
-export interface UsersSelect<T extends boolean = true> {
+export interface CmsUsersSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -222,9 +222,9 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "cms_media_select".
  */
-export interface MediaSelect<T extends boolean = true> {
+export interface CmsMediaSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

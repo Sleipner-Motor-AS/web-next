@@ -1,6 +1,6 @@
-import { integer, numeric, pgTable, varchar, pgEnum, boolean } from 'drizzle-orm/pg-core';
+import { pgTableCreator, varchar, numeric, integer } from '@payloadcms/db-postgres/drizzle/pg-core';
 
-import { pimBooleanKeys, pimListKeys, pimStringKeys, pimUnitKeys } from './constants';
+const pgTable = pgTableCreator((name) => `db_${name}`);
 
 export const customersTable = pgTable('customers', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -18,7 +18,7 @@ export const productsTable = pgTable('products', {
   slug: varchar({ length: 255 }).notNull().unique(),
 });
 
-export const customerPricesTable = pgTable('customerPrices', {
+export const customerPricesTable = pgTable('customer_prices', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
 
   net: numeric({ precision: 10, scale: 2 }).notNull(),
@@ -29,49 +29,9 @@ export const customerPricesTable = pgTable('customerPrices', {
   product: integer().references(() => productsTable.id, { onDelete: 'cascade' }),
 });
 
-const pimStringKeyEnum = pgEnum('pim_string_key', pimStringKeys);
-
-export const productPimStringValuesTable = pgTable('productPimStringValues', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-
-  key: pimStringKeyEnum('pim_string_key'),
-  value: varchar({ length: 255 }).notNull(),
-
-  product: integer().references(() => productsTable.id, { onDelete: 'cascade' }),
-});
-
-const pimBooleanKeyEnum = pgEnum('pim_boolean_key', pimBooleanKeys);
-
-export const productPimBooleanValuesTable = pgTable('productPimBooleanValues', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-
-  key: pimBooleanKeyEnum('pim_boolean_key'),
-  value: boolean().notNull(),
-
-  product: integer().references(() => productsTable.id, { onDelete: 'cascade' }),
-});
-
-const pimListKeyEnum = pgEnum('pim_list_key', pimListKeys);
-
-export const productPimListValuesTable = pgTable('productPimListValues', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-
-  key: pimListKeyEnum('pim_list_key'),
-  value: varchar({ length: 255 }).array().notNull(),
-
-  product: integer().references(() => productsTable.id, { onDelete: 'cascade' }),
-});
-
-const pimUnitKeyEnum = pgEnum('pim_unit_key', pimUnitKeys);
-
-export const productPimUnitValuesTable = pgTable('productPimUnitValues', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-
-  key: pimUnitKeyEnum('pim_unit_key'),
-  imperial_value: numeric({ precision: 10, scale: 2 }).notNull(),
-  metric_value: numeric({ precision: 10, scale: 2 }).notNull(),
-  imperial_unit: varchar({ length: 10 }).notNull(),
-  metric_unit: varchar({ length: 10 }).notNull(),
-
-  product: integer().references(() => productsTable.id, { onDelete: 'cascade' }),
-});
+export const allTables = {
+  customers: customersTable,
+  products: productsTable,
+  customerPrices: customerPricesTable,
+  // Always add new tables here..
+};

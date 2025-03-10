@@ -1,7 +1,11 @@
 import type { CollectionConfig } from 'payload';
 
 export const Users: CollectionConfig = {
-  slug: 'users',
+  slug: 'cms_users',
+  labels: {
+    singular: 'User',
+    plural: 'Users',
+  },
   admin: {
     useAsTitle: 'email',
   },
