@@ -324,6 +324,38 @@ export default async function HomePage() {
           title: 'View Products',
         }}
       />
+      <Hero
+        color="blank"
+        imagePlacement="image-right"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        fullWidth
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="dark"
+        imagePlacement="image-right"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        fullWidth
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
       <main className="mx-auto max-w-screen-xl p-10">
         <Button>Click me</Button>
       </main>

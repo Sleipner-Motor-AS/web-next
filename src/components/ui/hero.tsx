@@ -65,7 +65,7 @@ export function Hero({
     // Blank
     {
       'outline outline-2 outline-petroleum-100':
-        color === 'blank' && imagePlacement !== 'image-behind' && imageFade && !squareImage,
+        color === 'blank' && imagePlacement !== 'image-behind' && imageFade && !squareImage && !fullWidth,
       'xl:rounded-none': color === 'blank' && squareImage,
     },
 
