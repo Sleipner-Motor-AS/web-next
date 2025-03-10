@@ -1,23 +1,22 @@
-import type { ProductTableSchema } from '@/db/schema';
+import type { productsTable } from '@/db/product';
 
-export type Product = ReturnType<typeof schemaToDomain>;
+export type ProductTableSchema = typeof productsTable.$inferSelect;
 
-export const schemaToDomain = (schema: ProductTableSchema) => {
-  /**
-   * Builds the URL for the product by using the category and slug
-   */
-  const getUrl = () => {
-    //return `/${schema.category}/${schema.slug}` as const;
-  };
-
+const schemaToDomain = (schema: ProductTableSchema) => {
   return {
     ...schema,
-    getUrl,
   };
 };
 
-export const domainToSchema = (domain: Product): ProductTableSchema => {
+const domainToSchema = (domain: Product): ProductTableSchema => {
   return {
     ...domain,
   };
+};
+
+export type Product = ReturnType<typeof schemaToDomain>;
+
+export const product = {
+  schemaToDomain,
+  domainToSchema,
 };

@@ -9,7 +9,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 
 import { env } from '@/env';
 
-import { allTables as allDbTables } from './db/schema';
+import dbTables from './db';
 
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
@@ -39,7 +39,7 @@ export default buildConfig({
           ...schema,
           tables: {
             ...schema.tables,
-            ...allDbTables,
+            ...dbTables,
           },
         };
       },
