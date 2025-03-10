@@ -10,7 +10,7 @@ import ShoppingCartIcon from '../icons/shopping_cart';
 export function Topnav() {
   return (
     <div className="bg-petroleum-700 w-full text-white">
-      <div className="mx-auto flex max-w-screen-xl justify-between px-5 py-3 md:px-10">
+      <div className="mx-auto flex max-w-screen-xl justify-between px-5 py-3 md:px-10 xl:px-12">
         <nav>
           <ul className="flex items-center gap-10">
             <li className="flex items-center gap-1.5">

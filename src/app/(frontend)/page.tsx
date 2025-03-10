@@ -19,6 +19,20 @@ export default async function HomePage() {
       />
       <Hero
         color="light"
+        imagePlacement="image-left"
+        title="Thruster system builder"
+        text="The system builder is a general guide for Sleipner DC electric thrusters for mono-hull leisure boats. It provides a list of components needed for a complete system."
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'Start building your truster system',
+        }}
+      />
+      <Hero
+        color="light"
         imagePlacement="image-right"
         title="Welcome to our site"
         text="Discover our amazing products and services"
@@ -26,7 +40,7 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
@@ -41,7 +55,7 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
@@ -56,7 +70,6 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="no-fade"
         link={{
           target: '/products',
           title: 'View Products',
@@ -71,7 +84,7 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
@@ -86,7 +99,7 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
@@ -101,7 +114,7 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
@@ -116,23 +129,7 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
-        link={{
-          target: '/products',
-          title: 'View Products',
-        }}
-      />
-      <Hero
-        color="dark"
-        imagePlacement="image-behind"
-        title="Welcome to our site"
-        text="Discover our amazing products and services"
-        squareImage
-        image={{
-          src: '/thruster_boat.jpg',
-          altText: 'Hero image',
-        }}
-        imageFade="fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
@@ -148,14 +145,14 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="no-fade"
+        imageFade
         link={{
           target: '/products',
           title: 'View Products',
         }}
       />
       <Hero
-        color="white"
+        color="dark"
         imagePlacement="image-behind"
         title="Welcome to our site"
         text="Discover our amazing products and services"
@@ -164,14 +161,43 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="no-fade"
         link={{
           target: '/products',
           title: 'View Products',
         }}
       />
       <Hero
-        color="white"
+        color="blank"
+        imagePlacement="image-behind"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        squareImage
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="light"
+        imagePlacement="image-behind"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        squareImage
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="blank"
         imagePlacement="image-left"
         title="Welcome to our site"
         text="Discover our amazing products and services"
@@ -179,7 +205,120 @@ export default async function HomePage() {
           src: '/thruster_boat.jpg',
           altText: 'Hero image',
         }}
-        imageFade="fade"
+        imageFade
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="blank"
+        imagePlacement="image-behind"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        imageFade
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="blank"
+        imagePlacement="image-right"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="light"
+        imagePlacement="image-behind"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        fullWidth
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        imageFade
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="dark"
+        imagePlacement="image-left"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        fullWidth
+        squareImage
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="light"
+        imagePlacement="image-left"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        fullWidth
+        squareImage
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="blank"
+        imagePlacement="image-left"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        fullWidth
+        squareImage
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="blank"
+        imagePlacement="image-right"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        // imageFade
+        // fullWidth
+        squareImage
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
         link={{
           target: '/products',
           title: 'View Products',

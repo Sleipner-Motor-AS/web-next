@@ -13,12 +13,12 @@ interface LinkProps {
 }
 
 interface HeroProps {
-  color?: 'light' | 'white' | 'dark';
+  color?: 'light' | 'blank' | 'dark';
   imagePlacement?: 'image-left' | 'image-right' | 'image-behind';
   squareImage?: boolean;
   fullWidth?: boolean;
+  imageFade?: boolean;
   image?: ImageProps;
-  imageFade?: 'fade' | 'no-fade';
   title?: string;
   text?: string;
   link?: LinkProps;
@@ -31,8 +31,8 @@ export function Hero({
   imagePlacement = 'image-left',
   squareImage = false,
   fullWidth = false,
+  imageFade = false,
   image,
-  imageFade = 'no-fade',
   title,
   text,
   link,
@@ -42,14 +42,16 @@ export function Hero({
   // Base hero styles
   const heroClasses = cn(
     // Base styles
-    'flex flex-col overflow-hidden w-full mx-auto',
+    'mx-auto max-w-screen-xl flex flex-col overflow-hidden w-full',
+
     // Responsive styles
     'md:flex-row md:max-h-[620px]',
     'xl:mt-10 xl:mb-10 xl:rounded-[40px]',
+
     // Color variants
     {
       'bg-petroleum-50 text-petroleum': color === 'light',
-      'bg-white text-petroleum-700': color === 'white',
+      'bg-white text-petroleum-700': color === 'blank',
       'bg-petroleum-700 text-white': color === 'dark',
     },
     // Image placement
@@ -59,6 +61,14 @@ export function Hero({
     },
     // Full width
     fullWidth && 'xl:w-full xl:max-w-full xl:rounded-none xl:min-h-[28vw] xl:mt-0 xl:mb-0',
+
+    // Blank
+    {
+      'outline outline-2 outline-petroleum-100':
+        color === 'blank' && imagePlacement !== 'image-behind' && imageFade && !squareImage,
+      'xl:rounded-none': color === 'blank' && squareImage,
+    },
+
     // Custom class
     className,
   );
@@ -68,13 +78,14 @@ export function Hero({
     'w-full',
     {
       // Fade styles
-      relative: imageFade === 'fade',
+      relative: imageFade,
+
       // Image behind styles
       'absolute top-0 left-0 h-full flex justify-center items-center overflow-hidden':
         imagePlacement === 'image-behind',
 
       'xl:rounded-[40px] overflow-hidden':
-        color === 'white' && imageFade === 'no-fade' && imagePlacement !== 'image-behind',
+        color === 'blank' && !imageFade && imagePlacement !== 'image-behind' && !squareImage,
     },
     squareImage && 'flex justify-center items-center',
   );
@@ -83,7 +94,7 @@ export function Hero({
   const contentContainerClasses = 'w-full self-center justify-self-center';
 
   // Content styles
-  const contentClasses = cn('mx-auto p-8', 'md:max-w-[600px] md:p-10', 'xl:p-12', {
+  const contentClasses = cn('mx-auto p-8', 'md:max-w-screen-sm md:p-10', 'xl:p-12', {
     'relative z-10': imagePlacement === 'image-behind',
     'ml-auto mr-0': fullWidth && imagePlacement === 'image-right',
     'ml-0 mr-auto': fullWidth && imagePlacement === 'image-left',
@@ -97,27 +108,30 @@ export function Hero({
 
   // Fade styles
   const fadeClasses = cn({
-    'absolute inset-0': imageFade === 'fade',
+    'absolute inset-0': imageFade,
     'bg-petroleum-700/80': color === 'dark' && imagePlacement === 'image-behind',
     'bg-petroleum-50/80': color === 'light' && imagePlacement === 'image-behind',
-    'bg-white/80': color === 'white' && imagePlacement === 'image-behind',
+    'bg-white/80': color === 'blank' && imagePlacement === 'image-behind',
     'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-l': color === 'dark' && imagePlacement === 'image-left',
     'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-r': color === 'dark' && imagePlacement === 'image-right',
     'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-l': color === 'light' && imagePlacement === 'image-left',
     'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-r': color === 'light' && imagePlacement === 'image-right',
-    'bg-gradient-to-l from-white to-white/0': color === 'white' && imagePlacement === 'image-left',
-    'bg-gradient-to-r from-white to-white/0': color === 'white' && imagePlacement === 'image-right',
+    'bg-gradient-to-l from-white to-white/0': color === 'blank' && imagePlacement === 'image-left',
+    'bg-gradient-to-r from-white to-white/0': color === 'blank' && imagePlacement === 'image-right',
+    'bg-petroleum-50/60': squareImage && color === 'light' && imagePlacement !== 'image-behind',
+    'bg-petroleum-700/60': squareImage && color === 'dark' && imagePlacement !== 'image-behind',
+    'bg-white/60': squareImage && color === 'blank' && imagePlacement !== 'image-behind',
   });
 
   // Title styles
   const titleClasses = cn('text-3xl leading-none font-medium m-0 mb-4 xl:text-5xl', {
-    'text-petroleum-700': color === 'light' || color === 'white',
+    'text-petroleum-700': color === 'light' || color === 'blank',
     'text-white': color === 'dark',
   });
 
   // Text styles
   const textClasses = cn('text-xl leading-relaxed', {
-    'text-petroleum-700': color === 'light' || color === 'white',
+    'text-petroleum-700': color === 'light' || color === 'blank',
     'text-white': color === 'dark',
   });
 
@@ -131,14 +145,14 @@ export function Hero({
 
   // Link styles
   const linkClasses = cn('text-base py-2 px-5 rounded-lg no-underline inline-block', {
-    'bg-petroleum-700 text-white hover:bg-petroleum-600': color === 'light' || color === 'white',
+    'bg-petroleum-700 text-white hover:bg-petroleum-600': color === 'light' || color === 'blank',
     'bg-white text-petroleum-700 hover:bg-petroleum-25': color === 'dark',
   });
 
   // Text link styles
   const textLinkClasses = cn('text-base font-medium underline underline-offset-6 decoration-2', {
     'text-petroleum-700 hover:text-petroleum-900 decoration-aqua hover:decoration-aqua-600':
-      color === 'light' || color === 'white',
+      color === 'light' || color === 'blank',
     'text-white hover:text-petroleum-25 decoration-aqua hover:decoration-aqua-600': color === 'dark',
   });
 
@@ -147,7 +161,7 @@ export function Hero({
       {image && (
         <div className={imageContainerClasses}>
           <img src={image.src} srcSet={image.srcSet} alt={image.altText || ''} className={imageClasses} />
-          {imageFade === 'fade' && <div className={fadeClasses} />}
+          {imageFade && <div className={fadeClasses} />}
         </div>
       )}
       <div className={contentContainerClasses}>

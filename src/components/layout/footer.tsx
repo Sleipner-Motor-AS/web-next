@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <div>
       <div className="bg-petroleum-700 gap flex flex-col gap-10 py-24 text-white md:gap-20">
-        <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 px-5 md:flex-row md:px-10">
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 px-5 md:flex-row md:px-10 xl:px-12">
           <nav className="w-full text-sm">
             <div className="text-petroleum-100 text-lg uppercase">Ressurser</div>
             <ul className="my-5 list-none">
@@ -156,7 +156,7 @@ export function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 px-5 md:flex-row md:px-10">
+        <div className="mx-auto flex w-full max-w-screen-xl flex-col gap-10 px-5 md:flex-row md:px-10 xl:px-12">
           <nav className="mr-0 w-full text-sm md:mr-10 md:w-[200%]">
             <div className="text-petroleum-100 text-lg uppercase">Følg oss</div>
             <ul className="mt-6 flex list-none flex-wrap gap-8">

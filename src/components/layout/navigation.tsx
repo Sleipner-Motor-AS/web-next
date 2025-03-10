@@ -5,7 +5,7 @@ import { Search } from './search';
 export function Navigation() {
   return (
     <header className="border-petroleum-50 w-full border-b bg-white">
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-5 py-6 md:px-10">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-5 py-6 md:px-10 xl:px-12">
         <Link href="/" className="w-20 flex-shrink-0">
           <Image className="" src="/sleipner-logo.svg" alt="Sleipner Logo" width={80} height={41} />
         </Link>
