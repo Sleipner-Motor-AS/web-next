@@ -2,6 +2,8 @@ import { integer, text, varchar, pgTableCreator, jsonb } from '@/db/pg';
 
 import type { MarketCode } from '@/markets';
 
+import { cms_products } from '@/payload-generated-schema';
+
 const pgTable = pgTableCreator((name) => `db_${name}`);
 
 export const productsTable = pgTable('products', {
@@ -22,6 +24,13 @@ export const productsTable = pgTable('products', {
    * Secondary SKU that can change over time
    */
   sku2: varchar({ length: 255 }).notNull(),
+
+  /**
+   * Reference to the product in the CMS
+   */
+  cms_product: integer()
+    .references(() => cms_products.id, { onDelete: 'cascade' })
+    .unique(),
 });
 
 export const marketProductsTable = pgTable(

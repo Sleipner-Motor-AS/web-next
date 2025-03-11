@@ -69,6 +69,21 @@ export const cms_media = pgTable(
   }),
 );
 
+export const cms_products = pgTable(
+  'cms_products',
+  {
+    id: serial('id').primaryKey(),
+    product_id: numeric('product_id'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  (columns) => ({
+    cms_products_product_id_idx: uniqueIndex('cms_products_product_id_idx').on(columns.product_id),
+    cms_products_updated_at_idx: index('cms_products_updated_at_idx').on(columns.updatedAt),
+    cms_products_created_at_idx: index('cms_products_created_at_idx').on(columns.createdAt),
+  }),
+);
+
 export const payload_locked_documents = pgTable(
   'payload_locked_documents',
   {
@@ -93,6 +108,7 @@ export const payload_locked_documents_rels = pgTable(
     path: varchar('path').notNull(),
     cms_usersID: integer('cms_users_id'),
     cms_mediaID: integer('cms_media_id'),
+    cms_productsID: integer('cms_products_id'),
   },
   (columns) => ({
     order: index('payload_locked_documents_rels_order_idx').on(columns.order),
@@ -103,6 +119,9 @@ export const payload_locked_documents_rels = pgTable(
     ),
     payload_locked_documents_rels_cms_media_id_idx: index('payload_locked_documents_rels_cms_media_id_idx').on(
       columns.cms_mediaID,
+    ),
+    payload_locked_documents_rels_cms_products_id_idx: index('payload_locked_documents_rels_cms_products_id_idx').on(
+      columns.cms_productsID,
     ),
     parentFk: foreignKey({
       columns: [columns['parent']],
@@ -118,6 +137,11 @@ export const payload_locked_documents_rels = pgTable(
       columns: [columns['cms_mediaID']],
       foreignColumns: [cms_media.id],
       name: 'payload_locked_documents_rels_cms_media_fk',
+    }).onDelete('cascade'),
+    cms_productsIdFk: foreignKey({
+      columns: [columns['cms_productsID']],
+      foreignColumns: [cms_products.id],
+      name: 'payload_locked_documents_rels_cms_products_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -184,6 +208,7 @@ export const payload_migrations = pgTable(
 
 export const relations_cms_users = relations(cms_users, () => ({}));
 export const relations_cms_media = relations(cms_media, () => ({}));
+export const relations_cms_products = relations(cms_products, () => ({}));
 export const relations_payload_locked_documents_rels = relations(payload_locked_documents_rels, ({ one }) => ({
   parent: one(payload_locked_documents, {
     fields: [payload_locked_documents_rels.parent],
@@ -199,6 +224,11 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     fields: [payload_locked_documents_rels.cms_mediaID],
     references: [cms_media.id],
     relationName: 'cms_media',
+  }),
+  cms_productsID: one(cms_products, {
+    fields: [payload_locked_documents_rels.cms_productsID],
+    references: [cms_products.id],
+    relationName: 'cms_products',
   }),
 }));
 export const relations_payload_locked_documents = relations(payload_locked_documents, ({ many }) => ({
@@ -228,6 +258,7 @@ export const relations_payload_migrations = relations(payload_migrations, () => 
 type DatabaseSchema = {
   cms_users: typeof cms_users;
   cms_media: typeof cms_media;
+  cms_products: typeof cms_products;
   payload_locked_documents: typeof payload_locked_documents;
   payload_locked_documents_rels: typeof payload_locked_documents_rels;
   payload_preferences: typeof payload_preferences;
@@ -235,6 +266,7 @@ type DatabaseSchema = {
   payload_migrations: typeof payload_migrations;
   relations_cms_users: typeof relations_cms_users;
   relations_cms_media: typeof relations_cms_media;
+  relations_cms_products: typeof relations_cms_products;
   relations_payload_locked_documents_rels: typeof relations_payload_locked_documents_rels;
   relations_payload_locked_documents: typeof relations_payload_locked_documents;
   relations_payload_preferences_rels: typeof relations_payload_preferences_rels;
