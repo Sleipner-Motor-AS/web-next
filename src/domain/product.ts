@@ -1,4 +1,4 @@
-import type { productsTable } from '@/db/product';
+import type { productsTable } from '@/db/tables/product';
 
 export type ProductTableSchema = typeof productsTable.$inferSelect;
 
