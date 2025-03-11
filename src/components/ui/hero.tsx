@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-
+import Link from 'next/link';
+import Image from 'next/image';
 interface ImageProps {
   src?: string;
   srcSet?: string;
@@ -158,9 +159,9 @@ export function Hero({
 
   return (
     <div className={heroClasses}>
-      {image && (
+      {image && image.src && (
         <div className={imageContainerClasses}>
-          <img src={image.src} srcSet={image.srcSet} alt={image.altText || ''} className={imageClasses} />
+          <Image src={image.src} alt={image.altText || ''} className={imageClasses} width={4143} height={2250} />
           {imageFade && <div className={fadeClasses} />}
         </div>
       )}
@@ -171,14 +172,14 @@ export function Hero({
           {(link || textLink) && (
             <div className={linksClasses}>
               {link && link.target && link.title && link.title.length > 0 && (
-                <a href={link.target} className={linkClasses}>
+                <Link href={link.target} className={linkClasses}>
                   {link.title}
-                </a>
+                </Link>
               )}
               {textLink && textLink.target && textLink.title && textLink.title.length > 0 && (
-                <a href={textLink.target} className={textLinkClasses}>
+                <Link href={textLink.target} className={textLinkClasses}>
                   {textLink.title}
-                </a>
+                </Link>
               )}
             </div>
           )}

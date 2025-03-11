@@ -9,40 +9,40 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Ressurser</div>
             <ul className="my-5 list-none">
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/knowledge-hub"
                   target="_self"
                 >
                   Knowledge hub
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/support/faq"
                   target="_self"
                 >
                   Ofte stilte spørsmål
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/support/produktkataloger"
                   target="_self"
                 >
                   Produktkataloger
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="https://mysite.sleipnergroup.com/"
                   target="_blank"
                 >
                   mySite
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -50,58 +50,58 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Om Sleipner</div>
             <ul className="my-5 list-none">
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/dette-er-sleipner"
                   target="_self"
                 >
                   Vår historie
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/patenter"
                   target="_self"
                 >
                   Patenter
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/dette-er-sleipner/jobbe-pa-sleipner"
                   target="_self"
                 >
                   Karriere på Sleipner
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/sustainability"
                   target="_self"
                 >
                   Sustainability
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/dette-er-sleipner/batmesser"
                   target="_self"
                 >
                   Finn oss på messer
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/support/presse"
                   target="_self"
                 >
                   Presse
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -109,49 +109,49 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Utforsk</div>
             <ul className="my-5 list-none">
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/fritidsbat/baug-og-hekkthruster-for-fritidsbad"
                   target="_self"
                 >
                   Thruster
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/fritidsbat/ankervinsj"
                   target="_self"
                 >
                   Ankervinsj
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/fritidsbat/fremdrift"
                   target="_self"
                 >
                   Fremdrift
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/fritidsbat/styring"
                   target="_self"
                 >
                   Styring
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="/fritidsbat/stabilisatorsystem-for-fritidsbat/stabilisatorer"
                   target="_self"
                 >
                   Stabilisatorer
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -161,49 +161,49 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Følg oss</div>
             <ul className="mt-6 flex list-none flex-wrap gap-8">
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="https://www.linkedin.com/company/sleipnerofficial"
                   target="_blank"
                 >
                   LinkedIn
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="https://www.facebook.com/sleipnernorge"
                   target="_blank"
                 >
                   Facebook
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="https://www.youtube.com/c/SidepowerTV/featured"
                   target="_blank"
                 >
                   YouTube
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="https://www.instagram.com/sleipner_official"
                   target="_blank"
                 >
                   Instagram
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   className="decoration-aqua-500 inline-block font-medium text-white underline decoration-2 underline-offset-4"
                   href="https://info.sleipnergroup.com/subscribe-to-our-newsletter-int"
                   target="_blank"
                 >
                   Nyhetsbrev
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
