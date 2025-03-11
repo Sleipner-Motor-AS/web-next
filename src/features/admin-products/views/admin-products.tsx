@@ -2,13 +2,9 @@ import type { AdminViewServerProps } from 'payload';
 
 import { DefaultTemplate } from '@payloadcms/next/templates';
 
-import { getOdinProduct } from '../server/services/get-odin-product';
+import { AddProductForm } from '../components/add-product-form';
 
 export async function AdminProducts({ initPageResult, params, searchParams }: AdminViewServerProps) {
-  const test = await getOdinProduct({ sku: 'SM908018 ' });
-
-  console.log(test);
-
   return (
     <DefaultTemplate
       i18n={initPageResult.req.i18n}
@@ -20,8 +16,7 @@ export async function AdminProducts({ initPageResult, params, searchParams }: Ad
       user={initPageResult.req.user || undefined}
       visibleEntities={initPageResult.visibleEntities}
     >
-      <h1>Custom Default Root View</h1>
-      <p>This view uses the Default Template.</p>
+      <AddProductForm />
     </DefaultTemplate>
   );
 }
