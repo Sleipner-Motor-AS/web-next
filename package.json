@@ -14,9 +14,6 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "shadcn:add": "pnpm dlx shadcn@latest add",
-    "db:push": "npx drizzle-kit push",
-    "db:generate": "npx drizzle-kit generate",
-    "db:migrate": "npx drizzle-kit migrate",
     "db:local:start": "docker-compose -f docker-compose-local-db.yml up -d",
     "db:local:stop": "docker-compose -f docker-compose-local-db.yml down"
   },
