@@ -12,6 +12,7 @@ import { env } from '@/env';
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
 import { Products } from './cms/collections/Products';
+
 import { customerProductPricesTable, customersTable } from './db/tables/customer';
 import { marketProductsTable, productsTable } from './db/tables/product';
 
@@ -40,11 +41,18 @@ export default buildConfig({
       },
     ],
   }),
-
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      views: {
+        products: {
+          Component: '/features/admin-products/views/admin-products#AdminProducts',
+          path: '/products',
+        },
+      },
     },
   },
   editor: lexicalEditor(),
