@@ -70,7 +70,7 @@ async function createSchemaError(
       request,
       response,
       parsedJson: json,
-      zodError,
+      schemaError: zodError,
     },
   });
 

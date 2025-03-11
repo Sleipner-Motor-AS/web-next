@@ -1,4 +1,4 @@
-export const marketCodes = ['en', 'no', 'sv', 'da', 'uk', 'de', 'fi', 'it'] as const;
+export const marketCodes = ['en', 'no', 'se', 'dk', 'de', 'fi', 'it', 'pl', 'uk'] as const;
 type MarketCode = (typeof marketCodes)[number];
 
 const languageCodes = ['en', 'no', 'sv', 'da', 'de', 'fi', 'it'] as const;
@@ -23,18 +23,13 @@ export const markets = [
   },
   {
     label: 'Sweden',
-    code: 'sv',
+    code: 'se',
     language: 'sv',
   },
   {
     label: 'Denmark',
-    code: 'da',
+    code: 'dk',
     language: 'da',
-  },
-  {
-    label: 'UK',
-    code: 'uk',
-    language: 'en',
   },
   {
     label: 'Germany',
@@ -50,5 +45,15 @@ export const markets = [
     label: 'Italy',
     code: 'it',
     language: 'it',
+  },
+  {
+    label: 'Poland',
+    code: 'pl',
+    language: 'en',
+  },
+  {
+    label: 'UK',
+    code: 'uk',
+    language: 'en',
   },
 ] satisfies Market[];
