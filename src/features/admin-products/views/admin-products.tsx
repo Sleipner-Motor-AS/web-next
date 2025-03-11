@@ -2,7 +2,13 @@ import type { AdminViewServerProps } from 'payload';
 
 import { DefaultTemplate } from '@payloadcms/next/templates';
 
-export function AdminProducts({ initPageResult, params, searchParams }: AdminViewServerProps) {
+import { getOdinProduct } from '../server/services/get-odin-product';
+
+export async function AdminProducts({ initPageResult, params, searchParams }: AdminViewServerProps) {
+  const test = await getOdinProduct({ sku: 'SM908018 ' });
+
+  console.log(test);
+
   return (
     <DefaultTemplate
       i18n={initPageResult.req.i18n}

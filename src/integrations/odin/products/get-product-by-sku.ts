@@ -2,12 +2,12 @@ import { z } from 'zod';
 
 import { api } from '../api';
 
-type Params = {
+export type GetProductBySkuParams = {
   sku: string;
 };
 
-const buildUrl = ({ sku }: Params) => {
-  return `/products/${sku}` as const;
+const buildUrl = ({ sku }: GetProductBySkuParams) => {
+  return `/web/products/sku/${sku}` as const;
 };
 
 const responseSchema = z.object({
@@ -17,6 +17,10 @@ const responseSchema = z.object({
   description: z.string(),
 });
 
-export const getProductBySku = (params: Params) => {
+export const getProductBySku = (params: GetProductBySkuParams) => {
   return api.get(buildUrl(params), responseSchema);
 };
+
+export type GetProductBySkuReturn = Awaited<ReturnType<typeof getProductBySku>>;
+
+export type GetProductsBySku = (params: GetProductBySkuParams) => Promise<GetProductBySkuReturn>;
