@@ -1,4 +1,4 @@
-import { pgTableCreator, varchar, integer, text, unique, jsonb } from '@payloadcms/db-postgres/drizzle/pg-core';
+import { integer, text, varchar, pgTableCreator, jsonb } from '@/db/pg';
 
 import type { MarketCode } from '@/markets';
 

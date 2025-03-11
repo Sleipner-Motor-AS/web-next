@@ -1,4 +1,4 @@
-import { pgTableCreator, varchar, numeric, integer } from '@payloadcms/db-postgres/drizzle/pg-core';
+import { integer, numeric, varchar, pgTableCreator } from '@/db/pg';
 
 import { productsTable } from './product';
 

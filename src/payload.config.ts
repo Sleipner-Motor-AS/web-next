@@ -9,10 +9,11 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 
 import { env } from '@/env';
 
-import { dbTables } from './db';
-
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
+
+import { customerProductPricesTable, customersTable } from './db/tables/customer';
+import { marketProductsTable, productsTable } from './db/tables/product';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -39,7 +40,10 @@ export default buildConfig({
           ...schema,
           tables: {
             ...schema.tables,
-            ...dbTables,
+            customersTable,
+            productsTable,
+            marketProductsTable,
+            customerProductPricesTable,
           },
         };
       },

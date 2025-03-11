@@ -1,8 +1,7 @@
-import { eq } from '@payloadcms/db-postgres/drizzle';
-
 import { connect } from '@/db';
+import { eq } from '@/db/orm';
 
-import { marketProductsTable, productsTable } from '@/db/product';
+import { marketProductsTable, productsTable } from '@/db/tables/product';
 
 export async function getMarketProducts() {
   const db = await connect();
