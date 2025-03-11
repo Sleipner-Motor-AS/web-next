@@ -27,6 +27,21 @@ const eslintConfig = [
           caughtErrorsIgnorePattern: '^(_|ignore)',
         },
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: '@payloadcms/db-postgres/drizzle/pg-core',
+              message: 'Please import from "@/db/pg" instead to use our abstraction layer.',
+            },
+            {
+              name: '@payloadcms/db-postgres/drizzle',
+              message: 'Please import from "@/db/orm" instead to use our abstraction layer.',
+            },
+          ],
+        },
+      ],
     },
   },
 ];

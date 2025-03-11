@@ -1,10 +1,10 @@
-import { connect } from '@/db';
+import { getDb } from '@/db';
 import { eq } from '@/db/orm';
 
 import { marketProductsTable, productsTable } from '@/db/tables/product';
 
 export async function getMarketProducts() {
-  const db = await connect();
+  const db = await getDb();
 
   const ret = await db
     .select({
