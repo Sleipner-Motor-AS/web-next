@@ -11,26 +11,19 @@ import { env } from '@/env';
 
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
+import { Products } from './cms/collections/Products';
 
 import { customerProductPricesTable, customersTable } from './db/tables/customer';
 import { marketProductsTable, productsTable } from './db/tables/product';
+import { markets } from './markets';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
-  admin: {
-    user: Users.slug,
-    importMap: {
-      baseDir: path.resolve(dirname),
-    },
-  },
-  collections: [Users, Media],
-  editor: lexicalEditor(),
-  secret: env.secret.payload.secret,
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
+  // Add new collections here
+  collections: [Users, Media, Products],
+  // Add new db tables here
   db: postgresAdapter({
     pool: { connectionString: env.secret.databaseUrl },
     disableCreateDatabase: true,
@@ -49,9 +42,37 @@ export default buildConfig({
       },
     ],
   }),
+  admin: {
+    user: Users.slug,
+    importMap: {
+      baseDir: path.resolve(dirname),
+    },
+    components: {
+      views: {
+        products: {
+          Component: '/features/admin-products/views/admin-products#AdminProducts',
+          path: '/products',
+        },
+      },
+    },
+  },
+  editor: lexicalEditor(),
+  secret: env.secret.payload.secret,
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
   sharp,
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  localization: {
+    defaultLocale: markets[0].code,
+    locales: [
+      ...markets.map((market) => ({
+        label: market.label,
+        code: market.code,
+      })),
+    ],
+  },
 });

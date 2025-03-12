@@ -1,10 +1,16 @@
-import { connect } from '@/db';
+import type { MarketCode } from '@/markets';
+
+import { getDb } from '@/db';
 import { eq } from '@/db/orm';
 
 import { marketProductsTable, productsTable } from '@/db/tables/product';
 
-export async function getMarketProducts() {
-  const db = await connect();
+type GetMarketProductsInput = {
+  market: MarketCode;
+};
+
+export async function getMarketProducts({ market }: GetMarketProductsInput) {
+  const db = await getDb();
 
   const ret = await db
     .select({
@@ -12,6 +18,7 @@ export async function getMarketProducts() {
       marketProduct: marketProductsTable,
     })
     .from(marketProductsTable)
+    .where(eq(marketProductsTable.market, market))
     .innerJoin(productsTable, eq(marketProductsTable.product, productsTable.id));
 
   return ret;

@@ -1,4 +1,4 @@
-import { ZodError, ZodSchema } from 'zod';
+import type { ZodError, ZodSchema } from 'zod';
 
 import { env } from '@/env';
 
@@ -6,10 +6,13 @@ type RequestOptions = Omit<NonNullable<Parameters<typeof fetch>[1]>, 'method'>;
 
 export const api = {
   get: async <TResponse>(endpoint: string, responseSchema: ZodSchema<TResponse>, options?: RequestOptions) => {
-    const response = await fetch(getUrl(endpoint), getOptions(options));
+    const url = getUrl(endpoint);
+    const opts = getOptions(options);
+
+    const response = await fetch(url, opts);
 
     if (!response.ok) {
-      throw createResponseError(response);
+      throw createResponseError({ url, options: opts }, response);
     }
 
     let json: TResponse;
@@ -17,42 +20,63 @@ export const api = {
     try {
       json = await response.json();
     } catch (_) {
-      throw createJsonError(response);
+      throw createJsonError({ url, options: opts }, response);
     }
 
     const parsed = await responseSchema.safeParseAsync(json);
 
     if (!parsed.success) {
-      throw createSchemaError(response, parsed.error);
+      throw await createSchemaError({ url, options: opts }, response, json, parsed.error);
     }
 
     return parsed.data;
   },
 };
 
-function createResponseError(response: Response) {
-  return new Error('<ODIN_RESPONSE_ERROR> ', {
+function createResponseError(request: { url: string; options: RequestInit }, response: Response) {
+  const error = new Error('<ODIN_RESPONSE_ERROR> ', {
     cause: {
+      request,
       response,
     },
   });
+
+  console.dir(error, { depth: 4 });
+
+  return error;
 }
 
-function createJsonError(response: Response) {
-  return new Error('<ODIN_JSON_ERROR> ', {
+function createJsonError(request: { url: string; options: RequestInit }, response: Response) {
+  const error = new Error('<ODIN_JSON_ERROR> ', {
     cause: {
+      request,
       response,
     },
   });
+
+  console.dir(error, { depth: 4 });
+
+  return error;
 }
 
-function createSchemaError(response: Response, error: ZodError) {
-  return new Error('<ODIN_SCHEMA_ERROR> ', {
+async function createSchemaError(
+  request: { url: string; options: RequestInit },
+  response: Response,
+  json: unknown,
+  zodError: ZodError,
+) {
+  const error = new Error('<ODIN_SCHEMA_ERROR> ', {
     cause: {
+      request,
       response,
-      schemaError: error,
+      parsedJson: json,
+      schemaError: zodError,
     },
   });
+
+  console.dir(error, { depth: 5 });
+
+  return error;
 }
 
 function getUrl(endpoint: string) {

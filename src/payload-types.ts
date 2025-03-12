@@ -68,6 +68,7 @@ export interface Config {
   collections: {
     cms_users: CmsUser;
     cms_media: CmsMedia;
+    cms_products: CmsProduct;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -76,6 +77,7 @@ export interface Config {
   collectionsSelect: {
     cms_users: CmsUsersSelect<false> | CmsUsersSelect<true>;
     cms_media: CmsMediaSelect<false> | CmsMediaSelect<true>;
+    cms_products: CmsProductsSelect<false> | CmsProductsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -85,7 +87,7 @@ export interface Config {
   };
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: 'en' | 'no' | 'se' | 'dk' | 'de' | 'fi' | 'it' | 'pl' | 'uk';
   user: CmsUser & {
     collection: 'cms_users';
   };
@@ -150,6 +152,27 @@ export interface CmsMedia {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cms_products".
+ */
+export interface CmsProduct {
+  id: number;
+  product_id?: number | null;
+  sku: string;
+  description_en?: string | null;
+  description_no?: string | null;
+  description_se?: string | null;
+  description_dk?: string | null;
+  description_de?: string | null;
+  description_fi?: string | null;
+  description_it?: string | null;
+  description_pl?: string | null;
+  description_uk?: string | null;
+  sku2?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -162,6 +185,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cms_media';
         value: number | CmsMedia;
+      } | null)
+    | ({
+        relationTo: 'cms_products';
+        value: number | CmsProduct;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -237,6 +264,26 @@ export interface CmsMediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cms_products_select".
+ */
+export interface CmsProductsSelect<T extends boolean = true> {
+  product_id?: T;
+  sku?: T;
+  description_en?: T;
+  description_no?: T;
+  description_se?: T;
+  description_dk?: T;
+  description_de?: T;
+  description_fi?: T;
+  description_it?: T;
+  description_pl?: T;
+  description_uk?: T;
+  sku2?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

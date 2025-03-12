@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { type MarketLanguageCode } from '@/markets';
+import { type LanguageCode } from '@/markets';
 
 const dictionaries = {
   en: () => import('./en.json').then((module) => module.default),
@@ -10,6 +10,6 @@ const dictionaries = {
   de: () => import('./de.json').then((module) => module.default),
   fi: () => import('./fi.json').then((module) => module.default),
   it: () => import('./it.json').then((module) => module.default),
-} satisfies Record<MarketLanguageCode, () => Promise<Record<string, string>>>;
+} satisfies Record<LanguageCode, () => Promise<Record<string, string>>>;
 
-export const getDictionary = async (lang: MarketLanguageCode) => dictionaries[lang]();
+export const getDictionary = async (lang: LanguageCode) => dictionaries[lang]();
