@@ -1,4 +1,5 @@
-import { ButtonHTMLAttributes, Children, isValidElement, ReactElement, ReactNode } from 'react';
+import { Children, isValidElement } from 'react';
+import type { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

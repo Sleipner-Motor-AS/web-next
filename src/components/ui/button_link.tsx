@@ -1,7 +1,8 @@
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { LinkProps } from 'next/link';
-import { ReactNode, Children, isValidElement, ReactElement } from 'react';
+import type { LinkProps } from 'next/link';
+import type { ReactNode, ReactElement } from 'react';
+import { Children, isValidElement } from 'react';
 
 interface ButtonLinkProps extends LinkProps {
   children: ReactNode;
