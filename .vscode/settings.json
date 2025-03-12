@@ -36,16 +36,5 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
     }
-  },
-  "sqltools.connections": [
-    {
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "name": "web-next-custom",
-      "database": "web-next-custom",
-      "username": "postgres"
-    }
-  ]
+  }
 }
