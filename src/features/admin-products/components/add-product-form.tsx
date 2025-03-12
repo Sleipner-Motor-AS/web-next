@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import type { GetOdinProductActionReturn } from '../server/actions/get-product-by-sku';
-import { getOdinProductAction } from '../server/actions/get-product-by-sku';
+
+import { getOdinProductAction, type GetOdinProductActionReturn } from '../server/actions/get-product-by-sku';
+import { createProductAction } from '../server/actions/create-product';
 
 export function AddProductForm() {
   const [sku, setSku] = useState('');
@@ -19,7 +20,11 @@ export function AddProductForm() {
   };
 
   const handleAdd = async () => {
-    console.log('add');
+    if (!odinProduct) {
+      return;
+    }
+
+    await createProductAction({ odinProduct });
   };
 
   return (

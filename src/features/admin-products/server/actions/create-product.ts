@@ -1,10 +1,8 @@
 'use server';
 
+import type { GetOdinProductActionReturn } from './get-product-by-sku';
+
 import { marketCodes } from '@/markets';
-
-import type { cms_products } from '@/payload-generated-schema';
-
-import type { marketProductsTable, productsTable } from '@/db/tables/product';
 
 import { createProduct } from '../repository';
 
@@ -13,33 +11,30 @@ type CreateActionParams = {
 };
 
 type CreateProductParams = {
-  name: string;
-  sku: string;
-  sku2: string;
+  odinProduct: GetOdinProductActionReturn;
 };
 
 const createAction = (deps: CreateActionParams) => async (params: CreateProductParams) => {
   const { createProduct } = deps;
 
-  const product: typeof productsTable.$inferInsert = {
-    odin_id: 0,
-    name: params.name,
-    sku: params.sku,
-    sku2: params.sku2,
-  };
+  const { en } = params.odinProduct;
 
-  const marketProducts: (typeof marketProductsTable.$inferInsert)[] = marketCodes.map((market) => {
-    return {
-      market,
-    };
-  });
-
-  const cmsProduct: typeof cms_products.$inferInsert = {};
+  if (!en) {
+    throw new Error('Missing English product info');
+  }
 
   const created = await createProduct({
-    product,
-    marketProducts,
-    cmsProduct,
+    product: {
+      odin_id: en.id,
+      sku: en.sku,
+      sku2: en.sku_2,
+    },
+    marketProducts: marketCodes.map((market) => {
+      return {
+        market,
+      };
+    }),
+    cmsProduct: {},
   });
 
   return created;
