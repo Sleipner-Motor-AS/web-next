@@ -13,7 +13,7 @@
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "shadcn:add": "pnpm dlx shadcn@latest add",
+    "shadcn:add": "pnpm dlx shadcn@latest && add prettier --write .",
     "db:local:start": "docker-compose -f docker-compose-local-db.yml up -d",
     "db:local:stop": "docker-compose -f docker-compose-local-db.yml down"
   },
