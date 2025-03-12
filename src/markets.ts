@@ -4,7 +4,7 @@ export type MarketCode = (typeof marketCodes)[number];
 export const languageCodes = ['en', 'no', 'sv', 'da', 'de', 'fi', 'it'] as const;
 export type LanguageCode = (typeof languageCodes)[number];
 
-type Market = {
+export type Market = {
   label: string;
   code: MarketCode;
   language: LanguageCode;

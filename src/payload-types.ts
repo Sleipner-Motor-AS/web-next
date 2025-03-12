@@ -161,7 +161,15 @@ export interface CmsProduct {
    */
   product_id?: number | null;
   sku: string;
-  description?: string | null;
+  description_en?: string | null;
+  description_no?: string | null;
+  description_se?: string | null;
+  description_dk?: string | null;
+  description_de?: string | null;
+  description_fi?: string | null;
+  description_it?: string | null;
+  description_pl?: string | null;
+  description_uk?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -266,7 +274,15 @@ export interface CmsMediaSelect<T extends boolean = true> {
 export interface CmsProductsSelect<T extends boolean = true> {
   product_id?: T;
   sku?: T;
-  description?: T;
+  description_en?: T;
+  description_no?: T;
+  description_se?: T;
+  description_dk?: T;
+  description_de?: T;
+  description_fi?: T;
+  description_it?: T;
+  description_pl?: T;
+  description_uk?: T;
   updatedAt?: T;
   createdAt?: T;
 }

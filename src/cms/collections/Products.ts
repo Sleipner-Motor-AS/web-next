@@ -1,4 +1,6 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig, Field } from 'payload';
+
+import { markets } from '@/markets';
 
 import { getDb } from '@/db';
 import { eq } from '@/db/orm';
@@ -35,13 +37,11 @@ export const Products: CollectionConfig = {
         position: 'sidebar',
       },
     },
-    {
-      name: 'description',
-      label: 'Description',
+    ...(markets.map((market) => ({
+      name: `description_${market.code}`,
+      label: `Description - ${market.label}`,
       type: 'textarea',
-      localized: true,
-      admin: {},
-    },
+    })) satisfies Field[]),
   ],
   hooks: {
     afterDelete: [

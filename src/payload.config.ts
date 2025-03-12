@@ -61,7 +61,6 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-
   sharp,
   plugins: [
     payloadCloudPlugin(),
@@ -69,9 +68,11 @@ export default buildConfig({
   ],
   localization: {
     defaultLocale: markets[0].code,
-    locales: markets.map((market) => ({
-      label: market.label,
-      code: market.code,
-    })),
+    locales: [
+      ...markets.map((market) => ({
+        label: market.label,
+        code: market.code,
+      })),
+    ],
   },
 });
