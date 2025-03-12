@@ -15,6 +15,7 @@ import { Products } from './cms/collections/Products';
 
 import { customerProductPricesTable, customersTable } from './db/tables/customer';
 import { marketProductsTable, productsTable } from './db/tables/product';
+import { markets } from './markets';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -66,4 +67,11 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  localization: {
+    defaultLocale: markets[0].code,
+    locales: markets.map((market) => ({
+      label: market.label,
+      code: market.code,
+    })),
+  },
 });

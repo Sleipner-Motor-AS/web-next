@@ -35,6 +35,13 @@ export const Products: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'textarea',
+      localized: true,
+      admin: {},
+    },
   ],
   hooks: {
     afterDelete: [

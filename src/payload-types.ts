@@ -87,7 +87,7 @@ export interface Config {
   };
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: 'en' | 'no' | 'se' | 'dk' | 'de' | 'fi' | 'it' | 'pl' | 'uk';
   user: CmsUser & {
     collection: 'cms_users';
   };
@@ -161,6 +161,7 @@ export interface CmsProduct {
    */
   product_id?: number | null;
   sku: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -265,6 +266,7 @@ export interface CmsMediaSelect<T extends boolean = true> {
 export interface CmsProductsSelect<T extends boolean = true> {
   product_id?: T;
   sku?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
