@@ -137,7 +137,7 @@ export function Hero({
   });
 
   // Links container styles
-  const linksClasses = cn(
+  const linkContainerClasses = cn(
     'flex flex-col items-start gap-6 mt-6',
     'sm:flex-row sm:items-center sm:gap-10',
     'md:flex-col md:items-start md:gap-6',
@@ -170,7 +170,7 @@ export function Hero({
           {title && <h4 className={titleClasses}>{title}</h4>}
           {text && <p className={textClasses}>{text}</p>}
           {(link || textLink) && (
-            <div className={linksClasses}>
+            <div className={linkContainerClasses}>
               {link && link.target && link.title && link.title.length > 0 && (
                 <Link href={link.target} className={linkClasses}>
                   {link.title}
