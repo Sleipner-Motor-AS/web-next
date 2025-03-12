@@ -25,7 +25,3 @@ const responseSchema = z.record(
 export const getProductBySku = (params: GetProductBySkuParams) => {
   return api.get(buildUrl(params), responseSchema);
 };
-
-export type GetProductBySkuReturn = Awaited<ReturnType<typeof getProductBySku>>;
-
-export type GetProductsBySku = (params: GetProductBySkuParams) => Promise<GetProductBySkuReturn>;

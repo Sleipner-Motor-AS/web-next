@@ -1,4 +1,4 @@
-import { integer, text, varchar, pgTableCreator, jsonb } from '@/db/pg';
+import { integer, text, varchar, pgTableCreator } from '@/db/pg';
 
 import type { MarketCode } from '@/markets';
 
@@ -23,8 +23,7 @@ export const productsTable = pgTable('products', {
   /**
    * Secondary SKU that can change over time
    */
-  sku2: varchar({ length: 255 }).notNull(),
-
+  sku2: varchar({ length: 255 }),
   /**
    * Reference to the product in the CMS
    */
@@ -39,8 +38,8 @@ export const marketProductsTable = pgTable(
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
 
     market: varchar({ length: 2 }).notNull().$type<MarketCode>(),
-    slug: varchar({ length: 255 }).notNull().unique(),
-    category: jsonb().notNull(),
+    slug: varchar({ length: 255 }).unique(),
+    category: text(),
 
     product: integer().references(() => productsTable.id, { onDelete: 'cascade' }),
   },

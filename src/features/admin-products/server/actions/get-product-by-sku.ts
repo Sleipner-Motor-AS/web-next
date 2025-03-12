@@ -1,9 +1,9 @@
 'use server';
 
-import { getProductBySku, type GetProductsBySku } from '@/integrations/odin/products/get-product-by-sku';
+import { getProductBySku } from '@/integrations/odin/products/get-product-by-sku';
 
 type CreateActionParams = {
-  getProductBySku: GetProductsBySku;
+  getProductBySku: typeof getProductBySku;
 };
 
 type GetOdinProductParams = {

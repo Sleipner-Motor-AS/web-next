@@ -28,12 +28,10 @@ export function AddProductForm() {
         <button type="button" onClick={handleFind}>
           Find
         </button>
-        {odinProduct && <pre>{JSON.stringify(odinProduct, null, 2)}</pre>}
-      </div>
-      <div>
         <button disabled={!odinProduct} type="button" onClick={handleAdd}>
           Add
         </button>
+        {odinProduct && <pre>{JSON.stringify(odinProduct, null, 2)}</pre>}
       </div>
     </form>
   );
