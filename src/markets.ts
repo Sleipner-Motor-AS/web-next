@@ -1,7 +1,7 @@
 export const marketCodes = ['en', 'no', 'se', 'dk', 'de', 'fi', 'it', 'pl', 'uk'] as const;
 export type MarketCode = (typeof marketCodes)[number];
 
-const languageCodes = ['en', 'no', 'sv', 'da', 'de', 'fi', 'it'] as const;
+export const languageCodes = ['en', 'no', 'sv', 'da', 'de', 'fi', 'it'] as const;
 export type LanguageCode = (typeof languageCodes)[number];
 
 type Market = {

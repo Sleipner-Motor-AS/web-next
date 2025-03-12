@@ -1,4 +1,4 @@
-import { ZodError, ZodSchema } from 'zod';
+import type { ZodError, ZodSchema } from 'zod';
 
 import { env } from '@/env';
 

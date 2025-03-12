@@ -2,9 +2,9 @@
 
 import { marketCodes } from '@/markets';
 
-import { cms_products } from '@/payload-generated-schema';
+import type { cms_products } from '@/payload-generated-schema';
 
-import { marketProductsTable, productsTable } from '@/db/tables/product';
+import type { marketProductsTable, productsTable } from '@/db/tables/product';
 
 import { createProduct } from '../repository';
 

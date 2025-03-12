@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { getOdinProductAction, GetOdinProductActionReturn } from '../server/actions/get-product-by-sku';
+import type { GetOdinProductActionReturn } from '../server/actions/get-product-by-sku';
+import { getOdinProductAction } from '../server/actions/get-product-by-sku';
 
 export function AddProductForm() {
   const [sku, setSku] = useState('');
