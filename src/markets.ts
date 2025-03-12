@@ -1,5 +1,5 @@
 export const marketCodes = ['en', 'no', 'se', 'dk', 'de', 'fi', 'it', 'pl', 'uk'] as const;
-type MarketCode = (typeof marketCodes)[number];
+export type MarketCode = (typeof marketCodes)[number];
 
 const languageCodes = ['en', 'no', 'sv', 'da', 'de', 'fi', 'it'] as const;
 export type LanguageCode = (typeof languageCodes)[number];
