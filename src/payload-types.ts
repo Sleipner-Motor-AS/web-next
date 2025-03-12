@@ -156,9 +156,6 @@ export interface CmsMedia {
  */
 export interface CmsProduct {
   id: number;
-  /**
-   * ID of the related product in the database
-   */
   product_id?: number | null;
   sku: string;
   description_en?: string | null;
@@ -170,6 +167,7 @@ export interface CmsProduct {
   description_it?: string | null;
   description_pl?: string | null;
   description_uk?: string | null;
+  sku2?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -283,6 +281,7 @@ export interface CmsProductsSelect<T extends boolean = true> {
   description_it?: T;
   description_pl?: T;
   description_uk?: T;
+  sku2?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -17,8 +17,10 @@ import {
   numeric,
   integer,
   jsonb,
+  pgEnum,
 } from '@payloadcms/db-postgres/drizzle/pg-core';
 import { sql, relations } from '@payloadcms/db-postgres/drizzle';
+export const enum__locales = pgEnum('enum__locales', ['en', 'no', 'se', 'dk', 'de', 'fi', 'it', 'pl', 'uk']);
 
 export const cms_users = pgTable(
   'cms_users',
@@ -75,11 +77,21 @@ export const cms_products = pgTable(
     id: serial('id').primaryKey(),
     product_id: numeric('product_id'),
     sku: varchar('sku').notNull(),
+    description_en: varchar('description_en'),
+    description_no: varchar('description_no'),
+    description_se: varchar('description_se'),
+    description_dk: varchar('description_dk'),
+    description_de: varchar('description_de'),
+    description_fi: varchar('description_fi'),
+    description_it: varchar('description_it'),
+    description_pl: varchar('description_pl'),
+    description_uk: varchar('description_uk'),
     updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
   (columns) => ({
     cms_products_product_id_idx: uniqueIndex('cms_products_product_id_idx').on(columns.product_id),
+    cms_products_sku_idx: uniqueIndex('cms_products_sku_idx').on(columns.sku),
     cms_products_updated_at_idx: index('cms_products_updated_at_idx').on(columns.updatedAt),
     cms_products_created_at_idx: index('cms_products_created_at_idx').on(columns.createdAt),
   }),
@@ -257,6 +269,7 @@ export const relations_payload_preferences = relations(payload_preferences, ({ m
 export const relations_payload_migrations = relations(payload_migrations, () => ({}));
 
 type DatabaseSchema = {
+  enum__locales: typeof enum__locales;
   cms_users: typeof cms_users;
   cms_media: typeof cms_media;
   cms_products: typeof cms_products;

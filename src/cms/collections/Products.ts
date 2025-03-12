@@ -23,7 +23,9 @@ export const Products: CollectionConfig = {
       hidden: true,
       unique: true,
       admin: {
-        description: 'ID of the related product in the database',
+        disableListColumn: true,
+        disableBulkEdit: true,
+        disableListFilter: true,
       },
     },
     {
@@ -41,7 +43,33 @@ export const Products: CollectionConfig = {
       name: `description_${market.code}`,
       label: `Description - ${market.label}`,
       type: 'textarea',
+      admin: {
+        disableListColumn: true,
+        disableBulkEdit: true,
+        disableListFilter: true,
+      },
     })) satisfies Field[]),
+    // Virtual fields
+    {
+      virtual: true,
+      name: 'sku2',
+      label: 'SKU2',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        disableListColumn: true,
+        disableBulkEdit: true,
+        disableListFilter: true,
+      },
+      hooks: {
+        afterRead: [
+          () => {
+            return 'TEST_VIRTUAL_FIELD';
+          },
+        ],
+      },
+    },
   ],
   hooks: {
     afterDelete: [
@@ -50,8 +78,14 @@ export const Products: CollectionConfig = {
         await db.delete(productsTable).where(eq(productsTable.cms_product, doc.id));
       },
     ],
+    afterRead: [
+      async ({ doc }) => {
+        console.log(doc);
+      },
+    ],
   },
   admin: {
+    useAsTitle: 'sku',
     listSearchableFields: ['sku'],
   },
 };
