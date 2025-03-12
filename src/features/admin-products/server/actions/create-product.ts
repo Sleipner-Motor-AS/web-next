@@ -34,7 +34,9 @@ const createAction = (deps: CreateActionParams) => async (params: CreateProductP
         market,
       };
     }),
-    cmsProduct: {},
+    cmsProduct: {
+      sku: en.sku,
+    },
   });
 
   return created;

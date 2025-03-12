@@ -74,6 +74,7 @@ export const cms_products = pgTable(
   {
     id: serial('id').primaryKey(),
     product_id: numeric('product_id'),
+    sku: varchar('sku').notNull(),
     updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },

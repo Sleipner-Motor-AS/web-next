@@ -160,6 +160,7 @@ export interface CmsProduct {
    * ID of the related product in the database
    */
   product_id?: number | null;
+  sku: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -263,6 +264,7 @@ export interface CmsMediaSelect<T extends boolean = true> {
  */
 export interface CmsProductsSelect<T extends boolean = true> {
   product_id?: T;
+  sku?: T;
   updatedAt?: T;
   createdAt?: T;
 }

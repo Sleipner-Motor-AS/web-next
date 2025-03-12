@@ -1,4 +1,5 @@
 import { getDb } from '@/db';
+import { eq } from '@/db/orm';
 
 import { cms_products } from '@/payload-generated-schema';
 
@@ -28,7 +29,15 @@ export const createProduct = async ({ product, marketProducts, cmsProduct }: Cre
       })
       .returning({ id: cms_products.id });
 
-    return { createdProduct, createdMarketProducts, createdCmsProduct };
+    const updatedProduct = await tx
+      .update(productsTable)
+      .set({
+        cms_product: createdCmsProduct.id,
+      })
+      .where(eq(productsTable.id, createdProduct.id))
+      .returning({ id: productsTable.id });
+
+    return { createdProduct, createdMarketProducts, createdCmsProduct: updatedProduct };
   });
 
   return ret;

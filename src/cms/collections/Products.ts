@@ -18,11 +18,22 @@ export const Products: CollectionConfig = {
     {
       name: 'product_id',
       type: 'number',
+      hidden: true,
+      unique: true,
       admin: {
         description: 'ID of the related product in the database',
-        readOnly: true,
       },
+    },
+    {
+      name: 'sku',
+      label: 'SKU',
+      type: 'text',
+      required: true,
       unique: true,
+      admin: {
+        readOnly: true,
+        position: 'sidebar',
+      },
     },
   ],
   hooks: {
@@ -32,5 +43,8 @@ export const Products: CollectionConfig = {
         await db.delete(productsTable).where(eq(productsTable.cms_product, doc.id));
       },
     ],
+  },
+  admin: {
+    listSearchableFields: ['sku'],
   },
 };
