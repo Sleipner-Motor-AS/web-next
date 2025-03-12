@@ -16,6 +16,10 @@ export const Products: CollectionConfig = {
   access: {
     create: () => false,
   },
+  admin: {
+    useAsTitle: 'sku',
+    listSearchableFields: ['sku'],
+  },
   fields: [
     {
       name: 'product_id',
@@ -39,16 +43,28 @@ export const Products: CollectionConfig = {
         position: 'sidebar',
       },
     },
-    ...(markets.map((market) => ({
-      name: `description_${market.code}`,
-      label: `Description - ${market.label}`,
-      type: 'textarea',
+    {
+      name: 'sub_header',
+      label: 'Sub Header',
+      type: 'ui',
       admin: {
-        disableListColumn: true,
-        disableBulkEdit: true,
-        disableListFilter: true,
+        components: {
+          Field: '/features/admin-products/components/sub-header#SubHeader',
+        },
       },
-    })) satisfies Field[]),
+    },
+    ...markets.map((market) => {
+      return {
+        name: `description_${market.code}`,
+        label: `Description - ${market.label}`,
+        type: 'textarea',
+        admin: {
+          disableListColumn: true,
+          disableBulkEdit: true,
+          disableListFilter: true,
+        },
+      } satisfies Field;
+    }),
     // Virtual fields
     {
       virtual: true,
@@ -78,14 +94,5 @@ export const Products: CollectionConfig = {
         await db.delete(productsTable).where(eq(productsTable.cms_product, doc.id));
       },
     ],
-    afterRead: [
-      async ({ doc }) => {
-        console.log(doc);
-      },
-    ],
-  },
-  admin: {
-    useAsTitle: 'sku',
-    listSearchableFields: ['sku'],
   },
 };
