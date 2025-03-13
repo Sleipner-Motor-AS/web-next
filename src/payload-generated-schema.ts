@@ -77,6 +77,9 @@ export const cms_products = pgTable(
     id: serial('id').primaryKey(),
     product_id: numeric('product_id'),
     sku: varchar('sku').notNull(),
+    category: integer('category_id').references(() => cms_product_categories.id, {
+      onDelete: 'set null',
+    }),
     description_en: varchar('description_en'),
     description_no: varchar('description_no'),
     description_se: varchar('description_se'),
@@ -92,6 +95,7 @@ export const cms_products = pgTable(
   (columns) => ({
     cms_products_product_id_idx: uniqueIndex('cms_products_product_id_idx').on(columns.product_id),
     cms_products_sku_idx: uniqueIndex('cms_products_sku_idx').on(columns.sku),
+    cms_products_category_idx: index('cms_products_category_idx').on(columns.category),
     cms_products_updated_at_idx: index('cms_products_updated_at_idx').on(columns.updatedAt),
     cms_products_created_at_idx: index('cms_products_created_at_idx').on(columns.createdAt),
   }),
@@ -115,6 +119,16 @@ export const cms_product_categories = pgTable(
     createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
   },
   (columns) => ({
+    cms_product_categories_category_idx: uniqueIndex('cms_product_categories_category_idx').on(columns.category),
+    cms_product_categories_en_idx: uniqueIndex('cms_product_categories_en_idx').on(columns.en),
+    cms_product_categories_no_idx: uniqueIndex('cms_product_categories_no_idx').on(columns.no),
+    cms_product_categories_se_idx: uniqueIndex('cms_product_categories_se_idx').on(columns.se),
+    cms_product_categories_dk_idx: uniqueIndex('cms_product_categories_dk_idx').on(columns.dk),
+    cms_product_categories_de_idx: uniqueIndex('cms_product_categories_de_idx').on(columns.de),
+    cms_product_categories_fi_idx: uniqueIndex('cms_product_categories_fi_idx').on(columns.fi),
+    cms_product_categories_it_idx: uniqueIndex('cms_product_categories_it_idx').on(columns.it),
+    cms_product_categories_pl_idx: uniqueIndex('cms_product_categories_pl_idx').on(columns.pl),
+    cms_product_categories_uk_idx: uniqueIndex('cms_product_categories_uk_idx').on(columns.uk),
     cms_product_categories_updated_at_idx: index('cms_product_categories_updated_at_idx').on(columns.updatedAt),
     cms_product_categories_created_at_idx: index('cms_product_categories_created_at_idx').on(columns.createdAt),
   }),
@@ -253,7 +267,13 @@ export const payload_migrations = pgTable(
 
 export const relations_cms_users = relations(cms_users, () => ({}));
 export const relations_cms_media = relations(cms_media, () => ({}));
-export const relations_cms_products = relations(cms_products, () => ({}));
+export const relations_cms_products = relations(cms_products, ({ one }) => ({
+  category: one(cms_product_categories, {
+    fields: [cms_products.category],
+    references: [cms_product_categories.id],
+    relationName: 'category',
+  }),
+}));
 export const relations_cms_product_categories = relations(cms_product_categories, () => ({}));
 export const relations_payload_locked_documents_rels = relations(payload_locked_documents_rels, ({ one }) => ({
   parent: one(payload_locked_documents, {

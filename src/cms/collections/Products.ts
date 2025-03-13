@@ -49,6 +49,36 @@ export const Products: CollectionConfig = {
       },
     },
     {
+      virtual: true,
+      name: 'sku2',
+      label: 'SKU2',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        disableListColumn: true,
+        disableBulkEdit: true,
+        disableListFilter: true,
+      },
+      hooks: {
+        afterRead: [
+          () => {
+            // TODO: Get from db
+            return 'TEST_VIRTUAL_FIELD';
+          },
+        ],
+      },
+    },
+    {
+      name: 'category',
+      label: 'Category',
+      type: 'relationship',
+      relationTo: 'cms_product_categories',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'sub_header',
       label: 'Sub Header',
       type: 'ui',
@@ -74,28 +104,6 @@ export const Products: CollectionConfig = {
         },
       } satisfies Field;
     }),
-    // Virtual fields
-    {
-      virtual: true,
-      name: 'sku2',
-      label: 'SKU2',
-      type: 'text',
-      admin: {
-        position: 'sidebar',
-        readOnly: true,
-        disableListColumn: true,
-        disableBulkEdit: true,
-        disableListFilter: true,
-      },
-      hooks: {
-        afterRead: [
-          () => {
-            // TODO: Get from db
-            return 'TEST_VIRTUAL_FIELD';
-          },
-        ],
-      },
-    },
   ],
   hooks: {
     afterDelete: [

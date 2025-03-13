@@ -4,6 +4,9 @@ import { markets } from '@/markets';
 
 export const Categories: CollectionConfig = {
   slug: 'cms_product_categories',
+  admin: {
+    useAsTitle: 'category',
+  },
   labels: {
     singular: 'Category',
     plural: 'Categories',
@@ -13,12 +16,14 @@ export const Categories: CollectionConfig = {
       name: 'category',
       type: 'text',
       required: true,
+      unique: true,
     },
     ...markets.map((market) => {
       return {
         name: `${market.code}`,
         label: `${market.label}`,
         type: 'text',
+        unique: true,
       } satisfies Field;
     }),
   ],
