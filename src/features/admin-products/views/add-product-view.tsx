@@ -4,7 +4,7 @@ import { DefaultTemplate } from '@payloadcms/next/templates';
 
 import { AddProductForm } from '../components/add-product-form';
 
-export async function AdminProducts({ initPageResult, params, searchParams }: AdminViewServerProps) {
+export async function AddProductView({ initPageResult, params, searchParams }: AdminViewServerProps) {
   return (
     <DefaultTemplate
       i18n={initPageResult.req.i18n}

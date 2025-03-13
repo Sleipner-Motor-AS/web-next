@@ -50,8 +50,8 @@ export default buildConfig({
     components: {
       views: {
         products: {
-          Component: '/features/admin-products/views/admin-products#AdminProducts',
-          path: '/products',
+          Component: '/features/admin-products/views/add-product-view#AddProductView',
+          path: '/add-product',
         },
       },
     },
