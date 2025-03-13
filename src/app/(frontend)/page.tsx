@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/ui/hero';
 import DirectionsBoatIcon from '@/components/icons/directions_boat';
 import { ButtonLink } from '@/components/ui/button_link';
+import Link from 'next/link';
 
 export default async function HomePage() {
   return (
@@ -36,6 +37,11 @@ export default async function HomePage() {
           title: 'View Products',
         }}
       />
+      <div className="mx-auto flex max-w-screen-xl p-10">
+        <Button as={Link} href="/your-path" variant="petroleum">
+          Link Button
+        </Button>
+      </div>
       <div className="mx-auto flex max-w-screen-xl flex-col p-10">
         <h2 className="mb-4 text-2xl font-bold">Buttons</h2>
         <h3 className="mb-2 text-lg">Small</h3>

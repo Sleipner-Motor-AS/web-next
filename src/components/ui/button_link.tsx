@@ -6,29 +6,33 @@ import type { ReactNode, ReactElement } from 'react';
 type ButtonLinkVariant = 'petroleum' | 'white';
 type ButtonLinkSize = 'sm' | 'md' | 'lg';
 
-interface ButtonLinkProps extends LinkProps {
+interface ButtonLinkProps {
   children: ReactNode;
   size?: ButtonLinkSize;
   variant?: ButtonLinkVariant;
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
+  className?: string;
+  as?: 'button';
+  onClick?: React.MouseEventHandler;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  href?: string;
 }
 
-// Variant styles mapping
-const variantStyles: Record<ButtonLinkVariant, string> = {
-  petroleum: 'text-petroleum-700',
-  white: 'text-white',
+const STYLES = {
+  variant: {
+    petroleum: 'text-petroleum-700',
+    white: 'text-white',
+  },
+  size: {
+    sm: 'text-sm gap-1.5',
+    md: 'text-base gap-2',
+    lg: 'text-xl gap-2.5',
+  },
+  text: 'decoration-aqua-500 font-medium underline decoration-2 underline-offset-4',
+  base: 'inline-flex items-center',
 };
-
-// Base size styles
-const sizeStyles: Record<ButtonLinkSize, string> = {
-  sm: 'text-sm gap-1.5',
-  md: 'text-base gap-2',
-  lg: 'text-xl gap-2.5',
-};
-
-// Text decoration styles
-const textStyles = 'decoration-aqua-500 font-medium underline decoration-2 underline-offset-4';
 
 export function ButtonLink({
   children,
@@ -36,35 +40,50 @@ export function ButtonLink({
   variant = 'petroleum',
   iconLeft,
   iconRight,
+  className,
+  as,
+  onClick,
+  type = 'button',
+  disabled = false,
+  href,
   ...props
-}: ButtonLinkProps) {
+}: ButtonLinkProps & Omit<LinkProps, 'href' | 'className' | 'onClick' | 'as'>) {
   const hasIcon = !!iconLeft || !!iconRight;
 
-  // Apply appropriate styles based on link configuration
-  const linkStyles = cn(
-    // Base styles
-    'inline-flex items-center',
-    // Size styles
-    sizeStyles[size],
-    // Variant styles
-    variantStyles[variant],
-    // Apply text styles directly if no icon
-    !hasIcon && [textStyles, 'font-medium'],
+  const styles = cn(
+    STYLES.base,
+    STYLES.size[size],
+    STYLES.variant[variant],
+    !hasIcon && [STYLES.text, 'font-medium'],
+    className,
   );
 
-  // Prepare content based on icon presence
   const content = hasIcon ? (
     <>
       {iconLeft}
-      <span className={textStyles}>{children}</span>
+      <span className={STYLES.text}>{children}</span>
       {iconRight}
     </>
   ) : (
     children
   );
 
+  if (as === 'button') {
+    return (
+      <button className={styles} onClick={onClick} type={type} disabled={disabled}>
+        {content}
+      </button>
+    );
+  }
+
+  // Default to Link - href is required for Link
+  if (!href) {
+    console.error('ButtonLink: href is required when not using as="button"');
+    return null;
+  }
+
   return (
-    <Link {...props} className={linkStyles}>
+    <Link href={href} className={styles} {...props}>
       {content}
     </Link>
   );
