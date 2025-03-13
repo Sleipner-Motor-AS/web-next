@@ -45,22 +45,22 @@ export async function migrateProductCategories() {
     for (const group of categoryGroups) {
       const mainCategoryPriorityOrder: MarketCode[] = ['en', 'uk', 'no', 'se', 'dk', 'de', 'fi', 'it'];
 
-      const mainCategory = group.sort(
+      const [mainCategory] = group.sort(
         (a: { website: string }, b: { website: string }) =>
           mainCategoryPriorityOrder.indexOf(a.website as MarketCode) -
           mainCategoryPriorityOrder.indexOf(b.website as MarketCode),
-      )[0];
+      );
 
       if (!mainCategory) {
         throw new Error('No category found');
       }
 
       const marketCategories = Object.fromEntries(
-        group.map((c: { website: string; category: string }) => [c.website, c.category]),
+        group.map((c: { website: string; category: string }) => [c.website, formatCategory(c.category)]),
       );
 
       mapped.push({
-        category: mainCategory.category,
+        category: formatCategory(mainCategory.category),
         ...marketCategories,
       });
     }
@@ -83,3 +83,7 @@ export async function migrateProductCategories() {
     await pool.end();
   }
 }
+
+const formatCategory = (category: string) => {
+  return category.replace(/\s+/g, '').toLowerCase();
+};
