@@ -41,7 +41,7 @@ export async function migrateProductCategories() {
 
     const payload = await getPayload({ config });
 
-    const to_insert: (typeof cms_product_categories.$inferInsert)[] = [];
+    const mapped: (typeof cms_product_categories.$inferInsert)[] = [];
     for (const group of categoryGroups) {
       const mainCategoryPriorityOrder: MarketCode[] = ['en', 'uk', 'no', 'se', 'dk', 'de', 'fi', 'it'];
 
@@ -59,14 +59,24 @@ export async function migrateProductCategories() {
         group.map((c: { website: string; category: string }) => [c.website, c.category]),
       );
 
-      to_insert.push({
+      mapped.push({
         category: mainCategory.category,
         ...marketCategories,
       });
     }
 
+    const merged: (typeof cms_product_categories.$inferInsert)[] = [];
+    for (const category of mapped) {
+      const existing = merged.findIndex((c) => c.category === category.category);
+      if (existing !== -1) {
+        merged[existing] = { ...merged[existing], ...category };
+      } else {
+        merged.push(category);
+      }
+    }
+
     await payload.db.drizzle.delete(cms_product_categories);
-    await payload.db.drizzle.insert(cms_product_categories).values(to_insert);
+    await payload.db.drizzle.insert(cms_product_categories).values(merged);
   } catch (error) {
     console.error('Error executing query:', error);
   } finally {
