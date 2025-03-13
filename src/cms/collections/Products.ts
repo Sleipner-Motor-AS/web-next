@@ -14,11 +14,16 @@ export const Products: CollectionConfig = {
     plural: 'Products',
   },
   access: {
-    //create: () => false,
+    create: () => false,
   },
   admin: {
     useAsTitle: 'sku',
     listSearchableFields: ['sku'],
+    components: {
+      Description: {
+        path: '/features/admin-products/components/go-to-add-product-link#GoToAddProductLink',
+      },
+    },
   },
   fields: [
     {
