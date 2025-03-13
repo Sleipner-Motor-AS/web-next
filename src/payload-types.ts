@@ -179,16 +179,16 @@ export interface CmsProduct {
  */
 export interface CmsProductCategory {
   id: number;
-  Category: string;
-  en: string;
-  no: string;
-  se: string;
-  dk: string;
-  de: string;
-  fi: string;
-  it: string;
-  pl: string;
-  uk: string;
+  category: string;
+  en?: string | null;
+  no?: string | null;
+  se?: string | null;
+  dk?: string | null;
+  de?: string | null;
+  fi?: string | null;
+  it?: string | null;
+  pl?: string | null;
+  uk?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -315,7 +315,7 @@ export interface CmsProductsSelect<T extends boolean = true> {
  * via the `definition` "cms_product_categories_select".
  */
 export interface CmsProductCategoriesSelect<T extends boolean = true> {
-  Category?: T;
+  category?: T;
   en?: T;
   no?: T;
   se?: T;

@@ -10,7 +10,7 @@ export const Categories: CollectionConfig = {
   },
   fields: [
     {
-      name: 'Category',
+      name: 'category',
       type: 'text',
       required: true,
     },
@@ -19,7 +19,6 @@ export const Categories: CollectionConfig = {
         name: `${market.code}`,
         label: `${market.label}`,
         type: 'text',
-        required: true,
       } satisfies Field;
     }),
   ],

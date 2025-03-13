@@ -97,6 +97,29 @@ export const cms_products = pgTable(
   }),
 );
 
+export const cms_product_categories = pgTable(
+  'cms_product_categories',
+  {
+    id: serial('id').primaryKey(),
+    category: varchar('category').notNull(),
+    en: varchar('en'),
+    no: varchar('no'),
+    se: varchar('se'),
+    dk: varchar('dk'),
+    de: varchar('de'),
+    fi: varchar('fi'),
+    it: varchar('it'),
+    pl: varchar('pl'),
+    uk: varchar('uk'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  (columns) => ({
+    cms_product_categories_updated_at_idx: index('cms_product_categories_updated_at_idx').on(columns.updatedAt),
+    cms_product_categories_created_at_idx: index('cms_product_categories_created_at_idx').on(columns.createdAt),
+  }),
+);
+
 export const payload_locked_documents = pgTable(
   'payload_locked_documents',
   {
@@ -122,6 +145,7 @@ export const payload_locked_documents_rels = pgTable(
     cms_usersID: integer('cms_users_id'),
     cms_mediaID: integer('cms_media_id'),
     cms_productsID: integer('cms_products_id'),
+    cms_product_categoriesID: integer('cms_product_categories_id'),
   },
   (columns) => ({
     order: index('payload_locked_documents_rels_order_idx').on(columns.order),
@@ -136,6 +160,9 @@ export const payload_locked_documents_rels = pgTable(
     payload_locked_documents_rels_cms_products_id_idx: index('payload_locked_documents_rels_cms_products_id_idx').on(
       columns.cms_productsID,
     ),
+    payload_locked_documents_rels_cms_product_categories_id_idx: index(
+      'payload_locked_documents_rels_cms_product_categories_id_idx',
+    ).on(columns.cms_product_categoriesID),
     parentFk: foreignKey({
       columns: [columns['parent']],
       foreignColumns: [payload_locked_documents.id],
@@ -155,6 +182,11 @@ export const payload_locked_documents_rels = pgTable(
       columns: [columns['cms_productsID']],
       foreignColumns: [cms_products.id],
       name: 'payload_locked_documents_rels_cms_products_fk',
+    }).onDelete('cascade'),
+    cms_product_categoriesIdFk: foreignKey({
+      columns: [columns['cms_product_categoriesID']],
+      foreignColumns: [cms_product_categories.id],
+      name: 'payload_locked_documents_rels_cms_product_categories_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -222,6 +254,7 @@ export const payload_migrations = pgTable(
 export const relations_cms_users = relations(cms_users, () => ({}));
 export const relations_cms_media = relations(cms_media, () => ({}));
 export const relations_cms_products = relations(cms_products, () => ({}));
+export const relations_cms_product_categories = relations(cms_product_categories, () => ({}));
 export const relations_payload_locked_documents_rels = relations(payload_locked_documents_rels, ({ one }) => ({
   parent: one(payload_locked_documents, {
     fields: [payload_locked_documents_rels.parent],
@@ -242,6 +275,11 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     fields: [payload_locked_documents_rels.cms_productsID],
     references: [cms_products.id],
     relationName: 'cms_products',
+  }),
+  cms_product_categoriesID: one(cms_product_categories, {
+    fields: [payload_locked_documents_rels.cms_product_categoriesID],
+    references: [cms_product_categories.id],
+    relationName: 'cms_product_categories',
   }),
 }));
 export const relations_payload_locked_documents = relations(payload_locked_documents, ({ many }) => ({
@@ -273,6 +311,7 @@ type DatabaseSchema = {
   cms_users: typeof cms_users;
   cms_media: typeof cms_media;
   cms_products: typeof cms_products;
+  cms_product_categories: typeof cms_product_categories;
   payload_locked_documents: typeof payload_locked_documents;
   payload_locked_documents_rels: typeof payload_locked_documents_rels;
   payload_preferences: typeof payload_preferences;
@@ -281,6 +320,7 @@ type DatabaseSchema = {
   relations_cms_users: typeof relations_cms_users;
   relations_cms_media: typeof relations_cms_media;
   relations_cms_products: typeof relations_cms_products;
+  relations_cms_product_categories: typeof relations_cms_product_categories;
   relations_payload_locked_documents_rels: typeof relations_payload_locked_documents_rels;
   relations_payload_locked_documents: typeof relations_payload_locked_documents;
   relations_payload_preferences_rels: typeof relations_payload_preferences_rels;
