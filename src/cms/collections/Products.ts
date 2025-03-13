@@ -49,7 +49,9 @@ export const Products: CollectionConfig = {
       type: 'ui',
       admin: {
         components: {
-          Field: '/features/admin-products/components/sub-header#SubHeader',
+          Field: {
+            path: '/features/admin-products/components/product-description-sub-header#ProductDescriptionSubHeader',
+          },
         },
       },
     },
@@ -81,6 +83,7 @@ export const Products: CollectionConfig = {
       hooks: {
         afterRead: [
           () => {
+            // TODO: Get from db
             return 'TEST_VIRTUAL_FIELD';
           },
         ],

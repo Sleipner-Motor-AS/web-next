@@ -7,7 +7,6 @@ import { createProductAction } from '../server/actions/create-product';
 
 export function AddProductForm() {
   const [sku, setSku] = useState('');
-
   const [odinProduct, setOdinProduct] = useState<GetOdinProductActionReturn | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
