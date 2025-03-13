@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@payloadcms/db-postgres": "latest",
-    "@payloadcms/live-preview-react": "^3.25.0",
+    "@payloadcms/live-preview-react": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/payload-cloud": "latest",
     "@payloadcms/richtext-lexical": "latest",
@@ -58,7 +58,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tsx": "^4.19.3",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0",
