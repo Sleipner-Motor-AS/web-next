@@ -43,6 +43,40 @@ export async function generateStaticParams(): Promise<Params[]> {
     }
   }
 
+  const { docs: products } = await cms.find({
+    collection: 'cms_products',
+    limit: 1000, // TODO: Find more elegant way to do this
+  });
+
+  for (const product of products) {
+    if (!product.category) {
+      continue;
+    }
+
+    const category = product.category;
+    if (!category || typeof category === 'number') {
+      continue;
+    }
+
+    for (const market of markets) {
+      const marketCategory = category[market.code];
+      if (!marketCategory) {
+        continue;
+      }
+
+      const categoryPath = marketCategory.split('/');
+      if (categoryPath.length === 0) {
+        continue;
+      }
+
+      allParams.push({
+        market: market.code,
+        products: 'products',
+        path: [...categoryPath, product.sku],
+      });
+    }
+  }
+
   return allParams;
 }
 
@@ -53,11 +87,35 @@ type Props = {
 export default async function ProductsCategoriesPage({ params }: Props) {
   const { market, products, path } = await params;
 
+  const cms = await getCms();
+
+  // Check if the last segment matches a product SKU
+  const { docs: matchingProducts } = await cms.find({
+    collection: 'cms_products',
+    where: {
+      sku: {
+        equals: path[path.length - 1],
+      },
+    },
+  });
+
+  const isProduct = matchingProducts.length > 0;
+
   return (
     <div>
-      CATEGORY PAGE
-      <br />
-      {market} {path.join(' / ')}
+      {isProduct ? (
+        <div>
+          PRODUCT PAGE
+          <br />
+          {market} {path.join(' / ')}
+        </div>
+      ) : (
+        <div>
+          CATEGORY PAGE
+          <br />
+          {market} {path.join(' / ')}
+        </div>
+      )}
     </div>
   );
 }
