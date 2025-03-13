@@ -13,7 +13,7 @@ export async function generateStaticParams(): Promise<Params[]> {
   return Promise.all(
     markets.map(async (market) => ({
       market: market.code,
-      products: (await getDictionary(market.language)).products,
+      products: (await getDictionary(market.language)).products.toLowerCase(),
     })),
   );
 }
@@ -22,12 +22,14 @@ type Props = {
   params: Promise<Params>;
 };
 
-export default async function ShopPage({ params }: Props) {
-  const { market, products } = await params;
+export default async function ProductsPage({ params }: Props) {
+  const { market } = await params;
 
   return (
     <div>
-      Products Page {market} {products}
+      ROOT PRODUCTS PAGE
+      <br />
+      {market}
     </div>
   );
 }
