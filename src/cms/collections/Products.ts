@@ -14,7 +14,7 @@ export const Products: CollectionConfig = {
     plural: 'Products',
   },
   access: {
-    create: () => false,
+    //create: () => false,
   },
   admin: {
     useAsTitle: 'sku',
@@ -48,6 +48,8 @@ export const Products: CollectionConfig = {
       label: 'Sub Header',
       type: 'ui',
       admin: {
+        disableBulkEdit: true,
+        disableListColumn: true,
         components: {
           Field: {
             path: '/features/admin-products/components/product-description-sub-header#ProductDescriptionSubHeader',
