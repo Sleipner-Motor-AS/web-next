@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface Package2IconProps {
+
+type Package2IconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const Package2Icon: React.FC<Package2IconProps> = ({ className, size = 24 }) => {
   return (

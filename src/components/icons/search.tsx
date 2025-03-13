@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface SearchIconProps {
+
+type SearchIconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const SearchIcon: React.FC<SearchIconProps> = ({ className, size = 24 }) => {
   return (

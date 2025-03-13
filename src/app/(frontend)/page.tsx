@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/ui/hero';
 import DirectionsBoatIcon from '@/components/icons/directions_boat';
-import { ButtonLink } from '@/components/ui/button_link';
+import { Textlink } from '@/components/ui/textlink';
 import Link from 'next/link';
 
 export default async function HomePage() {
@@ -23,7 +23,7 @@ export default async function HomePage() {
       />
       <Hero
         color="dark"
-        imagePlacement="image-right"
+        imagePlacement="right"
         title="Welcome to our site"
         text="Discover our amazing products and services"
         imageFade
@@ -33,6 +33,29 @@ export default async function HomePage() {
           altText: 'Hero image',
         }}
         link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+        textLink={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
+      <Hero
+        color="light"
+        imagePlacement="left"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+        textLink={{
           target: '/products',
           title: 'View Products',
         }}
@@ -454,32 +477,32 @@ export default async function HomePage() {
         <h3 className="mb-2 text-lg">Small</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-8 p-4">
-            <ButtonLink href="/products" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+            <Textlink href="/products" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+            </Textlink>
+            <Textlink href="/products" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink
+            </Textlink>
+            <Textlink
               href="/products"
               size="sm"
               iconLeft={<DirectionsBoatIcon size={16} />}
               iconRight={<DirectionsBoatIcon size={16} />}
             >
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" size="sm">
+            </Textlink>
+            <Textlink href="/products" size="sm">
               Hello
-            </ButtonLink>
+            </Textlink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <ButtonLink href="/products" variant="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+            <Textlink href="/products" variant="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+            </Textlink>
+            <Textlink href="/products" variant="white" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink
+            </Textlink>
+            <Textlink
               href="/products"
               variant="white"
               size="sm"
@@ -487,41 +510,41 @@ export default async function HomePage() {
               iconRight={<DirectionsBoatIcon size={16} />}
             >
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="sm">
+            </Textlink>
+            <Textlink href="/products" variant="white" size="sm">
               Hello
-            </ButtonLink>
+            </Textlink>
           </div>
         </div>
         <h3 className="mt-6 mb-2 text-lg">Medium</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-8 p-4">
-            <ButtonLink href="/products" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
+            <Textlink href="/products" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
+            </Textlink>
+            <Textlink href="/products" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink
+            </Textlink>
+            <Textlink
               href="/products"
               size="md"
               iconLeft={<DirectionsBoatIcon size={20} />}
               iconRight={<DirectionsBoatIcon size={20} />}
             >
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" size="md">
+            </Textlink>
+            <Textlink href="/products" size="md">
               Hello
-            </ButtonLink>
+            </Textlink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <ButtonLink href="/products" variant="white" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
+            <Textlink href="/products" variant="white" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
+            </Textlink>
+            <Textlink href="/products" variant="white" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink
+            </Textlink>
+            <Textlink
               href="/products"
               variant="white"
               size="md"
@@ -529,41 +552,41 @@ export default async function HomePage() {
               iconRight={<DirectionsBoatIcon size={20} />}
             >
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="md">
+            </Textlink>
+            <Textlink href="/products" variant="white" size="md">
               Hello
-            </ButtonLink>
+            </Textlink>
           </div>
         </div>
         <h3 className="mt-6 mb-2 text-lg">Large</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-8 p-4">
-            <ButtonLink href="/products" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+            <Textlink href="/products" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+            </Textlink>
+            <Textlink href="/products" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink
+            </Textlink>
+            <Textlink
               href="/products"
               size="lg"
               iconLeft={<DirectionsBoatIcon size={24} />}
               iconRight={<DirectionsBoatIcon size={24} />}
             >
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" size="lg">
+            </Textlink>
+            <Textlink href="/products" size="lg">
               Hello
-            </ButtonLink>
+            </Textlink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <ButtonLink href="/products" variant="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+            <Textlink href="/products" variant="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+            </Textlink>
+            <Textlink href="/products" variant="white" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
               Hello
-            </ButtonLink>
-            <ButtonLink
+            </Textlink>
+            <Textlink
               href="/products"
               variant="white"
               size="lg"
@@ -571,10 +594,10 @@ export default async function HomePage() {
               iconRight={<DirectionsBoatIcon size={24} />}
             >
               Hello
-            </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="lg">
+            </Textlink>
+            <Textlink href="/products" variant="white" size="lg">
               Hello
-            </ButtonLink>
+            </Textlink>
           </div>
         </div>
       </div>

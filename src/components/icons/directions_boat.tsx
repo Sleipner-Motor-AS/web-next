@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface DirectionsBoatIconProps {
+
+type DirectionsBoatIconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const DirectionsBoatIcon: React.FC<DirectionsBoatIconProps> = ({ className, size = 24 }) => {
   return (

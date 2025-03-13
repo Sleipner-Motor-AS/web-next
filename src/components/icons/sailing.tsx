@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface SailingIconProps {
+
+type SailingIconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const SailingIcon: React.FC<SailingIconProps> = ({ className, size = 24 }) => {
   return (

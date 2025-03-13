@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface AccountCircleIconProps {
+
+type AccountCircleIconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const AccountCircleIcon: React.FC<AccountCircleIconProps> = ({ className, size = 24 }) => {
   return (

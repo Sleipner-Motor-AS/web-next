@@ -7,7 +7,7 @@ type ButtonVariant = 'petroleum' | 'petroleum-outline' | 'petroleum-text' | 'whi
 type ButtonSize = 'sm' | 'md' | 'lg';
 type IconPosition = 'none' | 'left' | 'right' | 'both';
 
-interface ButtonBaseProps {
+type ButtonBaseProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   disabled?: boolean;
@@ -17,7 +17,7 @@ interface ButtonBaseProps {
   children?: React.ReactNode;
   as?: typeof Link;
   href?: string;
-}
+};
 
 const STYLES = {
   variant: {

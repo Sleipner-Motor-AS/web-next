@@ -2,20 +2,23 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
-interface ImageProps {
+import { Textlink } from './textlink';
+import { Button } from './button';
+
+type ImageProps = {
   src?: string;
   srcSet?: string;
   altText?: string;
-}
+};
 
-interface LinkProps {
+type LinkProps = {
   target?: string;
   title?: string;
-}
+};
 
-interface HeroProps {
+type HeroProps = {
   color?: 'light' | 'blank' | 'dark';
-  imagePlacement?: 'image-left' | 'image-right' | 'image-behind';
+  imagePlacement?: 'left' | 'right' | 'behind';
   squareImage?: boolean;
   fullWidth?: boolean;
   imageFade?: boolean;
@@ -25,11 +28,11 @@ interface HeroProps {
   link?: LinkProps;
   textLink?: LinkProps;
   className?: string;
-}
+};
 
 export function Hero({
   color = 'light',
-  imagePlacement = 'image-left',
+  imagePlacement = 'left',
   squareImage = false,
   fullWidth = false,
   imageFade = false,
@@ -57,8 +60,8 @@ export function Hero({
     },
     // Image placement
     {
-      'md:flex-row-reverse': imagePlacement === 'image-right',
-      'relative flex-row min-h-[360px] pt-8 pb-8 md:min-h-[420px]': imagePlacement === 'image-behind',
+      'md:flex-row-reverse': imagePlacement === 'right',
+      'relative flex-row min-h-[360px] pt-8 pb-8 md:min-h-[420px]': imagePlacement === 'behind',
     },
     // Full width
     fullWidth && 'xl:w-full xl:max-w-full xl:rounded-none xl:min-h-[28vw] xl:mt-0 xl:mb-0',
@@ -66,7 +69,7 @@ export function Hero({
     // Blank
     {
       'outline outline-2 outline-petroleum-100':
-        color === 'blank' && imagePlacement !== 'image-behind' && imageFade && !squareImage && !fullWidth,
+        color === 'blank' && imagePlacement !== 'behind' && imageFade && !squareImage && !fullWidth,
       'xl:rounded-none': color === 'blank' && squareImage,
     },
 
@@ -82,11 +85,10 @@ export function Hero({
       relative: imageFade,
 
       // Image behind styles
-      'absolute top-0 left-0 h-full flex justify-center items-center overflow-hidden':
-        imagePlacement === 'image-behind',
+      'absolute top-0 left-0 h-full flex justify-center items-center overflow-hidden': imagePlacement === 'behind',
 
       'xl:rounded-[40px] overflow-hidden':
-        color === 'blank' && !imageFade && imagePlacement !== 'image-behind' && !squareImage,
+        color === 'blank' && !imageFade && imagePlacement !== 'behind' && !squareImage,
     },
     squareImage && 'flex justify-center items-center',
   );
@@ -96,32 +98,32 @@ export function Hero({
 
   // Content styles
   const contentClasses = cn('mx-auto p-8', 'md:max-w-screen-sm md:p-10', 'xl:p-12', {
-    'relative z-10': imagePlacement === 'image-behind',
-    'ml-auto mr-0': fullWidth && imagePlacement === 'image-right',
-    'ml-0 mr-auto': fullWidth && imagePlacement === 'image-left',
+    'relative z-10': imagePlacement === 'behind',
+    'ml-auto mr-0': fullWidth && imagePlacement === 'right',
+    'ml-0 mr-auto': fullWidth && imagePlacement === 'left',
   });
 
   // Image styles
   const imageClasses = cn('block w-full h-full object-cover', {
-    'flex-shrink-0 min-w-full min-h-full': imagePlacement === 'image-behind',
+    'flex-shrink-0 min-w-full min-h-full': imagePlacement === 'behind',
     'object-contain max-h-[320px] min-w-auto min-h-auto md:max-h-[420px]': squareImage,
   });
 
   // Fade styles
   const fadeClasses = cn({
     'absolute inset-0': imageFade,
-    'bg-petroleum-700/80': color === 'dark' && imagePlacement === 'image-behind',
-    'bg-petroleum-50/80': color === 'light' && imagePlacement === 'image-behind',
-    'bg-white/80': color === 'blank' && imagePlacement === 'image-behind',
-    'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-l': color === 'dark' && imagePlacement === 'image-left',
-    'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-r': color === 'dark' && imagePlacement === 'image-right',
-    'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-l': color === 'light' && imagePlacement === 'image-left',
-    'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-r': color === 'light' && imagePlacement === 'image-right',
-    'bg-gradient-to-l from-white to-white/0': color === 'blank' && imagePlacement === 'image-left',
-    'bg-gradient-to-r from-white to-white/0': color === 'blank' && imagePlacement === 'image-right',
-    'bg-petroleum-50/60': squareImage && color === 'light' && imagePlacement !== 'image-behind',
-    'bg-petroleum-700/60': squareImage && color === 'dark' && imagePlacement !== 'image-behind',
-    'bg-white/60': squareImage && color === 'blank' && imagePlacement !== 'image-behind',
+    'bg-petroleum-700/80': color === 'dark' && imagePlacement === 'behind',
+    'bg-petroleum-50/80': color === 'light' && imagePlacement === 'behind',
+    'bg-white/80': color === 'blank' && imagePlacement === 'behind',
+    'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-l': color === 'dark' && imagePlacement === 'left',
+    'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-r': color === 'dark' && imagePlacement === 'right',
+    'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-l': color === 'light' && imagePlacement === 'left',
+    'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-r': color === 'light' && imagePlacement === 'right',
+    'bg-gradient-to-l from-white to-white/0': color === 'blank' && imagePlacement === 'left',
+    'bg-gradient-to-r from-white to-white/0': color === 'blank' && imagePlacement === 'right',
+    'bg-petroleum-50/60': squareImage && color === 'light' && imagePlacement !== 'behind',
+    'bg-petroleum-700/60': squareImage && color === 'dark' && imagePlacement !== 'behind',
+    'bg-white/60': squareImage && color === 'blank' && imagePlacement !== 'behind',
   });
 
   // Title styles
@@ -144,19 +146,6 @@ export function Hero({
     'xl:mt-10 xl:flex-row xl:items-center xl:gap-10',
   );
 
-  // Link styles
-  const linkClasses = cn('text-base py-2 px-5 rounded-lg no-underline inline-block', {
-    'bg-petroleum-700 text-white hover:bg-petroleum-600': color === 'light' || color === 'blank',
-    'bg-white text-petroleum-700 hover:bg-petroleum-25': color === 'dark',
-  });
-
-  // Text link styles
-  const textLinkClasses = cn('text-base font-medium underline underline-offset-6 decoration-2', {
-    'text-petroleum-700 hover:text-petroleum-900 decoration-aqua hover:decoration-aqua-600':
-      color === 'light' || color === 'blank',
-    'text-white hover:text-petroleum-25 decoration-aqua hover:decoration-aqua-600': color === 'dark',
-  });
-
   return (
     <div className={heroClasses}>
       {image && image.src && (
@@ -172,14 +161,14 @@ export function Hero({
           {(link || textLink) && (
             <div className={linkContainerClasses}>
               {link && link.target && link.title && link.title.length > 0 && (
-                <Link href={link.target} className={linkClasses}>
+                <Button href={link.target} as={Link} variant={color === 'dark' ? 'white' : 'petroleum'}>
                   {link.title}
-                </Link>
+                </Button>
               )}
               {textLink && textLink.target && textLink.title && textLink.title.length > 0 && (
-                <Link href={textLink.target} className={textLinkClasses}>
+                <Textlink href={textLink.target} variant={color === 'dark' ? 'white' : 'petroleum'}>
                   {textLink.title}
-                </Link>
+                </Textlink>
               )}
             </div>
           )}

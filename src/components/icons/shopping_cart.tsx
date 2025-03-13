@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface ShoppingCartIconProps {
+
+type ShoppingCartIconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({ className, size = 24 }) => {
   return (

@@ -1,10 +1,11 @@
 import React from 'react';
-import { cn } from '../../lib/utils';
-interface IntroProps {
+import { cn } from '@/lib/utils';
+
+type IntroProps = {
   title?: string;
   description?: string;
   className?: string;
-}
+};
 
 const Intro: React.FC<IntroProps> = ({
   title = 'Welcome to the Thrusters',

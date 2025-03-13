@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-interface LanguageIconProps {
+
+type LanguageIconProps = {
   className?: string;
   size?: 16 | 20 | 24 | 32;
-}
+};
 
 const LanguageIcon: React.FC<LanguageIconProps> = ({ className, size = 24 }) => {
   return (

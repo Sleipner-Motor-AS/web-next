@@ -3,13 +3,13 @@ import Link from 'next/link';
 import type { LinkProps } from 'next/link';
 import type { ReactNode, ReactElement } from 'react';
 
-type ButtonLinkVariant = 'petroleum' | 'white';
-type ButtonLinkSize = 'sm' | 'md' | 'lg';
+type TextlinkVariant = 'petroleum' | 'white';
+type TextlinkSize = 'sm' | 'md' | 'lg';
 
-interface ButtonLinkProps {
+type TextlinkProps = {
   children: ReactNode;
-  size?: ButtonLinkSize;
-  variant?: ButtonLinkVariant;
+  size?: TextlinkSize;
+  variant?: TextlinkVariant;
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   className?: string;
@@ -18,7 +18,8 @@ interface ButtonLinkProps {
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   href?: string;
-}
+  target?: string;
+};
 
 const STYLES = {
   variant: {
@@ -34,7 +35,7 @@ const STYLES = {
   base: 'inline-flex items-center',
 };
 
-export function ButtonLink({
+export function Textlink({
   children,
   size = 'md',
   variant = 'petroleum',
@@ -46,8 +47,9 @@ export function ButtonLink({
   type = 'button',
   disabled = false,
   href,
+  target,
   ...props
-}: ButtonLinkProps & Omit<LinkProps, 'href' | 'className' | 'onClick' | 'as'>) {
+}: TextlinkProps & Omit<LinkProps, 'href' | 'className' | 'onClick' | 'as'>) {
   const hasIcon = !!iconLeft || !!iconRight;
 
   const styles = cn(
@@ -78,12 +80,12 @@ export function ButtonLink({
 
   // Default to Link - href is required for Link
   if (!href) {
-    console.error('ButtonLink: href is required when not using as="button"');
+    console.error('Textlink: href is required when not using as="button"');
     return null;
   }
 
   return (
-    <Link href={href} className={styles} {...props}>
+    <Link href={href} className={styles} target={target} {...props}>
       {content}
     </Link>
   );
