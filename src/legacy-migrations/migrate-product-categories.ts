@@ -43,9 +43,13 @@ export async function migrateProductCategories() {
 
     const to_insert: (typeof cms_product_categories.$inferInsert)[] = [];
     for (const group of categoryGroups) {
-      const categoryPriority: MarketCode[] = ['en', 'uk', 'no', 'se', 'dk', 'de', 'fi', 'it'];
+      const mainCategoryPriorityOrder: MarketCode[] = ['en', 'uk', 'no', 'se', 'dk', 'de', 'fi', 'it'];
 
-      const mainCategory = group.find((c: { website: string }) => categoryPriority.includes(c.website as MarketCode));
+      const mainCategory = group.sort(
+        (a: { website: string }, b: { website: string }) =>
+          mainCategoryPriorityOrder.indexOf(a.website as MarketCode) -
+          mainCategoryPriorityOrder.indexOf(b.website as MarketCode),
+      )[0];
 
       if (!mainCategory) {
         throw new Error('No category found');
