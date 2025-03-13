@@ -69,6 +69,7 @@ export interface Config {
     cms_users: CmsUser;
     cms_media: CmsMedia;
     cms_products: CmsProduct;
+    cms_product_categories: CmsProductCategory;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -78,6 +79,7 @@ export interface Config {
     cms_users: CmsUsersSelect<false> | CmsUsersSelect<true>;
     cms_media: CmsMediaSelect<false> | CmsMediaSelect<true>;
     cms_products: CmsProductsSelect<false> | CmsProductsSelect<true>;
+    cms_product_categories: CmsProductCategoriesSelect<false> | CmsProductCategoriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -173,6 +175,25 @@ export interface CmsProduct {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cms_product_categories".
+ */
+export interface CmsProductCategory {
+  id: number;
+  Category: string;
+  en: string;
+  no: string;
+  se: string;
+  dk: string;
+  de: string;
+  fi: string;
+  it: string;
+  pl: string;
+  uk: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -189,6 +210,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cms_products';
         value: number | CmsProduct;
+      } | null)
+    | ({
+        relationTo: 'cms_product_categories';
+        value: number | CmsProductCategory;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -282,6 +307,24 @@ export interface CmsProductsSelect<T extends boolean = true> {
   description_pl?: T;
   description_uk?: T;
   sku2?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cms_product_categories_select".
+ */
+export interface CmsProductCategoriesSelect<T extends boolean = true> {
+  Category?: T;
+  en?: T;
+  no?: T;
+  se?: T;
+  dk?: T;
+  de?: T;
+  fi?: T;
+  it?: T;
+  pl?: T;
+  uk?: T;
   updatedAt?: T;
   createdAt?: T;
 }
