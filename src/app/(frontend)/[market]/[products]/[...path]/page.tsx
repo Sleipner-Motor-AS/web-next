@@ -6,7 +6,7 @@ import type { MarketCode } from '@/markets';
 type Params = {
   market: MarketCode;
   products: string;
-  categories: string[];
+  path: string[];
 };
 
 export async function generateStaticParams(): Promise<Params[]> {
@@ -36,7 +36,7 @@ export async function generateStaticParams(): Promise<Params[]> {
       const params: Params = {
         market: market.code,
         products: 'products',
-        categories: split,
+        path: split,
       };
 
       allParams.push(params);
@@ -51,13 +51,13 @@ type Props = {
 };
 
 export default async function ProductsCategoriesPage({ params }: Props) {
-  const { market, products, categories } = await params;
+  const { market, products, path } = await params;
 
   return (
     <div>
       CATEGORY PAGE
       <br />
-      {market} {categories.join(' / ')}
+      {market} {path.join(' / ')}
     </div>
   );
 }
