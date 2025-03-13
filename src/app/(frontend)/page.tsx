@@ -41,115 +41,139 @@ export default async function HomePage() {
         <h3 className="mb-2 text-lg">Small</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum" size="sm">
-              <DirectionsBoatIcon size={16} />
-              <span>Click me</span>
+            <Button variant="petroleum" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+              Click me
             </Button>
-            <Button variant="petroleum" size="sm">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={16} />
+            <Button variant="petroleum" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum" size="sm">
               Click me
             </Button>
-            <Button variant="petroleum" size="sm">
-              <DirectionsBoatIcon size={16} />
-            </Button>
+            <Button variant="petroleum" size="sm" iconLeft={<DirectionsBoatIcon size={16} />} />
             <Button variant="petroleum" size="sm" disabled>
               Click me
             </Button>
           </div>
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum-outline" size="sm">
-              <DirectionsBoatIcon size={16} />
-              <span>Click me</span>
+            <Button variant="petroleum-outline" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+              Click me
             </Button>
-            <Button variant="petroleum-outline" size="sm">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={16} />
+            <Button variant="petroleum-outline" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum-outline"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum-outline" size="sm">
               Click me
             </Button>
-            <Button variant="petroleum-outline" size="sm">
-              <DirectionsBoatIcon size={16} />
-            </Button>
+            <Button variant="petroleum-outline" size="sm" iconLeft={<DirectionsBoatIcon size={16} />} />
             <Button variant="petroleum-outline" size="sm" disabled>
               Click me
             </Button>
           </div>
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum-text" size="sm">
-              <DirectionsBoatIcon size={16} />
-              <span>Click me</span>
+            <Button variant="petroleum-text" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+              Click me
             </Button>
-            <Button variant="petroleum-text" size="sm">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={16} />
+            <Button variant="petroleum-text" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum-text"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum-text" size="sm">
               Click me
             </Button>
-            <Button variant="petroleum-text" size="sm">
-              <DirectionsBoatIcon size={16} />
-            </Button>
+            <Button variant="petroleum-text" size="sm" iconLeft={<DirectionsBoatIcon size={16} />} />
             <Button variant="petroleum-text" size="sm" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white" size="sm">
-              <DirectionsBoatIcon size={16} />
-              <span>Click me</span>
+            <Button variant="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+              Click me
             </Button>
-            <Button variant="white" size="sm">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={16} />
+            <Button variant="white" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Click me
             </Button>
             <Button variant="white" size="sm">
               Click me
             </Button>
-            <Button variant="white" size="sm">
-              <DirectionsBoatIcon size={16} />
-            </Button>
+            <Button variant="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />} />
             <Button variant="white" size="sm" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white-outline" size="sm">
-              <DirectionsBoatIcon size={16} />
-              <span>Click me</span>
+            <Button variant="white-outline" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+              Click me
             </Button>
-            <Button variant="white-outline" size="sm">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={16} />
+            <Button variant="white-outline" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white-outline"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Click me
             </Button>
             <Button variant="white-outline" size="sm">
               Click me
             </Button>
-            <Button variant="white-outline" size="sm">
-              <DirectionsBoatIcon size={16} />
-            </Button>
+            <Button variant="white-outline" size="sm" iconLeft={<DirectionsBoatIcon size={16} />} />
             <Button variant="white-outline" size="sm" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white-text" size="sm">
-              <DirectionsBoatIcon size={16} />
-              <span>Click me</span>
+            <Button variant="white-text" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+              Click me
             </Button>
-            <Button variant="white-text" size="sm">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={16} />
+            <Button variant="white-text" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white-text"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Click me
             </Button>
             <Button variant="white-text" size="sm">
               Click me
             </Button>
-            <Button variant="white-text" size="sm">
-              <DirectionsBoatIcon size={16} />
-            </Button>
+            <Button variant="white-text" size="sm" iconLeft={<DirectionsBoatIcon size={16} />} />
             <Button variant="white-text" size="sm" disabled>
               Click me
             </Button>
@@ -158,103 +182,121 @@ export default async function HomePage() {
         <h3 className="mt-6 mb-2 text-lg">Medium</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum">
-              <DirectionsBoatIcon size={20} />
-              <span>Click me</span>
+            <Button variant="petroleum" iconLeft={<DirectionsBoatIcon size={20} />}>
+              Click me
             </Button>
-            <Button variant="petroleum">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={20} />
+            <Button variant="petroleum" iconRight={<DirectionsBoatIcon size={20} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum">Click me</Button>
-            <Button variant="petroleum">
-              <DirectionsBoatIcon size={20} />
-            </Button>
+            <Button variant="petroleum" iconLeft={<DirectionsBoatIcon size={20} />} />
             <Button variant="petroleum" disabled>
               Click me
             </Button>
           </div>
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum-outline">
-              <DirectionsBoatIcon size={20} />
-              <span>Click me</span>
+            <Button variant="petroleum-outline" iconLeft={<DirectionsBoatIcon size={20} />}>
+              Click me
             </Button>
-            <Button variant="petroleum-outline">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={20} />
+            <Button variant="petroleum-outline" iconRight={<DirectionsBoatIcon size={20} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum-outline"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum-outline">Click me</Button>
-            <Button variant="petroleum-outline">
-              <DirectionsBoatIcon size={20} />
-            </Button>
+            <Button variant="petroleum-outline" iconLeft={<DirectionsBoatIcon size={20} />} />
             <Button variant="petroleum-outline" disabled>
               Click me
             </Button>
           </div>
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum-text">
-              <DirectionsBoatIcon size={20} />
-              <span>Click me</span>
+            <Button variant="petroleum-text" iconLeft={<DirectionsBoatIcon size={20} />}>
+              Click me
             </Button>
-            <Button variant="petroleum-text">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={20} />
+            <Button variant="petroleum-text" iconRight={<DirectionsBoatIcon size={20} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum-text"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum-text">Click me</Button>
-            <Button variant="petroleum-text">
-              <DirectionsBoatIcon size={20} />
-            </Button>
+            <Button variant="petroleum-text" iconLeft={<DirectionsBoatIcon size={20} />} />
             <Button variant="petroleum-text" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white">
-              <DirectionsBoatIcon size={20} />
-              <span>Click me</span>
+            <Button variant="white" iconLeft={<DirectionsBoatIcon size={20} />}>
+              Click me
             </Button>
-            <Button variant="white">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={20} />
+            <Button variant="white" iconRight={<DirectionsBoatIcon size={20} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Click me
             </Button>
             <Button variant="white">Click me</Button>
-            <Button variant="white">
-              <DirectionsBoatIcon size={20} />
-            </Button>
+            <Button variant="white" iconLeft={<DirectionsBoatIcon size={20} />} />
             <Button variant="white" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white-outline">
-              <DirectionsBoatIcon size={20} />
-              <span>Click me</span>
+            <Button variant="white-outline" iconLeft={<DirectionsBoatIcon size={20} />}>
+              Click me
             </Button>
-            <Button variant="white-outline">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={20} />
+            <Button variant="white-outline" iconRight={<DirectionsBoatIcon size={20} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white-outline"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Click me
             </Button>
             <Button variant="white-outline">Click me</Button>
-            <Button variant="white-outline">
-              <DirectionsBoatIcon size={20} />
-            </Button>
+            <Button variant="white-outline" iconLeft={<DirectionsBoatIcon size={20} />} />
             <Button variant="white-outline" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white-text">
-              <DirectionsBoatIcon size={20} />
-              <span>Click me</span>
+            <Button variant="white-text" iconLeft={<DirectionsBoatIcon size={20} />}>
+              Click me
             </Button>
-            <Button variant="white-text">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={20} />
+            <Button variant="white-text" iconRight={<DirectionsBoatIcon size={20} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white-text"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Click me
             </Button>
             <Button variant="white-text">Click me</Button>
-            <Button variant="white-text">
-              <DirectionsBoatIcon size={20} />
-            </Button>
+            <Button variant="white-text" iconLeft={<DirectionsBoatIcon size={20} />} />
             <Button variant="white-text" disabled>
               Click me
             </Button>
@@ -263,115 +305,139 @@ export default async function HomePage() {
         <h3 className="mt-6 mb-2 text-lg">Large</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum" size="lg">
-              <DirectionsBoatIcon size={24} />
-              <span>Click me</span>
+            <Button variant="petroleum" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+              Click me
             </Button>
-            <Button variant="petroleum" size="lg">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={24} />
+            <Button variant="petroleum" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum" size="lg">
               Click me
             </Button>
-            <Button variant="petroleum" size="lg">
-              <DirectionsBoatIcon size={24} />
-            </Button>
+            <Button variant="petroleum" size="lg" iconLeft={<DirectionsBoatIcon size={24} />} />
             <Button variant="petroleum" size="lg" disabled>
               Click me
             </Button>
           </div>
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum-outline" size="lg">
-              <DirectionsBoatIcon size={24} />
-              <span>Click me</span>
+            <Button variant="petroleum-outline" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+              Click me
             </Button>
-            <Button variant="petroleum-outline" size="lg">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={24} />
+            <Button variant="petroleum-outline" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum-outline"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum-outline" size="lg">
               Click me
             </Button>
-            <Button variant="petroleum-outline" size="lg">
-              <DirectionsBoatIcon size={24} />
-            </Button>
+            <Button variant="petroleum-outline" size="lg" iconLeft={<DirectionsBoatIcon size={24} />} />
             <Button variant="petroleum-outline" size="lg" disabled>
               Click me
             </Button>
           </div>
           <div className="flex gap-2 p-4">
-            <Button variant="petroleum-text" size="lg">
-              <DirectionsBoatIcon size={24} />
-              <span>Click me</span>
+            <Button variant="petroleum-text" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+              Click me
             </Button>
-            <Button variant="petroleum-text" size="lg">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={24} />
+            <Button variant="petroleum-text" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button
+              variant="petroleum-text"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Click me
             </Button>
             <Button variant="petroleum-text" size="lg">
               Click me
             </Button>
-            <Button variant="petroleum-text" size="lg">
-              <DirectionsBoatIcon size={24} />
-            </Button>
+            <Button variant="petroleum-text" size="lg" iconLeft={<DirectionsBoatIcon size={24} />} />
             <Button variant="petroleum-text" size="lg" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white" size="lg">
-              <DirectionsBoatIcon size={24} />
-              <span>Click me</span>
+            <Button variant="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+              Click me
             </Button>
-            <Button variant="white" size="lg">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={24} />
+            <Button variant="white" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Click me
             </Button>
             <Button variant="white" size="lg">
               Click me
             </Button>
-            <Button variant="white" size="lg">
-              <DirectionsBoatIcon size={24} />
-            </Button>
+            <Button variant="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />} />
             <Button variant="white" size="lg" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white-outline" size="lg">
-              <DirectionsBoatIcon size={24} />
-              <span>Click me</span>
+            <Button variant="white-outline" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+              Click me
             </Button>
-            <Button variant="white-outline" size="lg">
-              <span>Click me</span>
-              <DirectionsBoatIcon size={24} />
+            <Button variant="white-outline" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white-outline"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Click me
             </Button>
             <Button variant="white-outline" size="lg">
               Click me
             </Button>
-            <Button variant="white-outline" size="lg">
-              <DirectionsBoatIcon size={24} />
-            </Button>
+            <Button variant="white-outline" size="lg" iconLeft={<DirectionsBoatIcon size={24} />} />
             <Button variant="white-outline" size="lg" disabled>
               Click me
             </Button>
           </div>
           <div className="bg-petroleum-700 flex gap-2 p-4">
-            <Button variant="white-text" size="lg">
-              <DirectionsBoatIcon size={24} />
-              <span>Click me</span>
+            <Button variant="white-text" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button variant="white-text" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+              Click me
+            </Button>
+            <Button
+              variant="white-text"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Click me
             </Button>
             <Button variant="white-text" size="lg">
               Click me
-              <DirectionsBoatIcon size={24} />
             </Button>
-            <Button variant="white-text" size="lg">
-              Click me
-            </Button>
-            <Button variant="white-text" size="lg">
-              <DirectionsBoatIcon size={24} />
-            </Button>
+            <Button variant="white-text" size="lg" iconLeft={<DirectionsBoatIcon size={24} />} />
             <Button variant="white-text" size="lg" disabled>
               Click me
             </Button>
@@ -382,26 +448,39 @@ export default async function HomePage() {
         <h3 className="mb-2 text-lg">Small</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-8 p-4">
-            <ButtonLink href="/products" size="sm">
-              <DirectionsBoatIcon size={16} />
+            <ButtonLink href="/products" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
               Hello
             </ButtonLink>
-            <ButtonLink href="/products" size="sm">
+            <ButtonLink href="/products" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
               Hello
-              <DirectionsBoatIcon size={16} />
+            </ButtonLink>
+            <ButtonLink
+              href="/products"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Hello
             </ButtonLink>
             <ButtonLink href="/products" size="sm">
               Hello
             </ButtonLink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <ButtonLink href="/products" variant="white" size="sm">
-              <DirectionsBoatIcon size={16} />
+            <ButtonLink href="/products" variant="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
               Hello
             </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="sm">
+            <ButtonLink href="/products" variant="white" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
               Hello
-              <DirectionsBoatIcon size={16} />
+            </ButtonLink>
+            <ButtonLink
+              href="/products"
+              variant="white"
+              size="sm"
+              iconLeft={<DirectionsBoatIcon size={16} />}
+              iconRight={<DirectionsBoatIcon size={16} />}
+            >
+              Hello
             </ButtonLink>
             <ButtonLink href="/products" variant="white" size="sm">
               Hello
@@ -411,26 +490,39 @@ export default async function HomePage() {
         <h3 className="mt-6 mb-2 text-lg">Medium</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-8 p-4">
-            <ButtonLink href="/products" size="md">
-              <DirectionsBoatIcon size={20} />
+            <ButtonLink href="/products" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
               Hello
             </ButtonLink>
-            <ButtonLink href="/products" size="md">
+            <ButtonLink href="/products" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
               Hello
-              <DirectionsBoatIcon size={20} />
+            </ButtonLink>
+            <ButtonLink
+              href="/products"
+              size="md"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Hello
             </ButtonLink>
             <ButtonLink href="/products" size="md">
               Hello
             </ButtonLink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <ButtonLink href="/products" variant="white" size="md">
-              <DirectionsBoatIcon size={20} />
+            <ButtonLink href="/products" variant="white" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
               Hello
             </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="md">
+            <ButtonLink href="/products" variant="white" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
               Hello
-              <DirectionsBoatIcon size={20} />
+            </ButtonLink>
+            <ButtonLink
+              href="/products"
+              variant="white"
+              size="md"
+              iconLeft={<DirectionsBoatIcon size={20} />}
+              iconRight={<DirectionsBoatIcon size={20} />}
+            >
+              Hello
             </ButtonLink>
             <ButtonLink href="/products" variant="white" size="md">
               Hello
@@ -440,26 +532,39 @@ export default async function HomePage() {
         <h3 className="mt-6 mb-2 text-lg">Large</h3>
         <div className="border-petroleum-700 overflow-hidden rounded-lg border">
           <div className="flex gap-8 p-4">
-            <ButtonLink href="/products" size="lg">
-              <DirectionsBoatIcon size={24} />
+            <ButtonLink href="/products" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
               Hello
             </ButtonLink>
-            <ButtonLink href="/products" size="lg">
+            <ButtonLink href="/products" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
               Hello
-              <DirectionsBoatIcon size={24} />
+            </ButtonLink>
+            <ButtonLink
+              href="/products"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Hello
             </ButtonLink>
             <ButtonLink href="/products" size="lg">
               Hello
             </ButtonLink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <ButtonLink href="/products" variant="white" size="lg">
-              <DirectionsBoatIcon size={24} />
+            <ButtonLink href="/products" variant="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
               Hello
             </ButtonLink>
-            <ButtonLink href="/products" variant="white" size="lg">
+            <ButtonLink href="/products" variant="white" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
               Hello
-              <DirectionsBoatIcon size={24} />
+            </ButtonLink>
+            <ButtonLink
+              href="/products"
+              variant="white"
+              size="lg"
+              iconLeft={<DirectionsBoatIcon size={24} />}
+              iconRight={<DirectionsBoatIcon size={24} />}
+            >
+              Hello
             </ButtonLink>
             <ButtonLink href="/products" variant="white" size="lg">
               Hello
