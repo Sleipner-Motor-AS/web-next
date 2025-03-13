@@ -1,9 +1,12 @@
 import { withPayload } from '@payloadcms/next/withPayload';
 
 import './src/env';
+import type { NextConfig } from 'next';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
+  experimental: {
+    staticGenerationMaxConcurrency: 2,
+  },
   // Your Next.js config here
 };
 
