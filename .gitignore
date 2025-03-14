@@ -45,3 +45,5 @@ next-env.d.ts
 *.sql
 
 .pnpm-store
+
+cms_media

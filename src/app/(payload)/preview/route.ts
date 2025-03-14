@@ -40,8 +40,6 @@ export async function GET(
     return new Response('This endpoint can only be used for relative previews', { status: 500 });
   }
 
-  console.log('halla', collection);
-
   let user;
 
   try {
