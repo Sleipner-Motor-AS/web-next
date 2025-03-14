@@ -1,6 +1,3 @@
-import { Topnav } from '@/components/layout/topnav';
-import { Navigation } from '@/components/layout/navigation';
-import { Breadcrumb } from '@/components/layout/breadcrumb';
 import { Submenu } from '@/components/layout/submenu';
 import Intro from '@/components/layout/intro';
 import { Button } from '@/components/ui/button';
@@ -13,9 +10,6 @@ import Link from 'next/link';
 export default async function HomePage() {
   return (
     <div>
-      <Topnav />
-      <Navigation />
-      <Breadcrumb />
       <Submenu className="bg-petroleum-25" />
       <Intro
         title="Welcome to the Thrusters"
