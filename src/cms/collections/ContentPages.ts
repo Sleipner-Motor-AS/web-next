@@ -12,7 +12,7 @@ export const ContentPages: CollectionConfig = {
     plural: 'Content Pages',
   },
   admin: {
-    preview: async ({ localizedSlug, collection }, { locale }) => {
+    preview: async ({ localizedSlug }, { locale }) => {
       const parsedLocalizedSlug = (localizedSlug as string) || '_';
       const encodedParams = new URLSearchParams({
         localizedSlug: parsedLocalizedSlug,

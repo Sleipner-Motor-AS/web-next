@@ -25,17 +25,17 @@ const envObj = {
   public: {
     url: process.env.NEXT_PUBLIC_URL!,
     odin: {
-      apiUrl: process.env.ODIN_API_URL!,
+      apiUrl: process.env.NEXT_PUBLIC_ODIN_API_URL!,
     },
   },
   secret: {
-    databaseUrl: process.env.DATABASE_URL!,
+    databaseUrl: process.env.DATABASE_URL ?? 'secret',
     payload: {
-      secret: process.env.PAYLOAD_SECRET!,
-      previewSecret: process.env.PAYLOAD_PREVIEW_SECRET!,
+      secret: process.env.PAYLOAD_SECRET ?? 'secret',
+      previewSecret: process.env.PAYLOAD_PREVIEW_SECRET ?? 'secret',
     },
     odin: {
-      apiKey: process.env.ODIN_API_KEY!,
+      apiKey: process.env.ODIN_API_KEY ?? 'secret',
     },
   },
 } satisfies z.infer<typeof envSchema>;
