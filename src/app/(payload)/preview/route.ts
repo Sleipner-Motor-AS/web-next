@@ -43,6 +43,8 @@ export async function GET(
   let user;
 
   try {
+    // TODO: This logs [12:00:51] ERROR: Failed to create URL object from URL: , falling back to http://localhost
+    // Everything still works, but we need to figure how to stop this log
     user = await cms.auth({
       req: req as unknown as PayloadRequest,
       headers: req.headers,
