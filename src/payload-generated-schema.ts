@@ -185,6 +185,30 @@ export const cms_product_category_groups = pgTable(
   }),
 );
 
+export const cms_product_category_products_list = pgTable(
+  'cms_product_category_products_list',
+  {
+    id: serial('id').primaryKey(),
+    name: varchar('name').notNull(),
+    category: integer('category_id').references(() => cms_product_categories.id, {
+      onDelete: 'set null',
+    }),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+  },
+  (columns) => ({
+    cms_product_category_products_list_category_idx: index('cms_product_category_products_list_category_idx').on(
+      columns.category,
+    ),
+    cms_product_category_products_list_updated_at_idx: index('cms_product_category_products_list_updated_at_idx').on(
+      columns.updatedAt,
+    ),
+    cms_product_category_products_list_created_at_idx: index('cms_product_category_products_list_created_at_idx').on(
+      columns.createdAt,
+    ),
+  }),
+);
+
 export const cms_content_pages_blocks_hero = pgTable(
   'cms_content_pages_blocks_hero',
   {
@@ -385,6 +409,7 @@ export const payload_locked_documents_rels = pgTable(
     cms_productsID: integer('cms_products_id'),
     cms_product_categoriesID: integer('cms_product_categories_id'),
     cms_product_category_groupsID: integer('cms_product_category_groups_id'),
+    cms_product_category_products_listID: integer('cms_product_category_products_list_id'),
     content_pagesID: integer('cms_content_pages_id'),
   },
   (columns) => ({
@@ -406,6 +431,9 @@ export const payload_locked_documents_rels = pgTable(
     payload_locked_documents_rels_cms_product_category_groups_id_idx: index(
       'payload_locked_documents_rels_cms_product_category_groups_id_idx',
     ).on(columns.cms_product_category_groupsID),
+    payload_locked_documents_rels_cms_product_category_products_list_id_idx: index(
+      'payload_locked_documents_rels_cms_product_category_products_list_id_idx',
+    ).on(columns.cms_product_category_products_listID),
     payload_locked_documents_rels_cms_content_pages_id_idx: index(
       'payload_locked_documents_rels_cms_content_pages_id_idx',
     ).on(columns.content_pagesID),
@@ -438,6 +466,11 @@ export const payload_locked_documents_rels = pgTable(
       columns: [columns['cms_product_category_groupsID']],
       foreignColumns: [cms_product_category_groups.id],
       name: 'payload_locked_documents_rels_cms_product_category_groups_fk',
+    }).onDelete('cascade'),
+    cms_product_category_products_listIdFk: foreignKey({
+      columns: [columns['cms_product_category_products_listID']],
+      foreignColumns: [cms_product_category_products_list.id],
+      name: 'payload_locked_documents_rels_cms_product_category_products_list_fk',
     }).onDelete('cascade'),
     content_pagesIdFk: foreignKey({
       columns: [columns['content_pagesID']],
@@ -524,6 +557,16 @@ export const relations_cms_product_category_groups = relations(cms_product_categ
     relationName: 'parent',
   }),
 }));
+export const relations_cms_product_category_products_list = relations(
+  cms_product_category_products_list,
+  ({ one }) => ({
+    category: one(cms_product_categories, {
+      fields: [cms_product_category_products_list.category],
+      references: [cms_product_categories.id],
+      relationName: 'category',
+    }),
+  }),
+);
 export const relations_cms_content_pages_blocks_hero = relations(cms_content_pages_blocks_hero, ({ one }) => ({
   _parentID: one(cms_content_pages, {
     fields: [cms_content_pages_blocks_hero._parentID],
@@ -614,6 +657,11 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     references: [cms_product_category_groups.id],
     relationName: 'cms_product_category_groups',
   }),
+  cms_product_category_products_listID: one(cms_product_category_products_list, {
+    fields: [payload_locked_documents_rels.cms_product_category_products_listID],
+    references: [cms_product_category_products_list.id],
+    relationName: 'cms_product_category_products_list',
+  }),
   content_pagesID: one(cms_content_pages, {
     fields: [payload_locked_documents_rels.content_pagesID],
     references: [cms_content_pages.id],
@@ -658,6 +706,7 @@ type DatabaseSchema = {
   cms_products: typeof cms_products;
   cms_product_categories: typeof cms_product_categories;
   cms_product_category_groups: typeof cms_product_category_groups;
+  cms_product_category_products_list: typeof cms_product_category_products_list;
   cms_content_pages_blocks_hero: typeof cms_content_pages_blocks_hero;
   cms_content_pages: typeof cms_content_pages;
   cms_content_pages_locales: typeof cms_content_pages_locales;
@@ -674,6 +723,7 @@ type DatabaseSchema = {
   relations_cms_products: typeof relations_cms_products;
   relations_cms_product_categories: typeof relations_cms_product_categories;
   relations_cms_product_category_groups: typeof relations_cms_product_category_groups;
+  relations_cms_product_category_products_list: typeof relations_cms_product_category_products_list;
   relations_cms_content_pages_blocks_hero: typeof relations_cms_content_pages_blocks_hero;
   relations_cms_content_pages_locales: typeof relations_cms_content_pages_locales;
   relations_cms_content_pages: typeof relations_cms_content_pages;

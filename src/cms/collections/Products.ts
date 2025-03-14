@@ -7,7 +7,7 @@ import { eq, inArray } from '@/db/orm';
 
 import { productsTable } from '@/db/tables/product';
 import type { CmsProductCategory, CmsProductCategoryGroup } from '@/payload-types';
-import { cms_product_category_groups } from '@/payload-generated-schema';
+import { cms_product_category_groups, cms_product_category_products_list } from '@/payload-generated-schema';
 
 export const Products: CollectionConfig = {
   slug: 'cms_products',
@@ -148,15 +148,15 @@ export const ProductCategories: CollectionConfig = {
 
         const parts = doc.category.split('/');
 
-        parts.pop();
+        const list = parts.pop()!; // Handle
+
+        const db = await getDb();
 
         const groupPaths: string[] = [];
 
         for (const [i] of parts.entries()) {
           groupPaths.push(parts.slice(0, i + 1).join('/'));
         }
-
-        const db = await getDb();
 
         const existingGroups = await db
           .select()
@@ -213,6 +213,26 @@ export const ProductCategoryGroups: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+    },
+  ],
+};
+
+export const ProductCategoryProductsList: CollectionConfig = {
+  slug: 'cms_product_category_products_list',
+  labels: {
+    singular: 'Product List',
+    plural: 'Product Lists',
+  },
+  fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'category',
+      type: 'relationship',
+      relationTo: 'cms_product_categories',
     },
   ],
 };
