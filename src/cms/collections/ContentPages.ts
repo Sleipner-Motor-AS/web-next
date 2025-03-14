@@ -22,8 +22,6 @@ export const ContentPages: CollectionConfig = {
         previewSecret: env.secret.payload.previewSecret,
       });
 
-      console.log(encodedParams.toString());
-
       return `/preview?${encodedParams.toString()}`;
     },
     useAsTitle: 'slug',
