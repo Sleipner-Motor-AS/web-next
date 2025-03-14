@@ -11,8 +11,7 @@ import { env } from '@/env';
 
 import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
-import { Products } from './cms/collections/Products';
-import { Categories } from './cms/collections/Categories';
+import { Products, ProductCategories } from './cms/collections/Products';
 import { ContentPages } from './cms/collections/ContentPages';
 
 import { customerProductPricesTable, customersTable } from './db/tables/customer';
@@ -25,7 +24,7 @@ const dirname = path.dirname(filename);
 
 export default buildConfig({
   // Add new collections here
-  collections: [Users, Media, Products, Categories, ContentPages],
+  collections: [Users, Media, Products, ProductCategories, ContentPages],
   // Add new db tables here
   db: postgresAdapter({
     pool: { connectionString: env.secret.databaseUrl },

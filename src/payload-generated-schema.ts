@@ -24,9 +24,9 @@ import {
 import { sql, relations } from '@payloadcms/db-postgres/drizzle';
 export const enum__locales = pgEnum('enum__locales', ['en', 'no', 'se', 'dk', 'de', 'fi', 'it', 'pl', 'uk']);
 export const enum_cms_content_pages_blocks_hero_color = pgEnum('enum_cms_content_pages_blocks_hero_color', [
-  'light',
-  'blank',
   'dark',
+  'light',
+  'white',
 ]);
 export const enum_cms_content_pages_blocks_hero_image_placement = pgEnum(
   'enum_cms_content_pages_blocks_hero_image_placement',
@@ -34,9 +34,9 @@ export const enum_cms_content_pages_blocks_hero_image_placement = pgEnum(
 );
 export const enum_cms_content_pages_status = pgEnum('enum_cms_content_pages_status', ['draft', 'published']);
 export const enum__cms_content_pages_v_blocks_hero_color = pgEnum('enum__cms_content_pages_v_blocks_hero_color', [
-  'light',
-  'blank',
   'dark',
+  'light',
+  'white',
 ]);
 export const enum__cms_content_pages_v_blocks_hero_image_placement = pgEnum(
   'enum__cms_content_pages_v_blocks_hero_image_placement',
@@ -173,10 +173,9 @@ export const cms_content_pages_blocks_hero = pgTable(
     squareImage: boolean('square_image').default(false),
     fullWidth: boolean('full_width').default(false),
     imageFade: boolean('image_fade').default(false),
-    image_media: integer('image_media_id').references(() => cms_media.id, {
+    image: integer('image_id').references(() => cms_media.id, {
       onDelete: 'set null',
     }),
-    image_altText: varchar('image_alt_text'),
     title: varchar('title'),
     text: varchar('text'),
     link_title: varchar('link_title'),
@@ -189,9 +188,7 @@ export const cms_content_pages_blocks_hero = pgTable(
     _orderIdx: index('cms_content_pages_blocks_hero_order_idx').on(columns._order),
     _parentIDIdx: index('cms_content_pages_blocks_hero_parent_id_idx').on(columns._parentID),
     _pathIdx: index('cms_content_pages_blocks_hero_path_idx').on(columns._path),
-    cms_content_pages_blocks_hero_image_image_media_idx: index(
-      'cms_content_pages_blocks_hero_image_image_media_idx',
-    ).on(columns.image_media),
+    cms_content_pages_blocks_hero_image_idx: index('cms_content_pages_blocks_hero_image_idx').on(columns.image),
     _parentIdFk: foreignKey({
       columns: [columns['_parentID']],
       foreignColumns: [cms_content_pages.id],
@@ -250,10 +247,9 @@ export const _cms_content_pages_v_blocks_hero = pgTable(
     squareImage: boolean('square_image').default(false),
     fullWidth: boolean('full_width').default(false),
     imageFade: boolean('image_fade').default(false),
-    image_media: integer('image_media_id').references(() => cms_media.id, {
+    image: integer('image_id').references(() => cms_media.id, {
       onDelete: 'set null',
     }),
-    image_altText: varchar('image_alt_text'),
     title: varchar('title'),
     text: varchar('text'),
     link_title: varchar('link_title'),
@@ -267,9 +263,7 @@ export const _cms_content_pages_v_blocks_hero = pgTable(
     _orderIdx: index('_cms_content_pages_v_blocks_hero_order_idx').on(columns._order),
     _parentIDIdx: index('_cms_content_pages_v_blocks_hero_parent_id_idx').on(columns._parentID),
     _pathIdx: index('_cms_content_pages_v_blocks_hero_path_idx').on(columns._path),
-    _cms_content_pages_v_blocks_hero_image_image_media_idx: index(
-      '_cms_content_pages_v_blocks_hero_image_image_media_idx',
-    ).on(columns.image_media),
+    _cms_content_pages_v_blocks_hero_image_idx: index('_cms_content_pages_v_blocks_hero_image_idx').on(columns.image),
     _parentIdFk: foreignKey({
       columns: [columns['_parentID']],
       foreignColumns: [_cms_content_pages_v.id],
@@ -496,10 +490,10 @@ export const relations_cms_content_pages_blocks_hero = relations(cms_content_pag
     references: [cms_content_pages.id],
     relationName: '_blocks_hero',
   }),
-  image_media: one(cms_media, {
-    fields: [cms_content_pages_blocks_hero.image_media],
+  image: one(cms_media, {
+    fields: [cms_content_pages_blocks_hero.image],
     references: [cms_media.id],
-    relationName: 'image_media',
+    relationName: 'image',
   }),
 }));
 export const relations_cms_content_pages_locales = relations(cms_content_pages_locales, ({ one }) => ({
@@ -523,10 +517,10 @@ export const relations__cms_content_pages_v_blocks_hero = relations(_cms_content
     references: [_cms_content_pages_v.id],
     relationName: '_blocks_hero',
   }),
-  image_media: one(cms_media, {
-    fields: [_cms_content_pages_v_blocks_hero.image_media],
+  image: one(cms_media, {
+    fields: [_cms_content_pages_v_blocks_hero.image],
     references: [cms_media.id],
-    relationName: 'image_media',
+    relationName: 'image',
   }),
 }));
 export const relations__cms_content_pages_v_locales = relations(_cms_content_pages_v_locales, ({ one }) => ({
