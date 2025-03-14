@@ -117,13 +117,12 @@ export const Products: CollectionConfig = {
 
 export const ProductCategories: CollectionConfig = {
   slug: 'cms_product_categories',
-
   admin: {
     useAsTitle: 'category',
   },
   labels: {
-    singular: 'Category',
-    plural: 'Categories',
+    singular: 'Product Category',
+    plural: 'Product Categories',
   },
   fields: [
     {
@@ -139,5 +138,76 @@ export const ProductCategories: CollectionConfig = {
         type: 'text',
       } satisfies Field;
     }),
+  ],
+};
+
+export const ProductCategoryGroups: CollectionConfig = {
+  slug: 'cms_product_category_groups',
+  labels: {
+    singular: 'Product Category Group',
+    plural: 'Product Category Groups',
+  },
+  fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+      admin: {
+        readOnly: true,
+      },
+    },
+    {
+      name: 'full_path',
+      type: 'text',
+      unique: true,
+      required: true,
+      admin: {
+        readOnly: true,
+      },
+    },
+    {
+      name: 'parent_group',
+      type: 'relationship',
+      relationTo: 'cms_product_category_groups',
+      admin: {
+        readOnly: true,
+      },
+    },
+  ],
+};
+
+export const ProductCategoryLists: CollectionConfig = {
+  slug: 'cms_product_category_lists',
+  labels: {
+    singular: 'Product Category List',
+    plural: 'Product Category Lists',
+  },
+  fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+      admin: {
+        readOnly: true,
+      },
+    },
+    {
+      name: 'full_path',
+      type: 'text',
+      unique: true,
+      required: true,
+      admin: {
+        readOnly: true,
+      },
+    },
+    {
+      name: 'parent_product_group',
+      type: 'relationship',
+      relationTo: 'cms_product_category_groups',
+      required: true,
+      admin: {
+        readOnly: true,
+      },
+    },
   ],
 };
