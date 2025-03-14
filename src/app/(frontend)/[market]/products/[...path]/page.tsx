@@ -1,51 +1,21 @@
 import { getCms } from '@/cms';
-import { getDictionary } from '@/dictionaries';
 import { markets } from '@/markets';
 import type { MarketCode } from '@/markets';
 
 type Params = {
   market: MarketCode;
-  products: string;
+  //products: string;
   path: string[];
 };
 
 export async function generateStaticParams(): Promise<Params[]> {
   const cms = await getCms();
 
-  const { docs: categories } = await cms.find({
-    collection: 'cms_product_categories',
-    limit: 1000, // TODO: Find more elegant way to do this
-  });
-
   const allParams: Params[] = [];
-
-  for (const category of categories) {
-    for (const market of markets) {
-      const marketCategory = category[market.code];
-
-      if (!marketCategory) {
-        continue;
-      }
-
-      const split = marketCategory.split('/');
-
-      if (split.length === 0) {
-        continue;
-      }
-
-      const params: Params = {
-        market: market.code,
-        products: 'products',
-        path: split,
-      };
-
-      allParams.push(params);
-    }
-  }
 
   const { docs: products } = await cms.find({
     collection: 'cms_products',
-    limit: 1000, // TODO: Find more elegant way to do this
+    limit: 1000,
   });
 
   for (const product of products) {
@@ -71,7 +41,7 @@ export async function generateStaticParams(): Promise<Params[]> {
 
       allParams.push({
         market: market.code,
-        products: 'products',
+        //products: 'products',
         path: [...categoryPath, product.sku],
       });
     }
@@ -85,12 +55,11 @@ type Props = {
 };
 
 export default async function ProductsCategoriesPage({ params }: Props) {
-  const { market, products, path } = await params;
+  const { market, path } = await params;
 
   const cms = await getCms();
 
-  // Check if the last segment matches a product SKU
-  const { docs: matchingProducts } = await cms.find({
+  const { docs: products } = await cms.find({
     collection: 'cms_products',
     where: {
       sku: {
@@ -99,23 +68,22 @@ export default async function ProductsCategoriesPage({ params }: Props) {
     },
   });
 
-  const isProduct = matchingProducts.length > 0;
+  if (products.length > 0) {
+    return <div>ProductPage</div>;
+  }
 
-  return (
-    <div>
-      {isProduct ? (
-        <div>
-          PRODUCT PAGE
-          <br />
-          {market} {path.join(' / ')}
-        </div>
-      ) : (
-        <div>
-          CATEGORY PAGE
-          <br />
-          {market} {path.join(' / ')}
-        </div>
-      )}
-    </div>
-  );
+  const { docs: groups } = await cms.find({
+    collection: 'cms_product_category_groups',
+    where: {
+      path: {
+        equals: path.join('/'),
+      },
+    },
+  });
+
+  if (groups.length > 0) {
+    return <div>CategoryPage</div>;
+  }
+
+  return <div>404</div>;
 }
