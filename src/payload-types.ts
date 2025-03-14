@@ -71,7 +71,6 @@ export interface Config {
     cms_products: CmsProduct;
     cms_product_categories: CmsProductCategory;
     cms_product_category_groups: CmsProductCategoryGroup;
-    cms_product_category_lists: CmsProductCategoryList;
     content_pages: ContentPage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,7 +83,6 @@ export interface Config {
     cms_products: CmsProductsSelect<false> | CmsProductsSelect<true>;
     cms_product_categories: CmsProductCategoriesSelect<false> | CmsProductCategoriesSelect<true>;
     cms_product_category_groups: CmsProductCategoryGroupsSelect<false> | CmsProductCategoryGroupsSelect<true>;
-    cms_product_category_lists: CmsProductCategoryListsSelect<false> | CmsProductCategoryListsSelect<true>;
     content_pages: ContentPagesSelect<false> | ContentPagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -205,21 +203,8 @@ export interface CmsProductCategory {
  */
 export interface CmsProductCategoryGroup {
   id: number;
-  name: string;
-  full_path: string;
-  parent_group?: (number | null) | CmsProductCategoryGroup;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cms_product_category_lists".
- */
-export interface CmsProductCategoryList {
-  id: number;
-  name: string;
-  full_path: string;
-  parent_product_group: number | CmsProductCategoryGroup;
+  path: string;
+  parent?: (number | null) | CmsProductCategoryGroup;
   updatedAt: string;
   createdAt: string;
 }
@@ -287,10 +272,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cms_product_category_groups';
         value: number | CmsProductCategoryGroup;
-      } | null)
-    | ({
-        relationTo: 'cms_product_category_lists';
-        value: number | CmsProductCategoryList;
       } | null)
     | ({
         relationTo: 'content_pages';
@@ -415,20 +396,8 @@ export interface CmsProductCategoriesSelect<T extends boolean = true> {
  * via the `definition` "cms_product_category_groups_select".
  */
 export interface CmsProductCategoryGroupsSelect<T extends boolean = true> {
-  name?: T;
-  full_path?: T;
-  parent_group?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cms_product_category_lists_select".
- */
-export interface CmsProductCategoryListsSelect<T extends boolean = true> {
-  name?: T;
-  full_path?: T;
-  parent_product_group?: T;
+  path?: T;
+  parent?: T;
   updatedAt?: T;
   createdAt?: T;
 }

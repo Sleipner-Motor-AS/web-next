@@ -3,9 +3,11 @@ import type { CollectionConfig, Field } from 'payload';
 import { markets } from '@/markets';
 
 import { getDb } from '@/db';
-import { eq } from '@/db/orm';
+import { eq, inArray } from '@/db/orm';
 
 import { productsTable } from '@/db/tables/product';
+import type { CmsProductCategory, CmsProductCategoryGroup } from '@/payload-types';
+import { cms_product_category_groups } from '@/payload-generated-schema';
 
 export const Products: CollectionConfig = {
   slug: 'cms_products',
@@ -139,25 +141,64 @@ export const ProductCategories: CollectionConfig = {
       } satisfies Field;
     }),
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc: _doc }) => {
+        const doc = _doc as CmsProductCategory;
+
+        const parts = doc.category.split('/');
+
+        parts.pop();
+
+        const groupPaths: string[] = [];
+
+        for (const [i] of parts.entries()) {
+          groupPaths.push(parts.slice(0, i + 1).join('/'));
+        }
+
+        const db = await getDb();
+
+        const existingGroups = await db
+          .select()
+          .from(cms_product_category_groups)
+          .where(inArray(cms_product_category_groups.path, groupPaths));
+
+        const groups: CmsProductCategoryGroup[] = existingGroups;
+
+        for (const groupPath of groupPaths) {
+          if (!existingGroups.find((group) => group.path === groupPath)) {
+            const [created] = await db.insert(cms_product_category_groups).values({ path: groupPath }).returning();
+            groups.push(created);
+          }
+        }
+
+        for (const group of groups) {
+          const parentPath = group.path.split('/').slice(0, -1).join('/');
+          const parent = groups.find((g) => g.path === parentPath);
+          if (parent) {
+            await db
+              .update(cms_product_category_groups)
+              .set({ parent: parent.id })
+              .where(eq(cms_product_category_groups.id, group.id));
+          }
+        }
+      },
+    ],
+  },
 };
 
 export const ProductCategoryGroups: CollectionConfig = {
   slug: 'cms_product_category_groups',
+  admin: {
+    useAsTitle: 'path',
+  },
   labels: {
     singular: 'Product Category Group',
     plural: 'Product Category Groups',
   },
   fields: [
     {
-      name: 'name',
-      type: 'text',
-      required: true,
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'full_path',
+      name: 'path',
       type: 'text',
       unique: true,
       required: true,
@@ -166,47 +207,11 @@ export const ProductCategoryGroups: CollectionConfig = {
       },
     },
     {
-      name: 'parent_group',
+      name: 'parent',
       type: 'relationship',
       relationTo: 'cms_product_category_groups',
       admin: {
-        readOnly: true,
-      },
-    },
-  ],
-};
-
-export const ProductCategoryLists: CollectionConfig = {
-  slug: 'cms_product_category_lists',
-  labels: {
-    singular: 'Product Category List',
-    plural: 'Product Category Lists',
-  },
-  fields: [
-    {
-      name: 'name',
-      type: 'text',
-      required: true,
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'full_path',
-      type: 'text',
-      unique: true,
-      required: true,
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'parent_product_group',
-      type: 'relationship',
-      relationTo: 'cms_product_category_groups',
-      required: true,
-      admin: {
-        readOnly: true,
+        position: 'sidebar',
       },
     },
   ],
