@@ -1,11 +1,9 @@
 import type { CollectionSlug, PayloadRequest } from 'payload';
-import { getPayload } from 'payload';
 
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import configPromise from '@payload-config';
-
+import { getCms } from '@/cms';
 import { env } from '@/env';
 
 import type { MarketCode } from '@/markets';
@@ -20,11 +18,7 @@ export async function GET(
     };
   } & Request,
 ): Promise<Response> {
-  console.log('halla');
-
-  const payload = await getPayload({ config: configPromise });
-
-  console.log('halla2', req.url);
+  const cms = await getCms();
 
   const { searchParams } = new URL(req.url);
 
@@ -51,12 +45,12 @@ export async function GET(
   let user;
 
   try {
-    user = await payload.auth({
+    user = await cms.auth({
       req: req as unknown as PayloadRequest,
       headers: req.headers,
     });
   } catch (error) {
-    payload.logger.error({ err: error }, 'Error verifying token for live preview');
+    cms.logger.error({ err: error }, 'Error verifying token for live preview');
     return new Response('You are not allowed to preview this page', { status: 403 });
   }
 
