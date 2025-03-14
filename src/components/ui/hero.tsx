@@ -17,7 +17,7 @@ type LinkProps = {
 };
 
 type HeroProps = {
-  color?: 'light' | 'blank' | 'dark';
+  color?: 'dark' | 'light' | 'white';
   imagePlacement?: 'left' | 'right' | 'behind';
   squareImage?: boolean;
   fullWidth?: boolean;
@@ -54,8 +54,8 @@ export function Hero({
 
     // Color variants
     {
-      'bg-petroleum-50 text-petroleum': color === 'light',
-      'bg-white text-petroleum-700': color === 'blank',
+      'bg-petroleum-50 text-petroleum-700': color === 'light',
+      'bg-white text-petroleum-700': color === 'white',
       'bg-petroleum-700 text-white': color === 'dark',
     },
     // Image placement
@@ -66,11 +66,11 @@ export function Hero({
     // Full width
     fullWidth && 'xl:w-full xl:max-w-full xl:rounded-none xl:min-h-[28vw] xl:mt-0 xl:mb-0',
 
-    // Blank
+    // white
     {
       'outline outline-2 outline-petroleum-100':
-        color === 'blank' && imagePlacement !== 'behind' && imageFade && !squareImage && !fullWidth,
-      'xl:rounded-none': color === 'blank' && squareImage,
+        color === 'white' && imagePlacement !== 'behind' && imageFade && !squareImage && !fullWidth,
+      'xl:rounded-none': color === 'white' && squareImage,
     },
 
     // Custom class
@@ -88,7 +88,7 @@ export function Hero({
       'absolute top-0 left-0 h-full flex justify-center items-center overflow-hidden': imagePlacement === 'behind',
 
       'xl:rounded-[40px] overflow-hidden':
-        color === 'blank' && !imageFade && imagePlacement !== 'behind' && !squareImage,
+        color === 'white' && !imageFade && imagePlacement !== 'behind' && !squareImage,
     },
     squareImage && 'flex justify-center items-center',
   );
@@ -114,27 +114,27 @@ export function Hero({
     'absolute inset-0': imageFade,
     'bg-petroleum-700/80': color === 'dark' && imagePlacement === 'behind',
     'bg-petroleum-50/80': color === 'light' && imagePlacement === 'behind',
-    'bg-white/80': color === 'blank' && imagePlacement === 'behind',
+    'bg-white/80': color === 'white' && imagePlacement === 'behind',
     'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-l': color === 'dark' && imagePlacement === 'left',
     'from-petroleum-700 to-petroleum-700/0 bg-gradient-to-r': color === 'dark' && imagePlacement === 'right',
     'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-l': color === 'light' && imagePlacement === 'left',
     'from-petroleum-50 to-petroleum-50/0 bg-gradient-to-r': color === 'light' && imagePlacement === 'right',
-    'bg-gradient-to-l from-white to-white/0': color === 'blank' && imagePlacement === 'left',
-    'bg-gradient-to-r from-white to-white/0': color === 'blank' && imagePlacement === 'right',
+    'bg-gradient-to-l from-white to-white/0': color === 'white' && imagePlacement === 'left',
+    'bg-gradient-to-r from-white to-white/0': color === 'white' && imagePlacement === 'right',
     'bg-petroleum-50/60': squareImage && color === 'light' && imagePlacement !== 'behind',
     'bg-petroleum-700/60': squareImage && color === 'dark' && imagePlacement !== 'behind',
-    'bg-white/60': squareImage && color === 'blank' && imagePlacement !== 'behind',
+    'bg-white/60': squareImage && color === 'white' && imagePlacement !== 'behind',
   });
 
   // Title styles
   const titleClasses = cn('text-3xl leading-none font-medium m-0 mb-4 xl:text-5xl', {
-    'text-petroleum-700': color === 'light' || color === 'blank',
+    'text-petroleum-700': color === 'light' || color === 'white',
     'text-white': color === 'dark',
   });
 
   // Text styles
   const textClasses = cn('text-xl leading-relaxed', {
-    'text-petroleum-700': color === 'light' || color === 'blank',
+    'text-petroleum-700': color === 'light' || color === 'white',
     'text-white': color === 'dark',
   });
 
@@ -166,7 +166,7 @@ export function Hero({
                 </Button>
               )}
               {textLink && textLink.target && textLink.title && textLink.title.length > 0 && (
-                <Textlink href={textLink.target} variant={color === 'dark' ? 'white' : 'petroleum'}>
+                <Textlink href={textLink.target} color={color === 'dark' ? 'white' : 'petroleum'}>
                   {textLink.title}
                 </Textlink>
               )}

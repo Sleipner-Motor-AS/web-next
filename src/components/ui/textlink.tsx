@@ -3,13 +3,13 @@ import Link from 'next/link';
 import type { LinkProps } from 'next/link';
 import type { ReactNode, ReactElement } from 'react';
 
-type TextlinkVariant = 'petroleum' | 'white';
+type TextlinkColor = 'petroleum' | 'white';
 type TextlinkSize = 'sm' | 'md' | 'lg';
 
 type TextlinkProps = {
   children: ReactNode;
   size?: TextlinkSize;
-  variant?: TextlinkVariant;
+  color?: TextlinkColor;
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
   className?: string;
@@ -22,7 +22,7 @@ type TextlinkProps = {
 };
 
 const STYLES = {
-  variant: {
+  color: {
     petroleum: 'text-petroleum-700',
     white: 'text-white',
   },
@@ -38,7 +38,7 @@ const STYLES = {
 export function Textlink({
   children,
   size = 'md',
-  variant = 'petroleum',
+  color = 'petroleum',
   iconLeft,
   iconRight,
   className,
@@ -55,7 +55,7 @@ export function Textlink({
   const styles = cn(
     STYLES.base,
     STYLES.size[size],
-    STYLES.variant[variant],
+    STYLES.color[color],
     !hasIcon && [STYLES.text, 'font-medium'],
     className,
   );

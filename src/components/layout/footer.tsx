@@ -9,22 +9,22 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Ressurser</div>
             <ul className="my-5 list-none">
               <li className="mb-4">
-                <Textlink href="/knowledge-hub" size="sm" variant="white">
+                <Textlink href="/knowledge-hub" size="sm" color="white">
                   Knowledge hub
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/support/faq" size="sm" variant="white">
+                <Textlink href="/support/faq" size="sm" color="white">
                   Ofte stilte spørsmål
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/support/produktkataloger" size="sm" variant="white">
+                <Textlink href="/support/produktkataloger" size="sm" color="white">
                   Produktkataloger
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="https://mysite.sleipnergroup.com/" size="sm" variant="white" target="_blank">
+                <Textlink href="https://mysite.sleipnergroup.com/" size="sm" color="white" target="_blank">
                   mySite
                 </Textlink>
               </li>
@@ -34,32 +34,32 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Om Sleipner</div>
             <ul className="my-5 list-none">
               <li className="mb-4">
-                <Textlink href="/dette-er-sleipner" size="sm" variant="white">
+                <Textlink href="/dette-er-sleipner" size="sm" color="white">
                   Vår historie
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/patenter" size="sm" variant="white">
+                <Textlink href="/patenter" size="sm" color="white">
                   Patenter
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/dette-er-sleipner/jobbe-pa-sleipner" size="sm" variant="white">
+                <Textlink href="/dette-er-sleipner/jobbe-pa-sleipner" size="sm" color="white">
                   Karriere på Sleipner
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/sustainability" size="sm" variant="white">
+                <Textlink href="/sustainability" size="sm" color="white">
                   Sustainability
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/dette-er-sleipner/batmesser" size="sm" variant="white">
+                <Textlink href="/dette-er-sleipner/batmesser" size="sm" color="white">
                   Finn oss på messer
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/support/presse" size="sm" variant="white">
+                <Textlink href="/support/presse" size="sm" color="white">
                   Presse
                 </Textlink>
               </li>
@@ -69,27 +69,27 @@ export function Footer() {
             <div className="text-petroleum-100 text-lg uppercase">Utforsk</div>
             <ul className="my-5 list-none">
               <li className="mb-4">
-                <Textlink href="/fritidsbat/baug-og-hekkthruster-for-fritidsbad" size="sm" variant="white">
+                <Textlink href="/fritidsbat/baug-og-hekkthruster-for-fritidsbad" size="sm" color="white">
                   Thruster
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/fritidsbat/ankervinsj" size="sm" variant="white">
+                <Textlink href="/fritidsbat/ankervinsj" size="sm" color="white">
                   Ankervinsj
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/fritidsbat/fremdrift" size="sm" variant="white">
+                <Textlink href="/fritidsbat/fremdrift" size="sm" color="white">
                   Fremdrift
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/fritidsbat/styring" size="sm" variant="white">
+                <Textlink href="/fritidsbat/styring" size="sm" color="white">
                   Styring
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="/fritidsbat/stabilisatorsystem-for-fritidsbat/stabilisatorer" size="sm" variant="white">
+                <Textlink href="/fritidsbat/stabilisatorsystem-for-fritidsbat/stabilisatorer" size="sm" color="white">
                   Stabilisatorer
                 </Textlink>
               </li>
@@ -105,28 +105,23 @@ export function Footer() {
                   href="https://www.linkedin.com/company/sleipnerofficial"
                   target="_blank"
                   size="sm"
-                  variant="white"
+                  color="white"
                 >
                   LinkedIn
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="https://www.facebook.com/sleipnernorge" target="_blank" size="sm" variant="white">
+                <Textlink href="https://www.facebook.com/sleipnernorge" target="_blank" size="sm" color="white">
                   Facebook
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink
-                  href="https://www.youtube.com/c/SidepowerTV/featured"
-                  target="_blank"
-                  size="sm"
-                  variant="white"
-                >
+                <Textlink href="https://www.youtube.com/c/SidepowerTV/featured" target="_blank" size="sm" color="white">
                   YouTube
                 </Textlink>
               </li>
               <li className="mb-4">
-                <Textlink href="https://www.instagram.com/sleipner_official" target="_blank" size="sm" variant="white">
+                <Textlink href="https://www.instagram.com/sleipner_official" target="_blank" size="sm" color="white">
                   Instagram
                 </Textlink>
               </li>
@@ -135,7 +130,7 @@ export function Footer() {
                   href="https://info.sleipnergroup.com/subscribe-to-our-newsletter-int"
                   target="_blank"
                   size="sm"
-                  variant="white"
+                  color="white"
                 >
                   Nyhetsbrev
                 </Textlink>

@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/ui/hero';
 import DirectionsBoatIcon from '@/components/icons/directions_boat';
 import { Textlink } from '@/components/ui/textlink';
-import Link from 'next/link';
+import { Card } from '@/components/ui/card';
 
 export default async function HomePage() {
   return (
@@ -17,7 +17,7 @@ export default async function HomePage() {
       />
       <Hero
         color="dark"
-        imagePlacement="right"
+        imagePlacement="left"
         title="Welcome to our site"
         text="Discover our amazing products and services"
         imageFade
@@ -37,7 +37,7 @@ export default async function HomePage() {
       />
       <Hero
         color="light"
-        imagePlacement="left"
+        imagePlacement="right"
         title="Welcome to our site"
         text="Discover our amazing products and services"
         imageFade
@@ -54,10 +54,50 @@ export default async function HomePage() {
           title: 'View Products',
         }}
       />
-      <div className="mx-auto flex max-w-screen-xl p-10">
-        <Button as={Link} href="/your-path" variant="petroleum">
-          Link Button
-        </Button>
+      <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-4 p-10 md:grid-cols-2 lg:grid-cols-3">
+        <Card
+          color="dark"
+          image={{ src: '/thruster_boat.jpg', alt: 'Card Image' }}
+          title="Pros and cons of different thruster solutions"
+          link={{
+            target: '/products',
+            title: 'Read more',
+          }}
+        >
+          <p>
+            There is a vast array of boats in various shapes and sizes. Luckily, there are now bow and stern thruster
+            solutions available for almost all types of motorboats and sailing yachts.
+          </p>
+        </Card>
+        <Card
+          color="light"
+          image={{ src: '/thruster_boat.jpg', alt: 'Card Image' }}
+          title="Manage the boat alone with the practical hold function"
+          link={{
+            target: '/products',
+            title: 'Read more',
+          }}
+        >
+          <p>
+            Docking the boat can be challenging, especially if you are alone on board. It requires planning, precision,
+            and often a pair of extra hands. With the hold function, you can rely on your thrusters to keep the boat
+            safely next to the dock, allowing you to moor the boat on your own.
+          </p>
+        </Card>
+        <Card
+          color="white"
+          image={{ src: '/thruster_boat.jpg', alt: 'Card Image' }}
+          title="Five benefits with PRO™ speed control"
+          link={{
+            target: '/products',
+            title: 'Read more',
+          }}
+        >
+          <p>
+            Thruster systems with speed control have been around for some time now. In this article, we explore the many
+            benefits of a PRO™ thruster system and why it is an upgrade most boat owners should consider.
+          </p>
+        </Card>
       </div>
       <div className="mx-auto flex max-w-screen-xl flex-col p-10">
         <h2 className="mb-4 text-2xl font-bold">Buttons</h2>
@@ -490,22 +530,22 @@ export default async function HomePage() {
             </Textlink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <Textlink href="/products" variant="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
+            <Textlink href="/products" color="white" size="sm" iconLeft={<DirectionsBoatIcon size={16} />}>
               Hello
             </Textlink>
-            <Textlink href="/products" variant="white" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
+            <Textlink href="/products" color="white" size="sm" iconRight={<DirectionsBoatIcon size={16} />}>
               Hello
             </Textlink>
             <Textlink
               href="/products"
-              variant="white"
+              color="white"
               size="sm"
               iconLeft={<DirectionsBoatIcon size={16} />}
               iconRight={<DirectionsBoatIcon size={16} />}
             >
               Hello
             </Textlink>
-            <Textlink href="/products" variant="white" size="sm">
+            <Textlink href="/products" color="white" size="sm">
               Hello
             </Textlink>
           </div>
@@ -532,22 +572,22 @@ export default async function HomePage() {
             </Textlink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <Textlink href="/products" variant="white" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
+            <Textlink href="/products" color="white" size="md" iconLeft={<DirectionsBoatIcon size={20} />}>
               Hello
             </Textlink>
-            <Textlink href="/products" variant="white" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
+            <Textlink href="/products" color="white" size="md" iconRight={<DirectionsBoatIcon size={20} />}>
               Hello
             </Textlink>
             <Textlink
               href="/products"
-              variant="white"
+              color="white"
               size="md"
               iconLeft={<DirectionsBoatIcon size={20} />}
               iconRight={<DirectionsBoatIcon size={20} />}
             >
               Hello
             </Textlink>
-            <Textlink href="/products" variant="white" size="md">
+            <Textlink href="/products" color="white" size="md">
               Hello
             </Textlink>
           </div>
@@ -574,22 +614,22 @@ export default async function HomePage() {
             </Textlink>
           </div>
           <div className="bg-petroleum-700 flex gap-8 p-4">
-            <Textlink href="/products" variant="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
+            <Textlink href="/products" color="white" size="lg" iconLeft={<DirectionsBoatIcon size={24} />}>
               Hello
             </Textlink>
-            <Textlink href="/products" variant="white" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
+            <Textlink href="/products" color="white" size="lg" iconRight={<DirectionsBoatIcon size={24} />}>
               Hello
             </Textlink>
             <Textlink
               href="/products"
-              variant="white"
+              color="white"
               size="lg"
               iconLeft={<DirectionsBoatIcon size={24} />}
               iconRight={<DirectionsBoatIcon size={24} />}
             >
               Hello
             </Textlink>
-            <Textlink href="/products" variant="white" size="lg">
+            <Textlink href="/products" color="white" size="lg">
               Hello
             </Textlink>
           </div>
