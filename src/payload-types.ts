@@ -213,15 +213,12 @@ export interface ContentPage {
  * via the `definition` "HeroBlock".
  */
 export interface HeroBlock {
-  color?: ('light' | 'blank' | 'dark') | null;
+  color?: ('dark' | 'light' | 'white') | null;
   imagePlacement?: ('left' | 'right' | 'behind') | null;
   squareImage?: boolean | null;
   fullWidth?: boolean | null;
   imageFade?: boolean | null;
-  image: {
-    media: number | CmsMedia;
-    altText?: string | null;
-  };
+  image: number | CmsMedia;
   title?: string | null;
   text?: string | null;
   link?: {
@@ -403,12 +400,7 @@ export interface HeroBlockSelect<T extends boolean = true> {
   squareImage?: T;
   fullWidth?: T;
   imageFade?: T;
-  image?:
-    | T
-    | {
-        media?: T;
-        altText?: T;
-      };
+  image?: T;
   title?: T;
   text?: T;
   link?:

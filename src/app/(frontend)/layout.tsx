@@ -6,7 +6,7 @@ import { IBM_Plex_Sans } from 'next/font/google';
 import { Topnav } from '@/components/layout/topnav';
 import { Navigation } from '@/components/layout/navigation';
 import { Breadcrumb } from '@/components/layout/breadcrumb';
-
+import { Footer } from '@/components/layout/footer';
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -26,6 +26,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
           <Navigation />
           <Breadcrumb />
           {children}
+          <Footer />
         </main>
       </body>
     </html>

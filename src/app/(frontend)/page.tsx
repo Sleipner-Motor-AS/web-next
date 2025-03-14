@@ -1,7 +1,6 @@
 import { Submenu } from '@/components/layout/submenu';
 import Intro from '@/components/layout/intro';
 import { Button } from '@/components/ui/button';
-import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/ui/hero';
 import DirectionsBoatIcon from '@/components/icons/directions_boat';
 import { Textlink } from '@/components/ui/textlink';
@@ -635,8 +634,6 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

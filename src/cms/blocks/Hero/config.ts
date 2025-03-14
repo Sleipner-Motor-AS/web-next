@@ -8,9 +8,9 @@ export const HeroBlockConfig: Block = {
       name: 'color',
       type: 'select',
       options: [
-        { label: 'Light', value: 'light' },
-        { label: 'Blank', value: 'blank' },
         { label: 'Dark', value: 'dark' },
+        { label: 'Light', value: 'light' },
+        { label: 'White', value: 'white' },
       ],
       defaultValue: 'light',
     },
@@ -39,21 +39,12 @@ export const HeroBlockConfig: Block = {
       type: 'checkbox',
       defaultValue: false,
     },
+
     {
       name: 'image',
-      type: 'group',
-      fields: [
-        {
-          name: 'media',
-          type: 'upload',
-          relationTo: 'cms_media',
-          required: true,
-        },
-        {
-          name: 'altText',
-          type: 'text',
-        },
-      ],
+      type: 'upload',
+      relationTo: 'cms_media',
+      required: true,
     },
     {
       name: 'title',
