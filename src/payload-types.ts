@@ -70,6 +70,7 @@ export interface Config {
     cms_media: CmsMedia;
     cms_products: CmsProduct;
     cms_product_categories: CmsProductCategory;
+    content_pages: ContentPage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -80,6 +81,7 @@ export interface Config {
     cms_media: CmsMediaSelect<false> | CmsMediaSelect<true>;
     cms_products: CmsProductsSelect<false> | CmsProductsSelect<true>;
     cms_product_categories: CmsProductCategoriesSelect<false> | CmsProductCategoriesSelect<true>;
+    content_pages: ContentPagesSelect<false> | ContentPagesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -195,6 +197,47 @@ export interface CmsProductCategory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content_pages".
+ */
+export interface ContentPage {
+  id: number;
+  slug: string;
+  localizedSlug?: string | null;
+  blocks?: HeroBlock[] | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock".
+ */
+export interface HeroBlock {
+  color?: ('light' | 'blank' | 'dark') | null;
+  imagePlacement?: ('left' | 'right' | 'behind') | null;
+  squareImage?: boolean | null;
+  fullWidth?: boolean | null;
+  imageFade?: boolean | null;
+  image: {
+    media: number | CmsMedia;
+    altText?: string | null;
+  };
+  title?: string | null;
+  text?: string | null;
+  link?: {
+    title?: string | null;
+    target?: string | null;
+  };
+  textLink?: {
+    title?: string | null;
+    target?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -215,6 +258,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cms_product_categories';
         value: number | CmsProductCategory;
+      } | null)
+    | ({
+        relationTo: 'content_pages';
+        value: number | ContentPage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -329,6 +376,55 @@ export interface CmsProductCategoriesSelect<T extends boolean = true> {
   uk?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content_pages_select".
+ */
+export interface ContentPagesSelect<T extends boolean = true> {
+  slug?: T;
+  localizedSlug?: T;
+  blocks?:
+    | T
+    | {
+        hero?: T | HeroBlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock_select".
+ */
+export interface HeroBlockSelect<T extends boolean = true> {
+  color?: T;
+  imagePlacement?: T;
+  squareImage?: T;
+  fullWidth?: T;
+  imageFade?: T;
+  image?:
+    | T
+    | {
+        media?: T;
+        altText?: T;
+      };
+  title?: T;
+  text?: T;
+  link?:
+    | T
+    | {
+        title?: T;
+        target?: T;
+      };
+  textLink?:
+    | T
+    | {
+        title?: T;
+        target?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

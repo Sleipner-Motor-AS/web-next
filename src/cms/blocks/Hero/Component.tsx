@@ -1,27 +1,10 @@
+import type { HeroBlock } from '@/payload-types';
+
 import { Hero } from '@/components/ui/hero';
 
-type HeroBlockProps = {
-  color?: 'light' | 'blank' | 'dark';
-  imagePlacement?: 'left' | 'right' | 'behind';
-  squareImage?: boolean;
-  fullWidth?: boolean;
-  imageFade?: boolean;
-  image?: {
-    src?: string;
-    altText?: string;
-  };
-  title?: string;
-  text?: string;
-  link?: {
-    target?: string;
-    title?: string;
-  };
-  textLink?: {
-    target?: string;
-    title?: string;
-  };
-};
+type HeroBlockComponentProps = HeroBlock;
 
-export const HeroBlock = ({ data }: { data: HeroBlockProps }) => {
-  return <Hero {...data} />;
+export const HeroBlockComponent = ({}: HeroBlockComponentProps) => {
+  // TODO: Pass props
+  return <Hero />;
 };

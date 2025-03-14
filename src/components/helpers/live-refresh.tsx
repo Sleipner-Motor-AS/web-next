@@ -3,7 +3,9 @@
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react';
 import { useRouter } from 'next/navigation.js';
 
+import { env } from '@/env';
+
 export const RefreshRouteOnSave = () => {
   const router = useRouter();
-  return <PayloadLivePreview refresh={() => router.refresh()} serverURL={process.env.NEXT_PUBLIC_PAYLOAD_URL ?? ''} />;
+  return <PayloadLivePreview refresh={() => router.refresh()} serverURL={env.public.url} />;
 };

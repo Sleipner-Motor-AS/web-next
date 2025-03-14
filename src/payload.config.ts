@@ -13,6 +13,7 @@ import { Users } from './cms/collections/Users';
 import { Media } from './cms/collections/Media';
 import { Products } from './cms/collections/Products';
 import { Categories } from './cms/collections/Categories';
+import { ContentPages } from './cms/collections/ContentPages';
 
 import { customerProductPricesTable, customersTable } from './db/tables/customer';
 import { marketProductsTable, productsTable } from './db/tables/product';
@@ -24,7 +25,7 @@ const dirname = path.dirname(filename);
 
 export default buildConfig({
   // Add new collections here
-  collections: [Users, Media, Products, Categories],
+  collections: [Users, Media, Products, Categories, ContentPages],
   // Add new db tables here
   db: postgresAdapter({
     pool: { connectionString: env.secret.databaseUrl },
@@ -49,6 +50,20 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      url: ({ data, locale }) => {
+        const parsedLocalizedSlug = (data.localizedSlug as string) || '_';
+        const encodedParams = new URLSearchParams({
+          localizedSlug: parsedLocalizedSlug,
+          collection: 'content_pages',
+          market: locale.code,
+          path: `/${parsedLocalizedSlug}`,
+          previewSecret: env.secret.payload.previewSecret,
+        });
+        return `/preview?${encodedParams.toString()}`;
+      },
+      collections: ['content_pages'],
+    },
     components: {
       views: {
         products: {
@@ -70,6 +85,7 @@ export default buildConfig({
   ],
   localization: {
     defaultLocale: markets[0].code,
+    fallback: true,
     locales: [
       ...markets.map((market) => ({
         label: market.label,

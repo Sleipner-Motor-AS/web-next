@@ -16,11 +16,47 @@ import {
   varchar,
   numeric,
   integer,
+  text,
+  boolean,
   jsonb,
   pgEnum,
 } from '@payloadcms/db-postgres/drizzle/pg-core';
 import { sql, relations } from '@payloadcms/db-postgres/drizzle';
 export const enum__locales = pgEnum('enum__locales', ['en', 'no', 'se', 'dk', 'de', 'fi', 'it', 'pl', 'uk']);
+export const enum_cms_content_pages_blocks_hero_color = pgEnum('enum_cms_content_pages_blocks_hero_color', [
+  'light',
+  'blank',
+  'dark',
+]);
+export const enum_cms_content_pages_blocks_hero_image_placement = pgEnum(
+  'enum_cms_content_pages_blocks_hero_image_placement',
+  ['left', 'right', 'behind'],
+);
+export const enum_cms_content_pages_status = pgEnum('enum_cms_content_pages_status', ['draft', 'published']);
+export const enum__cms_content_pages_v_blocks_hero_color = pgEnum('enum__cms_content_pages_v_blocks_hero_color', [
+  'light',
+  'blank',
+  'dark',
+]);
+export const enum__cms_content_pages_v_blocks_hero_image_placement = pgEnum(
+  'enum__cms_content_pages_v_blocks_hero_image_placement',
+  ['left', 'right', 'behind'],
+);
+export const enum__cms_content_pages_v_version_status = pgEnum('enum__cms_content_pages_v_version_status', [
+  'draft',
+  'published',
+]);
+export const enum__cms_content_pages_v_published_locale = pgEnum('enum__cms_content_pages_v_published_locale', [
+  'en',
+  'no',
+  'se',
+  'dk',
+  'de',
+  'fi',
+  'it',
+  'pl',
+  'uk',
+]);
 
 export const cms_users = pgTable(
   'cms_users',
@@ -120,17 +156,187 @@ export const cms_product_categories = pgTable(
   },
   (columns) => ({
     cms_product_categories_category_idx: uniqueIndex('cms_product_categories_category_idx').on(columns.category),
-    cms_product_categories_en_idx: uniqueIndex('cms_product_categories_en_idx').on(columns.en),
-    cms_product_categories_no_idx: uniqueIndex('cms_product_categories_no_idx').on(columns.no),
-    cms_product_categories_se_idx: uniqueIndex('cms_product_categories_se_idx').on(columns.se),
-    cms_product_categories_dk_idx: uniqueIndex('cms_product_categories_dk_idx').on(columns.dk),
-    cms_product_categories_de_idx: uniqueIndex('cms_product_categories_de_idx').on(columns.de),
-    cms_product_categories_fi_idx: uniqueIndex('cms_product_categories_fi_idx').on(columns.fi),
-    cms_product_categories_it_idx: uniqueIndex('cms_product_categories_it_idx').on(columns.it),
-    cms_product_categories_pl_idx: uniqueIndex('cms_product_categories_pl_idx').on(columns.pl),
-    cms_product_categories_uk_idx: uniqueIndex('cms_product_categories_uk_idx').on(columns.uk),
     cms_product_categories_updated_at_idx: index('cms_product_categories_updated_at_idx').on(columns.updatedAt),
     cms_product_categories_created_at_idx: index('cms_product_categories_created_at_idx').on(columns.createdAt),
+  }),
+);
+
+export const cms_content_pages_blocks_hero = pgTable(
+  'cms_content_pages_blocks_hero',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    color: enum_cms_content_pages_blocks_hero_color('color').default('light'),
+    imagePlacement: enum_cms_content_pages_blocks_hero_image_placement('image_placement').default('left'),
+    squareImage: boolean('square_image').default(false),
+    fullWidth: boolean('full_width').default(false),
+    imageFade: boolean('image_fade').default(false),
+    image_media: integer('image_media_id').references(() => cms_media.id, {
+      onDelete: 'set null',
+    }),
+    image_altText: varchar('image_alt_text'),
+    title: varchar('title'),
+    text: varchar('text'),
+    link_title: varchar('link_title'),
+    link_target: varchar('link_target'),
+    textLink_title: varchar('text_link_title'),
+    textLink_target: varchar('text_link_target'),
+    blockName: varchar('block_name'),
+  },
+  (columns) => ({
+    _orderIdx: index('cms_content_pages_blocks_hero_order_idx').on(columns._order),
+    _parentIDIdx: index('cms_content_pages_blocks_hero_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('cms_content_pages_blocks_hero_path_idx').on(columns._path),
+    cms_content_pages_blocks_hero_image_image_media_idx: index(
+      'cms_content_pages_blocks_hero_image_image_media_idx',
+    ).on(columns.image_media),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [cms_content_pages.id],
+      name: 'cms_content_pages_blocks_hero_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const cms_content_pages = pgTable(
+  'cms_content_pages',
+  {
+    id: serial('id').primaryKey(),
+    slug: varchar('slug'),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    _status: enum_cms_content_pages_status('_status').default('draft'),
+  },
+  (columns) => ({
+    cms_content_pages_slug_idx: uniqueIndex('cms_content_pages_slug_idx').on(columns.slug),
+    cms_content_pages_updated_at_idx: index('cms_content_pages_updated_at_idx').on(columns.updatedAt),
+    cms_content_pages_created_at_idx: index('cms_content_pages_created_at_idx').on(columns.createdAt),
+    cms_content_pages__status_idx: index('cms_content_pages__status_idx').on(columns._status),
+  }),
+);
+
+export const cms_content_pages_locales = pgTable(
+  'cms_content_pages_locales',
+  {
+    localizedSlug: varchar('localized_slug').default(''),
+    id: serial('id').primaryKey(),
+    _locale: enum__locales('_locale').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+  },
+  (columns) => ({
+    _localeParent: uniqueIndex('cms_content_pages_locales_locale_parent_id_unique').on(
+      columns._locale,
+      columns._parentID,
+    ),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [cms_content_pages.id],
+      name: 'cms_content_pages_locales_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _cms_content_pages_v_blocks_hero = pgTable(
+  '_cms_content_pages_v_blocks_hero',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: serial('id').primaryKey(),
+    color: enum__cms_content_pages_v_blocks_hero_color('color').default('light'),
+    imagePlacement: enum__cms_content_pages_v_blocks_hero_image_placement('image_placement').default('left'),
+    squareImage: boolean('square_image').default(false),
+    fullWidth: boolean('full_width').default(false),
+    imageFade: boolean('image_fade').default(false),
+    image_media: integer('image_media_id').references(() => cms_media.id, {
+      onDelete: 'set null',
+    }),
+    image_altText: varchar('image_alt_text'),
+    title: varchar('title'),
+    text: varchar('text'),
+    link_title: varchar('link_title'),
+    link_target: varchar('link_target'),
+    textLink_title: varchar('text_link_title'),
+    textLink_target: varchar('text_link_target'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  (columns) => ({
+    _orderIdx: index('_cms_content_pages_v_blocks_hero_order_idx').on(columns._order),
+    _parentIDIdx: index('_cms_content_pages_v_blocks_hero_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_cms_content_pages_v_blocks_hero_path_idx').on(columns._path),
+    _cms_content_pages_v_blocks_hero_image_image_media_idx: index(
+      '_cms_content_pages_v_blocks_hero_image_image_media_idx',
+    ).on(columns.image_media),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_cms_content_pages_v.id],
+      name: '_cms_content_pages_v_blocks_hero_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+);
+
+export const _cms_content_pages_v = pgTable(
+  '_cms_content_pages_v',
+  {
+    id: serial('id').primaryKey(),
+    parent: integer('parent_id').references(() => cms_content_pages.id, {
+      onDelete: 'set null',
+    }),
+    version_slug: varchar('version_slug'),
+    version_updatedAt: timestamp('version_updated_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    version_createdAt: timestamp('version_created_at', { mode: 'string', withTimezone: true, precision: 3 }),
+    version__status: enum__cms_content_pages_v_version_status('version__status').default('draft'),
+    createdAt: timestamp('created_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    updatedAt: timestamp('updated_at', { mode: 'string', withTimezone: true, precision: 3 }).defaultNow().notNull(),
+    snapshot: boolean('snapshot'),
+    publishedLocale: enum__cms_content_pages_v_published_locale('published_locale'),
+    latest: boolean('latest'),
+  },
+  (columns) => ({
+    _cms_content_pages_v_parent_idx: index('_cms_content_pages_v_parent_idx').on(columns.parent),
+    _cms_content_pages_v_version_version_slug_idx: index('_cms_content_pages_v_version_version_slug_idx').on(
+      columns.version_slug,
+    ),
+    _cms_content_pages_v_version_version_updated_at_idx: index(
+      '_cms_content_pages_v_version_version_updated_at_idx',
+    ).on(columns.version_updatedAt),
+    _cms_content_pages_v_version_version_created_at_idx: index(
+      '_cms_content_pages_v_version_version_created_at_idx',
+    ).on(columns.version_createdAt),
+    _cms_content_pages_v_version_version__status_idx: index('_cms_content_pages_v_version_version__status_idx').on(
+      columns.version__status,
+    ),
+    _cms_content_pages_v_created_at_idx: index('_cms_content_pages_v_created_at_idx').on(columns.createdAt),
+    _cms_content_pages_v_updated_at_idx: index('_cms_content_pages_v_updated_at_idx').on(columns.updatedAt),
+    _cms_content_pages_v_snapshot_idx: index('_cms_content_pages_v_snapshot_idx').on(columns.snapshot),
+    _cms_content_pages_v_published_locale_idx: index('_cms_content_pages_v_published_locale_idx').on(
+      columns.publishedLocale,
+    ),
+    _cms_content_pages_v_latest_idx: index('_cms_content_pages_v_latest_idx').on(columns.latest),
+  }),
+);
+
+export const _cms_content_pages_v_locales = pgTable(
+  '_cms_content_pages_v_locales',
+  {
+    version_localizedSlug: varchar('version_localized_slug').default(''),
+    id: serial('id').primaryKey(),
+    _locale: enum__locales('_locale').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+  },
+  (columns) => ({
+    _localeParent: uniqueIndex('_cms_content_pages_v_locales_locale_parent_id_unique').on(
+      columns._locale,
+      columns._parentID,
+    ),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_cms_content_pages_v.id],
+      name: '_cms_content_pages_v_locales_parent_id_fk',
+    }).onDelete('cascade'),
   }),
 );
 
@@ -160,6 +366,7 @@ export const payload_locked_documents_rels = pgTable(
     cms_mediaID: integer('cms_media_id'),
     cms_productsID: integer('cms_products_id'),
     cms_product_categoriesID: integer('cms_product_categories_id'),
+    content_pagesID: integer('cms_content_pages_id'),
   },
   (columns) => ({
     order: index('payload_locked_documents_rels_order_idx').on(columns.order),
@@ -177,6 +384,9 @@ export const payload_locked_documents_rels = pgTable(
     payload_locked_documents_rels_cms_product_categories_id_idx: index(
       'payload_locked_documents_rels_cms_product_categories_id_idx',
     ).on(columns.cms_product_categoriesID),
+    payload_locked_documents_rels_cms_content_pages_id_idx: index(
+      'payload_locked_documents_rels_cms_content_pages_id_idx',
+    ).on(columns.content_pagesID),
     parentFk: foreignKey({
       columns: [columns['parent']],
       foreignColumns: [payload_locked_documents.id],
@@ -201,6 +411,11 @@ export const payload_locked_documents_rels = pgTable(
       columns: [columns['cms_product_categoriesID']],
       foreignColumns: [cms_product_categories.id],
       name: 'payload_locked_documents_rels_cms_product_categories_fk',
+    }).onDelete('cascade'),
+    content_pagesIdFk: foreignKey({
+      columns: [columns['content_pagesID']],
+      foreignColumns: [cms_content_pages.id],
+      name: 'payload_locked_documents_rels_content_pages_fk',
     }).onDelete('cascade'),
   }),
 );
@@ -275,6 +490,65 @@ export const relations_cms_products = relations(cms_products, ({ one }) => ({
   }),
 }));
 export const relations_cms_product_categories = relations(cms_product_categories, () => ({}));
+export const relations_cms_content_pages_blocks_hero = relations(cms_content_pages_blocks_hero, ({ one }) => ({
+  _parentID: one(cms_content_pages, {
+    fields: [cms_content_pages_blocks_hero._parentID],
+    references: [cms_content_pages.id],
+    relationName: '_blocks_hero',
+  }),
+  image_media: one(cms_media, {
+    fields: [cms_content_pages_blocks_hero.image_media],
+    references: [cms_media.id],
+    relationName: 'image_media',
+  }),
+}));
+export const relations_cms_content_pages_locales = relations(cms_content_pages_locales, ({ one }) => ({
+  _parentID: one(cms_content_pages, {
+    fields: [cms_content_pages_locales._parentID],
+    references: [cms_content_pages.id],
+    relationName: '_locales',
+  }),
+}));
+export const relations_cms_content_pages = relations(cms_content_pages, ({ many }) => ({
+  _blocks_hero: many(cms_content_pages_blocks_hero, {
+    relationName: '_blocks_hero',
+  }),
+  _locales: many(cms_content_pages_locales, {
+    relationName: '_locales',
+  }),
+}));
+export const relations__cms_content_pages_v_blocks_hero = relations(_cms_content_pages_v_blocks_hero, ({ one }) => ({
+  _parentID: one(_cms_content_pages_v, {
+    fields: [_cms_content_pages_v_blocks_hero._parentID],
+    references: [_cms_content_pages_v.id],
+    relationName: '_blocks_hero',
+  }),
+  image_media: one(cms_media, {
+    fields: [_cms_content_pages_v_blocks_hero.image_media],
+    references: [cms_media.id],
+    relationName: 'image_media',
+  }),
+}));
+export const relations__cms_content_pages_v_locales = relations(_cms_content_pages_v_locales, ({ one }) => ({
+  _parentID: one(_cms_content_pages_v, {
+    fields: [_cms_content_pages_v_locales._parentID],
+    references: [_cms_content_pages_v.id],
+    relationName: '_locales',
+  }),
+}));
+export const relations__cms_content_pages_v = relations(_cms_content_pages_v, ({ one, many }) => ({
+  parent: one(cms_content_pages, {
+    fields: [_cms_content_pages_v.parent],
+    references: [cms_content_pages.id],
+    relationName: 'parent',
+  }),
+  _blocks_hero: many(_cms_content_pages_v_blocks_hero, {
+    relationName: '_blocks_hero',
+  }),
+  _locales: many(_cms_content_pages_v_locales, {
+    relationName: '_locales',
+  }),
+}));
 export const relations_payload_locked_documents_rels = relations(payload_locked_documents_rels, ({ one }) => ({
   parent: one(payload_locked_documents, {
     fields: [payload_locked_documents_rels.parent],
@@ -300,6 +574,11 @@ export const relations_payload_locked_documents_rels = relations(payload_locked_
     fields: [payload_locked_documents_rels.cms_product_categoriesID],
     references: [cms_product_categories.id],
     relationName: 'cms_product_categories',
+  }),
+  content_pagesID: one(cms_content_pages, {
+    fields: [payload_locked_documents_rels.content_pagesID],
+    references: [cms_content_pages.id],
+    relationName: 'content_pages',
   }),
 }));
 export const relations_payload_locked_documents = relations(payload_locked_documents, ({ many }) => ({
@@ -328,10 +607,23 @@ export const relations_payload_migrations = relations(payload_migrations, () => 
 
 type DatabaseSchema = {
   enum__locales: typeof enum__locales;
+  enum_cms_content_pages_blocks_hero_color: typeof enum_cms_content_pages_blocks_hero_color;
+  enum_cms_content_pages_blocks_hero_image_placement: typeof enum_cms_content_pages_blocks_hero_image_placement;
+  enum_cms_content_pages_status: typeof enum_cms_content_pages_status;
+  enum__cms_content_pages_v_blocks_hero_color: typeof enum__cms_content_pages_v_blocks_hero_color;
+  enum__cms_content_pages_v_blocks_hero_image_placement: typeof enum__cms_content_pages_v_blocks_hero_image_placement;
+  enum__cms_content_pages_v_version_status: typeof enum__cms_content_pages_v_version_status;
+  enum__cms_content_pages_v_published_locale: typeof enum__cms_content_pages_v_published_locale;
   cms_users: typeof cms_users;
   cms_media: typeof cms_media;
   cms_products: typeof cms_products;
   cms_product_categories: typeof cms_product_categories;
+  cms_content_pages_blocks_hero: typeof cms_content_pages_blocks_hero;
+  cms_content_pages: typeof cms_content_pages;
+  cms_content_pages_locales: typeof cms_content_pages_locales;
+  _cms_content_pages_v_blocks_hero: typeof _cms_content_pages_v_blocks_hero;
+  _cms_content_pages_v: typeof _cms_content_pages_v;
+  _cms_content_pages_v_locales: typeof _cms_content_pages_v_locales;
   payload_locked_documents: typeof payload_locked_documents;
   payload_locked_documents_rels: typeof payload_locked_documents_rels;
   payload_preferences: typeof payload_preferences;
@@ -341,6 +633,12 @@ type DatabaseSchema = {
   relations_cms_media: typeof relations_cms_media;
   relations_cms_products: typeof relations_cms_products;
   relations_cms_product_categories: typeof relations_cms_product_categories;
+  relations_cms_content_pages_blocks_hero: typeof relations_cms_content_pages_blocks_hero;
+  relations_cms_content_pages_locales: typeof relations_cms_content_pages_locales;
+  relations_cms_content_pages: typeof relations_cms_content_pages;
+  relations__cms_content_pages_v_blocks_hero: typeof relations__cms_content_pages_v_blocks_hero;
+  relations__cms_content_pages_v_locales: typeof relations__cms_content_pages_v_locales;
+  relations__cms_content_pages_v: typeof relations__cms_content_pages_v;
   relations_payload_locked_documents_rels: typeof relations_payload_locked_documents_rels;
   relations_payload_locked_documents: typeof relations_payload_locked_documents;
   relations_payload_preferences_rels: typeof relations_payload_preferences_rels;
