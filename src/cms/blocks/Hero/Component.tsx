@@ -16,7 +16,30 @@ export const HeroBlockComponent = ({
   link,
   textLink,
 }: HeroBlockComponentProps) => {
-  // TODO: Pass props
+  // Transform the image data to the format expected by the Hero component
+  const transformedImage =
+    image && typeof image !== 'number'
+      ? {
+          src: image.url || '',
+          altText: image.alt || '',
+        }
+      : undefined;
+
+  // Transform link and textLink to match the LinkProps type
+  const transformedLink = link
+    ? {
+        title: link.title || undefined,
+        target: link.target || undefined,
+      }
+    : undefined;
+
+  const transformedTextLink = textLink
+    ? {
+        title: textLink.title || undefined,
+        target: textLink.target || undefined,
+      }
+    : undefined;
+
   return (
     <Hero
       color={color ?? undefined}
@@ -24,11 +47,11 @@ export const HeroBlockComponent = ({
       squareImage={squareImage ?? false}
       fullWidth={fullWidth ?? false}
       imageFade={imageFade ?? false}
-      // image={image ?? undefined}
+      image={transformedImage}
       title={title ?? undefined}
       text={text ?? undefined}
-      // link={link ?? undefined}
-      // textLink={textLink ?? undefined}
+      link={transformedLink}
+      textLink={transformedTextLink}
     />
   );
 };
