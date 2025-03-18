@@ -1,5 +1,4 @@
 import type { HeroBlock } from '@/payload-types';
-
 import { Hero } from '@/components/ui/hero';
 
 type HeroBlockComponentProps = HeroBlock;

@@ -9,6 +9,7 @@ import { markets, type MarketCode } from '@/markets';
 import { RefreshRouteOnSave } from '@/components/helpers/live-refresh';
 
 import { HeroBlockComponent } from '@/cms/blocks/Hero';
+import { SubmenuBlockComponent } from '@/cms/blocks/Submenu';
 
 type BlockComponentProps<T extends NonNullable<ContentPage['blocks']>[number]['blockType']> = Extract<
   NonNullable<ContentPage['blocks']>[number],
@@ -19,6 +20,7 @@ const PAGE_BLOCKS: {
   [T in NonNullable<ContentPage['blocks']>[number]['blockType']]: React.ComponentType<BlockComponentProps<T>>;
 } = {
   hero: HeroBlockComponent,
+  submenu: SubmenuBlockComponent,
 };
 
 type Params = {
@@ -85,9 +87,14 @@ export default async function ContentPage({ params }: Props) {
       <RefreshRouteOnSave />
       <div className="flex flex-col gap-4">
         slug: {page.localizedSlug}
-        {page.blocks?.map((block) => {
+        {page.blocks?.map((block, index) => {
           const Block = PAGE_BLOCKS[block.blockType];
-          return <Block key={block.id} {...block} />;
+          return (
+            <div key={index}>
+              {/* @ts-expect-error there may be some mismatch between the expected types here */}
+              <Block {...block} />
+            </div>
+          );
         })}
       </div>
     </>

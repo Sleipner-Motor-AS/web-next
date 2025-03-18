@@ -1,4 +1,4 @@
-import { Submenu } from '@/components/layout/submenu';
+import { Submenu } from '@/components/ui/submenu';
 import Intro from '@/components/layout/intro';
 import { Button } from '@/components/ui/button';
 import { Hero } from '@/components/ui/hero';
@@ -9,7 +9,35 @@ import { Card } from '@/components/ui/card';
 export default async function HomePage() {
   return (
     <div>
-      <Submenu className="bg-petroleum-25" />
+      <Submenu
+        links={[
+          {
+            url: '/thruster/tunnel',
+            text: 'Tunnel thrusters',
+            description: 'Bow and stern trusters mounted in a tunnel.',
+          },
+          {
+            url: '/thruster/external',
+            text: 'External thrusters',
+            description: 'Bow and stern trusters mounted externally.',
+          },
+          {
+            url: '/thruster/retract',
+            text: 'Retract thrusters',
+            description: 'Retractable bow and stern trusters.',
+          },
+          {
+            url: '/thruster/control',
+            text: 'Control units',
+            description: 'Control panels and remotes for managing thrusters.',
+          },
+          {
+            url: '/thruster/upgrades',
+            text: 'Thruster upgrades',
+            description: 'There are several possibilities to upgrade existing installation.',
+          },
+        ]}
+      />
       <Intro
         title="Welcome to the Thrusters"
         description="This is a hub for all things related to thrusters. Here you can find information about the different types of thrusters, their specifications, and how to install them."

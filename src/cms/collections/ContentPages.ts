@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { env } from '@/env';
 
 import { HeroBlockConfig } from '@/cms/blocks/Hero';
+import { SubmenuBlockConfig } from '@/cms/blocks/Submenu';
 
 export const ContentPages: CollectionConfig = {
   slug: 'content_pages',
@@ -57,7 +58,7 @@ export const ContentPages: CollectionConfig = {
     {
       name: 'blocks',
       type: 'blocks',
-      blocks: [HeroBlockConfig],
+      blocks: [HeroBlockConfig, SubmenuBlockConfig],
     },
   ],
 };

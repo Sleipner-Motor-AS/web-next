@@ -203,7 +203,7 @@ export interface ContentPage {
   id: number;
   slug: string;
   localizedSlug?: string | null;
-  blocks?: HeroBlock[] | null;
+  blocks?: (HeroBlock | SubmenuBlock)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -232,6 +232,24 @@ export interface HeroBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SubmenuBlock".
+ */
+export interface SubmenuBlock {
+  color?: ('dark' | 'light' | 'white') | null;
+  links?:
+    | {
+        text: string;
+        url: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'submenu';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -385,6 +403,7 @@ export interface ContentPagesSelect<T extends boolean = true> {
     | T
     | {
         hero?: T | HeroBlockSelect<T>;
+        submenu?: T | SubmenuBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -414,6 +433,23 @@ export interface HeroBlockSelect<T extends boolean = true> {
     | {
         title?: T;
         target?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SubmenuBlock_select".
+ */
+export interface SubmenuBlockSelect<T extends boolean = true> {
+  color?: T;
+  links?:
+    | T
+    | {
+        text?: T;
+        url?: T;
+        description?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;
