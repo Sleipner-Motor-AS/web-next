@@ -5,10 +5,7 @@ type HeroBlockComponentProps = HeroBlock;
 
 export const HeroBlockComponent = ({
   color,
-  imagePlacement,
-  squareImage,
   fullWidth,
-  imageFade,
   image,
   title,
   text,
@@ -17,10 +14,10 @@ export const HeroBlockComponent = ({
 }: HeroBlockComponentProps) => {
   // Transform the image data to the format expected by the Hero component
   const transformedImage =
-    image && typeof image !== 'number'
+    image?.media && typeof image.media !== 'number'
       ? {
-          src: image.url || '',
-          altText: image.alt || '',
+          src: image.media.url || '',
+          altText: image.media.alt || '',
         }
       : undefined;
 
@@ -42,10 +39,10 @@ export const HeroBlockComponent = ({
   return (
     <Hero
       color={color ?? undefined}
-      imagePlacement={imagePlacement ?? undefined}
-      squareImage={squareImage ?? false}
+      imagePlacement={image?.placement ?? undefined}
+      squareImage={image?.square ?? false}
       fullWidth={fullWidth ?? false}
-      imageFade={imageFade ?? false}
+      imageFade={image?.fade ?? false}
       image={transformedImage}
       title={title ?? undefined}
       text={text ?? undefined}

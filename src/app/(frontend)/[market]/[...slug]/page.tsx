@@ -10,6 +10,7 @@ import { RefreshRouteOnSave } from '@/components/helpers/live-refresh';
 
 import { HeroBlockComponent } from '@/cms/blocks/Hero';
 import { SubmenuBlockComponent } from '@/cms/blocks/Submenu';
+import { IntroBlockComponent } from '@/cms/blocks/Intro';
 
 type BlockComponentProps<T extends NonNullable<ContentPage['blocks']>[number]['blockType']> = Extract<
   NonNullable<ContentPage['blocks']>[number],
@@ -21,6 +22,7 @@ const PAGE_BLOCKS: {
 } = {
   hero: HeroBlockComponent,
   submenu: SubmenuBlockComponent,
+  intro: IntroBlockComponent,
 };
 
 type Params = {
@@ -85,18 +87,12 @@ export default async function ContentPage({ params }: Props) {
   return (
     <>
       <RefreshRouteOnSave />
-      <div className="flex flex-col gap-4">
-        slug: {page.localizedSlug}
-        {page.blocks?.map((block, index) => {
-          const Block = PAGE_BLOCKS[block.blockType];
-          return (
-            <div key={index}>
-              {/* @ts-expect-error there may be some mismatch between the expected types here */}
-              <Block {...block} />
-            </div>
-          );
-        })}
-      </div>
+      {/* slug: {page.localizedSlug} */}
+      {page.blocks?.map((block, index) => {
+        const Block = PAGE_BLOCKS[block.blockType];
+        // @ts-expect-error there may be some mismatch between the expected types here
+        return <Block key={index} {...block} />;
+      })}
     </>
   );
 }

@@ -2,18 +2,9 @@ import type { Block } from 'payload';
 
 export const SubmenuBlockConfig: Block = {
   slug: 'submenu',
+  imageURL: '/blocks/submenu.png',
   interfaceName: 'SubmenuBlock',
   fields: [
-    {
-      name: 'color',
-      type: 'select',
-      options: [
-        { label: 'Dark', value: 'dark' },
-        { label: 'Light', value: 'light' },
-        { label: 'White', value: 'white' },
-      ],
-      defaultValue: 'light',
-    },
     {
       name: 'links',
       type: 'array',
@@ -44,6 +35,16 @@ export const SubmenuBlockConfig: Block = {
           required: true,
         },
       ],
+    },
+    {
+      name: 'color',
+      type: 'select',
+      options: [
+        { label: 'Dark', value: 'dark' },
+        { label: 'Light', value: 'light' },
+        { label: 'White', value: 'white' },
+      ],
+      defaultValue: 'light',
     },
   ],
 };

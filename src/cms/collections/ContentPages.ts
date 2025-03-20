@@ -4,6 +4,7 @@ import { env } from '@/env';
 
 import { HeroBlockConfig } from '@/cms/blocks/Hero';
 import { SubmenuBlockConfig } from '@/cms/blocks/Submenu';
+import { IntroBlockConfig } from '@/cms/blocks/Intro';
 
 export const ContentPages: CollectionConfig = {
   slug: 'content_pages',
@@ -58,7 +59,7 @@ export const ContentPages: CollectionConfig = {
     {
       name: 'blocks',
       type: 'blocks',
-      blocks: [HeroBlockConfig, SubmenuBlockConfig],
+      blocks: [HeroBlockConfig, SubmenuBlockConfig, IntroBlockConfig],
     },
   ],
 };

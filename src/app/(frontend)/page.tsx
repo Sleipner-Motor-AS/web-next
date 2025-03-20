@@ -1,5 +1,5 @@
 import { Submenu } from '@/components/ui/submenu';
-import Intro from '@/components/layout/intro';
+import { Intro } from '@/components/ui/intro';
 import { Button } from '@/components/ui/button';
 import { Hero } from '@/components/ui/hero';
 import DirectionsBoatIcon from '@/components/icons/directions_boat';
@@ -39,6 +39,7 @@ export default async function HomePage() {
         ]}
       />
       <Intro
+        color="white"
         title="Welcome to the Thrusters"
         description="This is a hub for all things related to thrusters. Here you can find information about the different types of thrusters, their specifications, and how to install them."
       />
@@ -126,6 +127,26 @@ export default async function HomePage() {
           </p>
         </Card>
       </div>
+      <Hero
+        color="dark"
+        imagePlacement="behind"
+        title="Welcome to our site"
+        text="Discover our amazing products and services"
+        imageFade
+        fullWidth
+        image={{
+          src: '/thruster_boat.jpg',
+          altText: 'Hero image',
+        }}
+        link={{
+          target: '/products',
+          title: 'View Products',
+        }}
+        textLink={{
+          target: '/products',
+          title: 'View Products',
+        }}
+      />
       <div className="mx-auto flex max-w-screen-xl flex-col p-10">
         <h2 className="mb-4 text-2xl font-bold">Buttons</h2>
         <h3 className="mb-2 text-lg">Small</h3>

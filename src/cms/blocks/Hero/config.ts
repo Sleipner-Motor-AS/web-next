@@ -2,8 +2,17 @@ import type { Block } from 'payload';
 
 export const HeroBlockConfig: Block = {
   slug: 'hero',
+  imageURL: '/blocks/hero.png',
   interfaceName: 'HeroBlock',
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+    },
+    {
+      name: 'text',
+      type: 'textarea',
+    },
     {
       name: 'color',
       type: 'select',
@@ -15,44 +24,46 @@ export const HeroBlockConfig: Block = {
       defaultValue: 'light',
     },
     {
-      name: 'imagePlacement',
-      type: 'select',
-      options: [
-        { label: 'Left', value: 'left' },
-        { label: 'Right', value: 'right' },
-        { label: 'Behind', value: 'behind' },
-      ],
-      defaultValue: 'left',
-    },
-    {
-      name: 'squareImage',
-      type: 'checkbox',
-      defaultValue: false,
-    },
-    {
       name: 'fullWidth',
       type: 'checkbox',
       defaultValue: false,
     },
     {
-      name: 'imageFade',
-      type: 'checkbox',
-      defaultValue: false,
-    },
-
-    {
       name: 'image',
-      type: 'upload',
-      relationTo: 'cms_media',
-      required: true,
-    },
-    {
-      name: 'title',
-      type: 'text',
-    },
-    {
-      name: 'text',
-      type: 'textarea',
+      type: 'group',
+      fields: [
+        {
+          name: 'media',
+          type: 'upload',
+          relationTo: 'cms_media',
+        },
+        {
+          name: 'placement',
+          type: 'select',
+          options: [
+            { label: 'Left', value: 'left' },
+            { label: 'Right', value: 'right' },
+            { label: 'Behind', value: 'behind' },
+          ],
+          defaultValue: 'left',
+        },
+        {
+          name: 'fade',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Image will fade from selected color to image.',
+          },
+        },
+        {
+          name: 'square',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Image will be displayed as a square, for use with product images.',
+          },
+        },
+      ],
     },
     {
       name: 'link',

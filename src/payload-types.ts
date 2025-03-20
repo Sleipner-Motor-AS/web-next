@@ -203,7 +203,7 @@ export interface ContentPage {
   id: number;
   slug: string;
   localizedSlug?: string | null;
-  blocks?: (HeroBlock | SubmenuBlock)[] | null;
+  blocks?: (HeroBlock | SubmenuBlock | IntroBlock)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -213,14 +213,22 @@ export interface ContentPage {
  * via the `definition` "HeroBlock".
  */
 export interface HeroBlock {
-  color?: ('dark' | 'light' | 'white') | null;
-  imagePlacement?: ('left' | 'right' | 'behind') | null;
-  squareImage?: boolean | null;
-  fullWidth?: boolean | null;
-  imageFade?: boolean | null;
-  image: number | CmsMedia;
   title?: string | null;
   text?: string | null;
+  color?: ('dark' | 'light' | 'white') | null;
+  fullWidth?: boolean | null;
+  image?: {
+    media?: (number | null) | CmsMedia;
+    placement?: ('left' | 'right' | 'behind') | null;
+    /**
+     * Image will fade from selected color to image.
+     */
+    fade?: boolean | null;
+    /**
+     * Image will be displayed as a square, for use with product images.
+     */
+    square?: boolean | null;
+  };
   link?: {
     title?: string | null;
     target?: string | null;
@@ -238,7 +246,6 @@ export interface HeroBlock {
  * via the `definition` "SubmenuBlock".
  */
 export interface SubmenuBlock {
-  color?: ('dark' | 'light' | 'white') | null;
   links?:
     | {
         text: string;
@@ -247,9 +254,22 @@ export interface SubmenuBlock {
         id?: string | null;
       }[]
     | null;
+  color?: ('dark' | 'light' | 'white') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'submenu';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroBlock".
+ */
+export interface IntroBlock {
+  title?: string | null;
+  description?: string | null;
+  color?: ('dark' | 'light' | 'white') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'intro';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -404,6 +424,7 @@ export interface ContentPagesSelect<T extends boolean = true> {
     | {
         hero?: T | HeroBlockSelect<T>;
         submenu?: T | SubmenuBlockSelect<T>;
+        intro?: T | IntroBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -414,14 +435,18 @@ export interface ContentPagesSelect<T extends boolean = true> {
  * via the `definition` "HeroBlock_select".
  */
 export interface HeroBlockSelect<T extends boolean = true> {
-  color?: T;
-  imagePlacement?: T;
-  squareImage?: T;
-  fullWidth?: T;
-  imageFade?: T;
-  image?: T;
   title?: T;
   text?: T;
+  color?: T;
+  fullWidth?: T;
+  image?:
+    | T
+    | {
+        media?: T;
+        placement?: T;
+        fade?: T;
+        square?: T;
+      };
   link?:
     | T
     | {
@@ -442,7 +467,6 @@ export interface HeroBlockSelect<T extends boolean = true> {
  * via the `definition` "SubmenuBlock_select".
  */
 export interface SubmenuBlockSelect<T extends boolean = true> {
-  color?: T;
   links?:
     | T
     | {
@@ -451,6 +475,18 @@ export interface SubmenuBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  color?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroBlock_select".
+ */
+export interface IntroBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  color?: T;
   id?: T;
   blockName?: T;
 }

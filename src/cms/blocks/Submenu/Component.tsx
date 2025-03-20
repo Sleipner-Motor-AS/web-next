@@ -3,7 +3,7 @@ import type { SubmenuBlock } from '@/payload-types';
 
 type SubmenuBlockComponentProps = SubmenuBlock;
 
-export const SubmenuBlockComponent = ({ color, links }: SubmenuBlockComponentProps) => {
+export const SubmenuBlockComponent = ({ links, color }: SubmenuBlockComponentProps) => {
   // If no links are provided, return null
   if (!links || links.length === 0) {
     return null;
@@ -16,5 +16,5 @@ export const SubmenuBlockComponent = ({ color, links }: SubmenuBlockComponentPro
     description: link.description || '',
   }));
 
-  return <Submenu color={color ?? undefined} links={transformedLinks} />;
+  return <Submenu links={transformedLinks} color={color ?? undefined} />;
 };
