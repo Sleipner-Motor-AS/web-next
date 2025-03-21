@@ -59,6 +59,7 @@ export const ContentPages: CollectionConfig = {
     {
       name: 'blocks',
       type: 'blocks',
+      localized: true,
       blocks: [HeroBlockConfig, SubmenuBlockConfig, IntroBlockConfig],
     },
   ],

@@ -13,8 +13,8 @@ type Props = {
   };
 };
 
-export default function MarketLayout({ children, params }: Props) {
-  const { market } = params;
+export default async function MarketLayout({ children, params }: Props) {
+  const { market } = await params;
 
   return (
     <>

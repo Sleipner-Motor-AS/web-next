@@ -8,6 +8,7 @@ export const Navigation: GlobalConfig = {
       type: 'array',
       required: true,
       maxRows: 8,
+      localized: true,
       fields: [
         {
           name: 'title',
