@@ -1,12 +1,7 @@
 import './styles.css';
-
 import type { ReactNode } from 'react';
 import { IBM_Plex_Sans } from 'next/font/google';
 
-import { Topnav } from '@/components/layout/topnav';
-import { Navigation } from '@/components/layout/navigation';
-import { Breadcrumb } from '@/components/layout/breadcrumb';
-import { Footer } from '@/components/layout/footer';
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -15,19 +10,15 @@ const ibmPlexSans = IBM_Plex_Sans({
 
 export const metadata = {};
 
-export default async function RootLayout(props: { children: ReactNode }) {
-  const { children } = props;
+type Props = {
+  children: ReactNode;
+};
 
+export default function RootLayout({ children }: Props) {
   return (
     <html lang="en" className={`${ibmPlexSans.variable} antialiased`}>
       <body>
-        <main>
-          <Topnav />
-          <Navigation />
-          <Breadcrumb />
-          {children}
-          <Footer />
-        </main>
+        <main className="flex min-h-screen flex-col">{children}</main>
       </body>
     </html>
   );

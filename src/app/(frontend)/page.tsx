@@ -5,10 +5,17 @@ import { Hero } from '@/components/ui/hero';
 import DirectionsBoatIcon from '@/components/icons/directions_boat';
 import { Textlink } from '@/components/ui/textlink';
 import { Card } from '@/components/ui/card';
+import { Navigation } from '@/components/layout/navigation';
+import { Topnav } from '@/components/layout/topnav';
+import { Breadcrumb } from '@/components/layout/breadcrumb';
+import { Footer } from '@/components/layout/footer';
 
 export default async function HomePage() {
   return (
-    <div>
+    <>
+      <Topnav />
+      <Navigation market="en" />
+      <Breadcrumb />
       <Submenu
         links={[
           {
@@ -683,6 +690,7 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
