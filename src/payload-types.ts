@@ -207,7 +207,7 @@ export interface ContentPage {
   id: number;
   slug: string;
   localizedSlug?: string | null;
-  blocks?: (HeroBlock | SubmenuBlock | IntroBlock)[] | null;
+  blocks?: (HeroBlock | SubmenuBlock | IntroBlock | RichTextBlock)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -274,6 +274,31 @@ export interface IntroBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'intro';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichTextBlock".
+ */
+export interface RichTextBlock {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  width?: ('wide' | 'medium' | 'narrow') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'richText';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -429,6 +454,7 @@ export interface ContentPagesSelect<T extends boolean = true> {
         hero?: T | HeroBlockSelect<T>;
         submenu?: T | SubmenuBlockSelect<T>;
         intro?: T | IntroBlockSelect<T>;
+        richText?: T | RichTextBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -491,6 +517,16 @@ export interface IntroBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   color?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RichTextBlock_select".
+ */
+export interface RichTextBlockSelect<T extends boolean = true> {
+  content?: T;
+  width?: T;
   id?: T;
   blockName?: T;
 }
