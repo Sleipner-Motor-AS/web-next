@@ -75,7 +75,11 @@ export default buildConfig({
       },
     },
   },
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures.filter((feature) => !['relationship', 'checklist'].includes(feature.key)),
+    ],
+  }),
   secret: env.secret.payload.secret,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

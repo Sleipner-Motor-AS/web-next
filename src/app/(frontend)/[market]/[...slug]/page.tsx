@@ -12,6 +12,7 @@ import { HeroBlockComponent } from '@/cms/blocks/Hero';
 import { SubmenuBlockComponent } from '@/cms/blocks/Submenu';
 import { IntroBlockComponent } from '@/cms/blocks/Intro';
 import { RichTextBlockComponent } from '@/cms/blocks/RichText';
+import { SpacerBlockComponent } from '@/cms/blocks/Spacer';
 
 type BlockComponentProps<T extends NonNullable<ContentPage['blocks']>[number]['blockType']> = Extract<
   NonNullable<ContentPage['blocks']>[number],
@@ -25,6 +26,7 @@ const PAGE_BLOCKS: {
   submenu: SubmenuBlockComponent,
   intro: IntroBlockComponent,
   richText: RichTextBlockComponent,
+  spacer: SpacerBlockComponent,
 };
 
 type Params = {

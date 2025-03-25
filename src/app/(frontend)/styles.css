@@ -98,6 +98,26 @@
   --color-burnt-orange-25: rgba(255, 245, 241, 1);
 }
 
+/* Typography plugin */
+@utility prose {
+  --tw-prose-body: var(--color-petroleum-700);
+  --tw-prose-headings: var(--color-petroleum-700);
+  --tw-prose-bold: var(--color-petroleum-700);
+  --tw-prose-quote-borders: var(--color-petroleum-100);
+  --tw-prose-quotes: var(--color-petroleum-600);
+  --tw-prose-code: var(--color-petroleum-700);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    @apply font-semibold;
+  }
+}
+
 @layer base {
   *:focus {
     @apply outline-aqua-500;
