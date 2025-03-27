@@ -321,6 +321,7 @@ export interface IntroBlock {
   title?: string | null;
   description?: string | null;
   color?: ('dark' | 'light' | 'white') | null;
+  width?: ('wide' | 'medium' | 'narrow') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'intro';
@@ -642,6 +643,7 @@ export interface IntroBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   color?: T;
+  width?: T;
   id?: T;
   blockName?: T;
 }

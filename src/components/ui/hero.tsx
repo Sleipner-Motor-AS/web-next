@@ -97,7 +97,7 @@ export function Hero({
   const contentContainerClasses = 'w-full self-center justify-self-center';
 
   // Content styles
-  const contentClasses = cn('mx-auto p-8', 'md:max-w-screen-sm md:p-10', 'xl:p-12', {
+  const contentClasses = cn('mx-auto p-8', 'md:max-w-screen-md md:p-10', 'xl:p-12', {
     'relative z-10': imagePlacement === 'behind',
     'ml-auto mr-0': fullWidth && imagePlacement === 'right',
     'ml-0 mr-auto': fullWidth && imagePlacement === 'left',

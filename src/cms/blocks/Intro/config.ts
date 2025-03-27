@@ -25,5 +25,16 @@ export const IntroBlockConfig: Block = {
       ],
       defaultValue: 'light',
     },
+    {
+      name: 'width',
+      type: 'select',
+      label: 'Width',
+      options: [
+        { label: 'Wide', value: 'wide' },
+        { label: 'Medium', value: 'medium' },
+        { label: 'Narrow', value: 'narrow' },
+      ],
+      defaultValue: 'medium',
+    },
   ],
 };
