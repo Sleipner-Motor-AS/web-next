@@ -13,6 +13,7 @@ import { SubmenuBlockComponent } from '@/cms/blocks/Submenu';
 import { IntroBlockComponent } from '@/cms/blocks/Intro';
 import { RichTextBlockComponent } from '@/cms/blocks/RichText';
 import { SpacerBlockComponent } from '@/cms/blocks/Spacer';
+import { RelatedBlockComponent } from '@/cms/blocks/Related';
 
 type BlockComponentProps<T extends NonNullable<ContentPage['blocks']>[number]['blockType']> = Extract<
   NonNullable<ContentPage['blocks']>[number],
@@ -27,6 +28,7 @@ const PAGE_BLOCKS: {
   intro: IntroBlockComponent,
   richText: RichTextBlockComponent,
   spacer: SpacerBlockComponent,
+  related: RelatedBlockComponent,
 };
 
 type Params = {

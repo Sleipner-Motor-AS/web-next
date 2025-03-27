@@ -34,7 +34,7 @@ export const IntroBlockConfig: Block = {
         { label: 'Medium', value: 'medium' },
         { label: 'Narrow', value: 'narrow' },
       ],
-      defaultValue: 'medium',
+      defaultValue: 'wide',
     },
   ],
 };

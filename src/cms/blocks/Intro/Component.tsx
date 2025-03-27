@@ -3,7 +3,7 @@ import type { IntroBlock } from '@/payload-types';
 
 type IntroBlockComponentProps = IntroBlock;
 
-export const IntroBlockComponent = ({ title, description, color, width = 'medium' }: IntroBlockComponentProps) => {
+export const IntroBlockComponent = ({ title, description, color, width }: IntroBlockComponentProps) => {
   return (
     <Intro
       title={title ?? undefined}

@@ -257,7 +257,7 @@ export interface ContentPage {
   id: number;
   slug: string;
   localizedSlug?: string | null;
-  blocks?: (HeroBlock | SubmenuBlock | IntroBlock | RichTextBlock | SpacerBlock)[] | null;
+  blocks?: (HeroBlock | SubmenuBlock | IntroBlock | RichTextBlock | SpacerBlock | RelatedBlock)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -360,6 +360,26 @@ export interface SpacerBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'spacer';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedBlock".
+ */
+export interface RelatedBlock {
+  title?: string | null;
+  description?: string | null;
+  related?:
+    | {
+        title: string;
+        description: string;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  color?: ('dark' | 'light' | 'white') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'related';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -581,6 +601,7 @@ export interface ContentPagesSelect<T extends boolean = true> {
         intro?: T | IntroBlockSelect<T>;
         richText?: T | RichTextBlockSelect<T>;
         spacer?: T | SpacerBlockSelect<T>;
+        related?: T | RelatedBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -663,6 +684,25 @@ export interface RichTextBlockSelect<T extends boolean = true> {
  */
 export interface SpacerBlockSelect<T extends boolean = true> {
   height?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RelatedBlock_select".
+ */
+export interface RelatedBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  related?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        url?: T;
+        id?: T;
+      };
+  color?: T;
   id?: T;
   blockName?: T;
 }
