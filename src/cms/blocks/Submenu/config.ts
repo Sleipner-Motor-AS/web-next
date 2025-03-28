@@ -8,7 +8,7 @@ export const SubmenuBlockConfig: Block = {
     {
       name: 'links',
       type: 'array',
-      label: 'Submenu Links',
+      label: 'Submenu links',
       minRows: 1,
       maxRows: 6,
       labels: {
@@ -19,19 +19,16 @@ export const SubmenuBlockConfig: Block = {
         {
           name: 'text',
           type: 'text',
-          label: 'Link Text',
           required: true,
         },
         {
           name: 'url',
           type: 'text',
-          label: 'Link URL',
           required: true,
         },
         {
           name: 'description',
           type: 'text',
-          label: 'Description',
           required: true,
         },
       ],

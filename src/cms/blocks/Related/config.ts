@@ -8,17 +8,14 @@ export const RelatedBlockConfig: Block = {
     {
       name: 'title',
       type: 'text',
-      label: 'Title',
     },
     {
       name: 'description',
       type: 'text',
-      label: 'Description',
     },
     {
       name: 'related',
       type: 'array',
-      label: 'Related ',
       minRows: 1,
       maxRows: 3,
       labels: {
@@ -27,21 +24,25 @@ export const RelatedBlockConfig: Block = {
       },
       fields: [
         {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'cms_media',
+        },
+        {
           name: 'title',
           type: 'text',
-          label: 'Title',
           required: true,
         },
         {
           name: 'description',
           type: 'text',
-          label: 'Description',
           required: true,
         },
         {
-          name: 'url',
-          type: 'text',
-          label: 'Link URL',
+          name: 'page',
+          type: 'relationship',
+          relationTo: ['content_pages', 'cms_products'],
+          required: true,
         },
       ],
     },

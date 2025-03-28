@@ -370,9 +370,18 @@ export interface RelatedBlock {
   description?: string | null;
   related?:
     | {
+        image?: (number | null) | CmsMedia;
         title: string;
         description: string;
-        url?: string | null;
+        page:
+          | {
+              relationTo: 'content_pages';
+              value: number | ContentPage;
+            }
+          | {
+              relationTo: 'cms_products';
+              value: number | CmsProduct;
+            };
         id?: string | null;
       }[]
     | null;
@@ -697,9 +706,10 @@ export interface RelatedBlockSelect<T extends boolean = true> {
   related?:
     | T
     | {
+        image?: T;
         title?: T;
         description?: T;
-        url?: T;
+        page?: T;
         id?: T;
       };
   color?: T;

@@ -8,12 +8,10 @@ export const RichTextBlockConfig: Block = {
     {
       name: 'content',
       type: 'richText',
-      label: 'Content',
     },
     {
       name: 'width',
       type: 'select',
-      label: 'Width',
       options: [
         { label: 'Wide', value: 'wide' },
         { label: 'Medium', value: 'medium' },

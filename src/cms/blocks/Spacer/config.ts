@@ -8,7 +8,6 @@ export const SpacerBlockConfig: Block = {
     {
       name: 'height',
       type: 'select',
-      label: 'Height',
       options: [
         { label: 'Small', value: 'small' },
         { label: 'Medium', value: 'medium' },

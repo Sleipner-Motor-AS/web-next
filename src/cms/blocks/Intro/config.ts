@@ -8,12 +8,10 @@ export const IntroBlockConfig: Block = {
     {
       name: 'title',
       type: 'text',
-      label: 'Title',
     },
     {
       name: 'description',
       type: 'textarea',
-      label: 'Description',
     },
     {
       name: 'color',
@@ -28,7 +26,6 @@ export const IntroBlockConfig: Block = {
     {
       name: 'width',
       type: 'select',
-      label: 'Width',
       options: [
         { label: 'Wide', value: 'wide' },
         { label: 'Medium', value: 'medium' },
